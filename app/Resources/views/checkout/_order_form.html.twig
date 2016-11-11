@@ -1,14 +1,19 @@
 <div class="tour">
-    {{ form_start(form, {'attr':{'class':'checkout'}}) }}
+    {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr':{'class':'checkout'}}) }}
     <ul class="tour-error">
         {{ form_errors(form) }}
     </ul>
 
     <div class="tour-billing-fields">
         <h3>Billing Details</h3>
-        <p class="form-row form-row form-row-wide">
-            {{ form_label(form.billingName) }}
-            {{ form_widget(form.billingName, {'attr': {'class': 'input-text'}}) }}
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.billingFirsttName) }}
+            {{ form_widget(form.billingFirsttName, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.billingLastName) }}
+            {{ form_widget(form.billingLastName, {'attr': {'class': 'input-text'}}) }}
         </p>
 
         <p class="form-row form-row form-row-first">

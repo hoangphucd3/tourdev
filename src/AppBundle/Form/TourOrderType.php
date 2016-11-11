@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,15 +11,29 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TourOrderType extends AbstractType
 {
+//    use ContainerAwareTrait;
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $user_object = $this->container->get('security.token_storage')->getToken()->getUser();
+
         $builder
-            ->add('billingName', TextType::class, array(
+            ->add('billingFirsttName', TextType::class, array(
                 'label' => 'Tên',
-                'data' => '',
+                'data' => !empty($user_object->getFirstName()) ? $user_object->getFirstName() : '',
+            ))
+            ->add('billingLastName', TextType::class, array(
+                'label' => 'Họ',
+                'data' => !empty($user_object->getLastName()) ? $user_object->getLastName() : '',
             ))
             ->add('email', TextType::class, array(
                 'label' => 'Email'

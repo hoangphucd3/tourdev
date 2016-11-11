@@ -381,7 +381,7 @@
         if (jQuery(".cs-calendar-combo > input").length != '') {
             var nowDate = new Date();
             var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-            jQuery('.cs-calendar-combo > input').datepicker({startDate: today, format: 'dd/mm/yy'});
+            jQuery('.cs-calendar-combo > input').datepicker({startDate: today, format: 'dd/mm/yyyy'});
         }
         /*Destination Fancy Accordian*/
         $(document).on('click', 'ul.destination-fancy > li', function () {

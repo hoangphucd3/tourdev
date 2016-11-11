@@ -7,24 +7,33 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.user_manager:
+            class: AppBundle\Manager\UserManager
+            arguments:
+                - "@service_container"
+                - "@doctrine.orm.entity_manager"
+                - AppBundle\Entity\User
+
     app.tour_manager:
         class: AppBundle\Manager\TourManager
         arguments:
             - "@doctrine.orm.entity_manager"
             - AppBundle\Entity\Tour
 
+    app.tour_order_manager:
+        class: AppBundle\Manager\TourOrderManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - AppBundle\Entity\TourOrder
+
     app.slugger:
         class: AppBundle\Utils\Slugger
 
-    app.user_repository:
-        class: AppBundle\Repository\UserRepository
-        factory: ["@doctrine.orm.entity_manager", getRepository]
-        arguments:
-            - AppBundle\Entity\User
-
-    app.user_service:
-        class: AppBundle\Service\UserManagerService
-        arguments: ["@app.user_repository"]
+    app.form.type.tour_order:
+        class: AppBundle\Form\TourOrderType
+        arguments: ["@service_container"]
+        tags:
+            - { name: form.type }
 
     app.admin.tour:
         class: AppBundle\Admin\TourAdmin
@@ -73,3 +82,9 @@ services:
         arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: TourBackground }
+
+    app.admin.tour_order:
+            class: AppBundle\Admin\TourOrderAdmin
+            arguments: [~, AppBundle\Entity\TourOrder, AppBundle:TourOrderAdmin]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: admin, label: TourOrder }

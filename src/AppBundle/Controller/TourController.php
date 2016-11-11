@@ -71,20 +71,32 @@ class TourController extends Controller
     }
 
     /**
-     * @Route("/order/new", name="tour_order_new")
+     * @Route("/order/{tour}/new", name="tour_order_new")
+     * @Method("POST")
+     * @ParamConverter("tour", options={"mapping": {"tour": "id"}})
      */
-    public function orderNewAction(Request $request)
+    public function orderNewAction(Request $request, Tour $tour)
     {
-//        if (empty($request->query->get('booking_data'))) {
-//            return $this->redirectToRoute('tour_index');
-//        }
-//
-//        $booking_data = $request->query->get('booking_data');
-//
-//        $departure = isset($booking_data['departure']) ? $booking_data['departure'] : '';
-//        $adults = isset($booking_data['adults']) ? absint($booking_data['adults']) : 1;
+        $form = $this->createForm(TourOrderType::class);
 
-//        return $this->render('checkout/content.html.twig', ['request' => $request->query->get('booking_data')]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $order = $form->getData();
+
+            $departure = \DateTime::createFromFormat("d/m/Y", $this->get('session')->get('departure'));
+
+            $order->setTour($tour);
+            $order->setCustomer($this->get('app.user_manager')->getCurrentUser());
+            $order->setDeparture($departure);
+            $order->setStatus('pending');
+
+            if ($this->get('app.tour_order_manager')->createTourOrder($order)) {
+                return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
+            } else {
+                return new Response('Có vấn đề khi tạo hóa đơn?');
+            }
+        }
     }
 
     /**

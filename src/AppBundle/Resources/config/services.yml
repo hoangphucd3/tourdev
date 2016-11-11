@@ -46,3 +46,9 @@ services:
         arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: TourBackground }
+
+    app.admin.tour_order:
+        class: AppBundle\Admin\TourOrderAdmin
+        arguments: [~, AppBundle\Entity\TourOrder, AppBundle:TourOrderAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourOrder }

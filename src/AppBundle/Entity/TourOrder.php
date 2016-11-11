@@ -48,7 +48,14 @@ class TourOrder
      *
      * @ORM\Column(name="ten", type="string")
      */
-    private $billingName;
+    private $billingFirsttName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ho", type="string")
+     */
+    private $billingLastName;
 
     /**
      * @var string
@@ -131,7 +138,7 @@ class TourOrder
     /**
      * Get id
      *
-     * @return int
+     * @return integer 
      */
     public function getId()
     {
@@ -139,16 +146,9 @@ class TourOrder
     }
 
     /**
-     * @var string
-     */
-    private $condition;
-
-
-    /**
      * Set status
      *
      * @param integer $status
-     *
      * @return TourOrder
      */
     public function setStatus($status)
@@ -161,7 +161,7 @@ class TourOrder
     /**
      * Get status
      *
-     * @return integer
+     * @return integer 
      */
     public function getStatus()
     {
@@ -172,7 +172,6 @@ class TourOrder
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     *
      * @return TourOrder
      */
     public function setCreatedAt($createdAt)
@@ -185,7 +184,7 @@ class TourOrder
     /**
      * Get createdAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getCreatedAt()
     {
@@ -196,7 +195,6 @@ class TourOrder
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     *
      * @return TourOrder
      */
     public function setUpdatedAt($updatedAt)
@@ -209,7 +207,7 @@ class TourOrder
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getUpdatedAt()
     {
@@ -217,34 +215,55 @@ class TourOrder
     }
 
     /**
-     * Set billingName
+     * Set billingFirsttName
      *
-     * @param string $billingName
-     *
+     * @param string $billingFirsttName
      * @return TourOrder
      */
-    public function setBillingName($billingName)
+    public function setBillingFirsttName($billingFirsttName)
     {
-        $this->billingName = $billingName;
+        $this->billingFirsttName = $billingFirsttName;
 
         return $this;
     }
 
     /**
-     * Get billingName
+     * Get billingFirsttName
      *
-     * @return string
+     * @return string 
      */
-    public function getBillingName()
+    public function getBillingFirsttName()
     {
-        return $this->billingName;
+        return $this->billingFirsttName;
+    }
+
+    /**
+     * Set billingLastName
+     *
+     * @param string $billingLastName
+     * @return TourOrder
+     */
+    public function setBillingLastName($billingLastName)
+    {
+        $this->billingLastName = $billingLastName;
+
+        return $this;
+    }
+
+    /**
+     * Get billingLastName
+     *
+     * @return string 
+     */
+    public function getBillingLastName()
+    {
+        return $this->billingLastName;
     }
 
     /**
      * Set billingPhone
      *
      * @param string $billingPhone
-     *
      * @return TourOrder
      */
     public function setBillingPhone($billingPhone)
@@ -257,7 +276,7 @@ class TourOrder
     /**
      * Get billingPhone
      *
-     * @return string
+     * @return string 
      */
     public function getBillingPhone()
     {
@@ -268,7 +287,6 @@ class TourOrder
      * Set billingAddress1
      *
      * @param string $billingAddress1
-     *
      * @return TourOrder
      */
     public function setBillingAddress1($billingAddress1)
@@ -281,7 +299,7 @@ class TourOrder
     /**
      * Get billingAddress1
      *
-     * @return string
+     * @return string 
      */
     public function getBillingAddress1()
     {
@@ -292,7 +310,6 @@ class TourOrder
      * Set billingAddress2
      *
      * @param string $billingAddress2
-     *
      * @return TourOrder
      */
     public function setBillingAddress2($billingAddress2)
@@ -305,7 +322,7 @@ class TourOrder
     /**
      * Get billingAddress2
      *
-     * @return string
+     * @return string 
      */
     public function getBillingAddress2()
     {
@@ -316,7 +333,6 @@ class TourOrder
      * Set billingCity
      *
      * @param string $billingCity
-     *
      * @return TourOrder
      */
     public function setBillingCity($billingCity)
@@ -329,7 +345,7 @@ class TourOrder
     /**
      * Get billingCity
      *
-     * @return string
+     * @return string 
      */
     public function getBillingCity()
     {
@@ -340,7 +356,6 @@ class TourOrder
      * Set billingPostCode
      *
      * @param string $billingPostCode
-     *
      * @return TourOrder
      */
     public function setBillingPostCode($billingPostCode)
@@ -353,7 +368,7 @@ class TourOrder
     /**
      * Get billingPostCode
      *
-     * @return string
+     * @return string 
      */
     public function getBillingPostCode()
     {
@@ -361,82 +376,9 @@ class TourOrder
     }
 
     /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return TourOrder
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
-    }
-
-    /**
-     * Set customer
-     *
-     * @param \AppBundle\Entity\User $customer
-     *
-     * @return TourOrder
-     */
-    public function setCustomer(\AppBundle\Entity\User $customer = null)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
-     * Set tour
-     *
-     * @param \AppBundle\Entity\Tour $tour
-     *
-     * @return TourOrder
-     */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
-    {
-        $this->tour = $tour;
-
-        return $this;
-    }
-
-    /**
-     * Get tour
-     *
-     * @return \AppBundle\Entity\Tour
-     */
-    public function getTour()
-    {
-        return $this->tour;
-    }
-
-    /**
      * Set country
      *
      * @param string $country
-     *
      * @return TourOrder
      */
     public function setCountry($country)
@@ -449,7 +391,7 @@ class TourOrder
     /**
      * Get country
      *
-     * @return string
+     * @return string 
      */
     public function getCountry()
     {
@@ -460,7 +402,6 @@ class TourOrder
      * Set departure
      *
      * @param \DateTime $departure
-     *
      * @return TourOrder
      */
     public function setDeparture($departure)
@@ -473,7 +414,7 @@ class TourOrder
     /**
      * Get departure
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDeparture()
     {
@@ -484,7 +425,6 @@ class TourOrder
      * Set email
      *
      * @param string $email
-     *
      * @return TourOrder
      */
     public function setEmail($email)
@@ -497,10 +437,56 @@ class TourOrder
     /**
      * Get email
      *
-     * @return string
+     * @return string 
      */
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \AppBundle\Entity\User $customer
+     * @return TourOrder
+     */
+    public function setCustomer(\AppBundle\Entity\User $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Set tour
+     *
+     * @param \AppBundle\Entity\Tour $tour
+     * @return TourOrder
+     */
+    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Get tour
+     *
+     * @return \AppBundle\Entity\Tour 
+     */
+    public function getTour()
+    {
+        return $this->tour;
     }
 }
