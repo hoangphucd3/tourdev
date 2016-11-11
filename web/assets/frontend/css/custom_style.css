@@ -1,0 +1,77 @@
+.package-info-wrapper .package-info {
+    padding: 0;
+    margin: 3px 0;
+    position: relative;
+    line-height: 34px;
+}
+
+.package-info-wrapper i {
+    margin-right: 3px;
+}
+
+.tour {
+    margin-bottom: 30px;
+}
+
+.tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+    width: 48%;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+    width: 48%;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.tour form .form-row.form-row-first {
+    margin-right: 30px;
+}
+
+.tour .form-row-wide {
+    float: left;
+    width: 100%;
+}
+
+.tour form .form-row label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.tour form .form-row input.input-text, .tour form .form-row textarea {
+    height: 42px;
+    width: 100%;
+    border-color: #eee;
+    background-color: #f8f8f8;
+    font-size: 13px;
+    color: #666;
+    padding-left: 19px;
+    border-radius: 0px;
+}
+
+.tour form .form-row {
+    padding: 0px;
+}
+
+.tour button.button, .tour input.button {
+    height: 38px;
+    padding: 0 20px;
+    line-height: 28px;
+    border: none;
+    color: #fff;
+}
+
+.tour form.checkout .form-row input.button {
+    background-color: #0065b8 !important;
+    margin: 0 10px 0 0;
+}
+
+.tour button.button.alt, .tour input.button.alt {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}

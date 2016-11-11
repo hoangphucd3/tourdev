@@ -7,3 +7,69 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.tour_manager:
+        class: AppBundle\Manager\TourManager
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - AppBundle\Entity\Tour
+
+    app.slugger:
+        class: AppBundle\Utils\Slugger
+
+    app.user_repository:
+        class: AppBundle\Repository\UserRepository
+        factory: ["@doctrine.orm.entity_manager", getRepository]
+        arguments:
+            - AppBundle\Entity\User
+
+    app.user_service:
+        class: AppBundle\Service\UserManagerService
+        arguments: ["@app.user_repository"]
+
+    app.admin.tour:
+        class: AppBundle\Admin\TourAdmin
+        arguments: [~, AppBundle\Entity\Tour, AppBundle:TourAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tour }
+
+    app.admin.location:
+        class: AppBundle\Admin\LocationAdmin
+        arguments: [~, AppBundle\Entity\Location, AppBundle:LocationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Location }
+
+    app.admin.tour_location:
+        class: AppBundle\Admin\TourLocationAdmin
+        arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourLocation }
+
+    app.admin.hotel:
+        class: AppBundle\Admin\HotelAdmin
+        arguments: [~, AppBundle\Entity\Hotel, AppBundle:HotelAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Hotel }
+
+    app.admin.tour_hotel:
+        class: AppBundle\Admin\TourHotelAdmin
+        arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourHotel }
+
+    app.admin.user:
+        class: AppBundle\Admin\UserAdmin
+        arguments: [~, AppBundle\Entity\User, AppBundle:UserAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: User }
+
+    app.admin.tour_category:
+        class: AppBundle\Admin\TourCategoryAdmin
+        arguments: [~, AppBundle\Entity\TourCategory, AppBundle:TourCategoryAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourCategory }
+
+    app.admin.tour_background:
+        class: AppBundle\Admin\TourBackgroundAdmin
+        arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourBackground }

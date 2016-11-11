@@ -1,13 +1,288 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/common/icomoon/css/iconmoon.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-theme.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/component-gallery.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/cs-traveladvisor-plugin.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/default-element.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery.mobile-menu.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/prettyPhoto.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-datetimepicker.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom_style.css') }}">
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body class="{% block body_class %}wp-traveladvisor{% endblock %}">
+<div class="wrapper full_width">
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                    <div class="cs-logo">
+                        <div class="cs-media">
+                            <figure>
+                                <a href="#">
+                                    <img src="{{ asset('assets/frontend/images/logo.png') }}">
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% block sub_header %}
+        <div class="cs-sub-header"
+             style="background:url({{ asset('assets/frontend/images/subheader-shop.jpg') }}) no-repeat;background-size:cover;padding-top:200px!important;height:415px!important">
+        </div>
+    {% endblock %}
+    <!-- Header End -->
+
+    {% block body %}{% endblock %}
+</div>
+{% block footer %}
+    <!-- Footer Start -->
+    <footer id="footer">
+        <div class="top-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                        <div class="cs-social-media">
+                            <ul>
+
+                                <li>
+                                    <a href="#" data-original-title="facebook" data-placement="top"
+                                       data-placement-tooltip="tooltip" class="colrhover" target="_blank">
+                                        <i class="fa icon-facebook "></i>
+                                        facebook </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-original-title="twitter" data-placement="top"
+                                       data-placement-tooltip="tooltip" class="colrhover" target="_blank">
+                                        <i class="fa icon-twitter "></i>
+                                        twitter </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-original-title="linkedin" data-placement="top"
+                                       data-placement-tooltip="tooltip" class="colrhover" target="_blank">
+                                        <i class="fa icon-linkedin4 "></i>
+                                        linkedin </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-original-title="youtube" data-placement="top"
+                                       data-placement-tooltip="tooltip" class="colrhover" target="_blank">
+                                        <i class="fa icon-youtube "></i>
+                                        youtube </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" data-original-title="vimeo" data-placement="top"
+                                       data-placement-tooltip="tooltip" class="colrhover" target="_blank">
+                                        <i class="fa icon-vimeo "></i>
+                                        vimeo </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"><a href="#" class="btn-to-top">To Top<i
+                                    class="icon-keyboard_arrow_up"></i></a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>TOP DESTINATIONS</h5></div>
+                            <div class="menu-top-destinations-container">
+                                <ul id="menu-top-destinations" class="menu">
+                                    <li id="menu-item-166"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-166"><a
+                                                href="#">Germany</a></li>
+                                    <li id="menu-item-167"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a
+                                                href="#">Austria</a></li>
+                                    <li id="menu-item-168"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168"><a
+                                                href="#">Italy</a></li>
+                                    <li id="menu-item-169"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-169"><a
+                                                href="#">Netherlands</a></li>
+                                    <li id="menu-item-170"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-170"><a
+                                                href="#">Poland</a></li>
+                                    <li id="menu-item-171"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-171"><a
+                                                href="#">Switzerland</a></li>
+                                    <li id="menu-item-172"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-172"><a
+                                                href="#">Find &amp; Save</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>INTERESTS</h5></div>
+                            <div class="menu-interests-container">
+                                <ul id="menu-interests" class="menu">
+                                    <li id="menu-item-173"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-173"><a
+                                                href="#">Adventure travel</a></li>
+                                    <li id="menu-item-174"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-174"><a
+                                                href="#">Beaches Budget</a></li>
+                                    <li id="menu-item-175"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-175"><a
+                                                href="#">travel</a></li>
+                                    <li id="menu-item-176"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-176"><a
+                                                href="#">Family travel</a></li>
+                                    <li id="menu-item-177"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-177"><a
+                                                href="#">Festivals and events</a></li>
+                                    <li id="menu-item-178"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-178"><a
+                                                href="#">Food and drink</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>ABOUT US</h5></div>
+                            <div class="menu-about-us-container">
+                                <ul id="menu-about-us" class="menu">
+                                    <li id="menu-item-180"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-180">
+                                        <a href="http://traveladvisor.chimpgroup.com/about-us/">About Us</a></li>
+                                    <li id="menu-item-181"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-181">
+                                        <a href="http://traveladvisor.chimpgroup.com/tour-grid/">Tour Grid</a></li>
+                                    <li id="menu-item-179"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-179">
+                                        <a href="http://traveladvisor.chimpgroup.com/faqs/">Faq’s</a></li>
+                                    <li id="menu-item-182"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-182">
+                                        <a href="http://traveladvisor.chimpgroup.com/contact-us/">Contact Us</a></li>
+                                    <li id="menu-item-183"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-183">
+                                        <a href="http://traveladvisor.chimpgroup.com/blog-grid/">Blog Grid</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget-news-letter">
+                            <div class="widget-title"><h5>Contact us Now</h5></div>
+                            <p>Enter your email below and stay up to date with the latest travel info.</p>
+
+
+                            <div id="process_newsletter_2">
+                                <div id="process_2" class="cs-show-msg"></div>
+                                <div id="newsletter_mess_2" style="display:none"></div>
+                                <div class="cs-form">
+                                    <form action="javascript:traveladvisor_mailchimp_submit('http://traveladvisor.chimpgroup.com/wp-content/themes/traveladvisor','2','http://traveladvisor.chimpgroup.com/wp-admin/admin-ajax.php')"
+                                          id="mcform_2" method="post">
+                                        <div class="input-holder">
+
+                                            <input id="traveladvisor_list_id4628830" type="hidden"
+                                                   name="traveladvisor_list_id" value="d758a5298d">
+                                            <input type="text" id="mc_email4628830" class="txt-bar" name="mc_email"
+                                                   placeholder="">
+                                            <label> <i class=""></i>
+                                                <input class="cs-bgcolor" id="btn_newsletter_2" type="submit"
+                                                       value="submit">
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:#f0f0f0;" class="cs-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="copyright-text">
+                            <div class="cs-logo">
+                                <a href="#"><img
+                                            src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xcs-footer-logo.png.pagespeed.ic.z5FYLmSngP.png"></a>
+                            </div>
+                            <p>
+                                Contact us Get in touch with your local travel expert
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="cs-shop-card">
+                            <ul>
+                                <li>
+                                    <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xshop-card-img-4.jpg.pagespeed.ic.EnXsJdtz-A.webp">
+                                </li>
+                                <li>
+                                    <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xshop-card-img-3.jpg.pagespeed.ic.ZnXSjGUClh.webp">
+                                </li>
+                                <li>
+                                    <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xshop-card-img-2.jpg.pagespeed.ic.9NcY09-sAZ.webp">
+                                </li>
+                                <li>
+                                    <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xshop-card-img-1.jpg.pagespeed.ic.CJQJrYWTWN.webp">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('assets/frontend/scripts/jquery.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap-slider.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/counter.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/custom_functions.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/chosen.select.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/functions.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.circliful.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.countdown.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.fitvids.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.mobile-menu.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/modernizr.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/responsive.menu.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/skills-progress.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/slick.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/sticky-kit.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/lightbox.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/prettyPhoto.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery-datetimepicker.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/select2.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/theme_functions.js') }}"></script>
+{% endblock %}
+</body>
 </html>

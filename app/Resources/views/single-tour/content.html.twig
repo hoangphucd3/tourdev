@@ -1,0 +1,184 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tour.tourName }}{% endblock %}
+
+{% block body_class %}{{ parent() }} single-trip {% endblock %}
+
+{% block sub_header %}{% endblock %}
+
+{% block body %}
+    <ul class="cs-list-detail-slider">
+        {% if not tour.backgrounds.empty %}
+            {% for background in tour.backgrounds %}
+                <img src="{% path background.media, 'reference' %}">
+            {% endfor %}
+        {% else %}
+            <img src="{{ asset('assets/frontend/images/tour-slide-1.jpg') }}">
+        {% endif %}
+    </ul>
+
+    <div class="cs-fixed-sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-page-title">
+                        <h1>{{ tour.tourName }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Start -->
+    <div class="main-section">
+        <div class="tour-detail-holder">
+            <div class="page-section">
+                <div class="cs-overlay">
+                    <div class="container">
+                        <div class="row">
+                            {% if not tour.locations.empty %}
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <ul class="cs-detail-next-post">
+                                        {% for location in tour.locations %}
+                                            <li>
+                                                <div class="cs-date-post" id="infobox0"><span>Day 01</span>
+                                                    <div class="cs-post-thumb">
+                                                        <div class="cs-media">
+                                                            <figure>
+                                                                <a href="#">
+                                                                    <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/xtour-gallery-03-300x169.jpg.pagespeed.ic.v-YNG2t7kX.webp"/>
+                                                                </a>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="cs-text">
+                                                            <h5>
+                                                                <a href="#">{{ location.location.name }}</a>
+                                                            </h5>
+                                                            <p>Congue curae ut tortor sapien ! aliquam porttitor
+                                                                consequat,
+                                                                ultricies pharetra facilisis maecenas molestie felis</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <aside class="page-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12" id="filtration_sidebar">
+                            <div class="cs-tourdetial-search">
+                                <div class="cs-tourdetial-holder">
+                                    <div class="cs-price">
+                                        <strong><em><sup>$</sup>{{ tour.regularPrice }}</em>
+                                            <sup>$</sup>{{ tour.salePrice }}</strong> <span>Giá</span>
+                                    </div>
+
+                                    <div class="package-info-wrapper">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="package-info">
+                                                <i class="icon-users"></i>
+
+                                                <span class="head">Số lượng khách:</span> {{ tour.amount }}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="package-info">
+                                                {# http://stackoverflow.com/questions/15657687/twig-date-difference #}
+                                                {% set difference = date(tour.endDate).diff(date(tour.startDate)) %}
+                                                {% set lefDays = difference.days %}
+                                                <i class="icon-calendar"></i>
+
+                                                <span class="head">Thời gian:</span> {{ lefDays }} ngày
+                                            </div>
+                                        </div>
+
+                                        {{ render(controller('AppBundle:Tour:bookingForm', {'id' : tour.id})) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <div class="page-content col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="cs-list-short" id="short_list">
+                                        <ul class="cs-list-highlights">
+                                            <li><a href="#overview">Giới thiệu</a></li>
+                                            <li><a href="#gallery">Thư viện</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="cs-list-detail" id="overview">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                {{ tour.description | raw }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12"></div>
+
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <div class="cs-list-detail light-box" id="gallery">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="cs-section-title">
+                                            <h3></h3>
+                                        </div>
+                                    </div>
+
+                                    {% if tour.gallery %}
+                                        {% for media in tour.gallery.galleryHasMedias %}
+                                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                                <div class="cs-trip-gallery">
+                                                    <div class="cs-media">
+                                                        <figure>
+                                                            <a href="{% path media.media, 'reference' %}"
+                                                               rel="prettyPhoto[gallery2]"
+                                                               data-rel="prettyPhoto[0]">
+                                                                <img src="{% path media.media, 'reference' %}" alt="">
+                                                            </a>
+                                                            <figcaption></figcaption>
+                                                        </figure>
+
+                                                        <span><i class="icon-search2"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-section">
+            <div id="itinerary">
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

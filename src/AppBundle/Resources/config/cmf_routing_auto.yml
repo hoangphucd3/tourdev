@@ -1,0 +1,5 @@
+AppBundle\Entity\Tour
+    definitions:
+        - { uri_schema: '/tour/test/{slug}' }
+    token_providers:
+        slug: [content_method, {method: getSlug}]

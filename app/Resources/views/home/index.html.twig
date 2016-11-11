@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Main Content Section -->
+    <div class="main-section">
+        <!-- Page Section -->
+        <div class="page-section">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div id="fade331204" class="black_overlay"></div>
+                                    <!-- end popup -->
+                                    <div class="row">
+                                        <div class="cs-inventories-main-box">
+                                            {% for tour in tours %}
+                                                {{ include('home/content-inventories-box.html.twig', { 'tour': tour }) }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Container Start -->
+        </div>
+        <!-- End Page Section -->
+    </div>
+    <!--End Main Content Section -->
+{% endblock %}

@@ -1,0 +1,29 @@
+{{ form_start(form, { method: 'POST', action: path('tour_booking_new', {'tourSlug' : tour.slug}) }) }}
+    {{ form_errors(form) }}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="cs-search-field">
+
+        {{ form_label(form.departure) }}
+        <i class="icon-calendar"></i>
+        <div id="Deadline" class="cs-calendar-combo">
+            {{ form_widget(form.departure, {'id' : 'booking_date'}) }}
+        </div>
+        {{ form_errors(form.departure) }}
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="cs-search-field">
+
+        {{ form_label(form.adults) }}
+        {{ form_widget(form.adults) }}
+        {{ form_errors(form.adults) }}
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="cs-search-field">
+        <input type="submit" class="acc-submit cs-bgcolor" value="Đặt tour">
+    </div>
+</div>
+{{ form_end(form) }}

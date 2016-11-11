@@ -1,0 +1,125 @@
+
+.cs-color, .active > a, .active > a:hover, .active > a:focus, footer#footer .footer-links a, .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > a:hover i, .pagination > li > a.active,
+.widget .post-title h6:hover, .widget .post-title h6 a:hover, .widget .post-title h5:hover, .widget .post-title h5 a:hover,.widget-categories li a:hover,
+.cs-blog .post-title h3:hover, .cs-blog .post-title h3 a:hover, .cs-blog .post-title h2:hover, .cs-blog .post-title h2 a:hover, .cs-blog .post-title h4:hover, .cs-blog .post-title h4 a:hover,.cs-blog .cs-categorise a:hover, .cs-blog-detail .post-meta span a:hover,
+.cs-prvnext-post h6:hover, .cs-prvnext-post h6 a:hover, .cs-prvnext-post a:hover, .cs-interest-listing .post-title h4:hover, .cs-interest-listing .post-title h4 a:hover
+,.main-navigation ul ul li a:hover,.main-navigation ul ul > li:hover > a, .top-footer .cs-social-media ul li a:hover, .top-footer .cs-social-media ul li a:hover i,.cs-footer-widgets ul li a:before,.breadcrumbs ul li.active,header.modern .mm-toggle i, header.modern .cs-cart a i,header.modern .main-navigation > ul > li:hover > a,
+.widget-price-filter .slider.slider-horizontal .slider-tick, .widget-price-filter .slider.slider-horizontal .slider-handle, .widget-price-filter .slider-selection, .nav-widget ul li:hover i, .cs-team.classic:hover .cs-text h3 a, .cs-team-directors:hover .cs-text h6 a, .cs-blog.fancy:hover .blog-author a, 
+.cs-blog.fancy:hover .blog-fancy-detail h3 a, .cs-blog.fancy:hover .blog-fancy-detail ul li a,
+.wp-traveladvisor .cs-pagination ul.pagination li a:hover,
+.wp-traveladvisor .cs-list .cs-text .cs-heading-section .cs-post-title h3 a:hover,
+.wp-traveladvisor .page-sidebar .cs-listing-filters .panel-group .panel-heading a:after,
+.cs-error-content a,.cs-search-field span a,.cs-search-post .cs-text a,.cs-construction .cs-social-media ul li:hover a,.cs-term-condition p a , .single-trip ul.cs-detail-next-post li .cs-date-post .cs-post-thumb .cs-text h5:hover a,
+.panel-group .panel .panel-heading .panel-title a,
+.panel-group .panel .panel-heading .panel-title a:before,
+.wp-traveladvisor ul.cs-listing-short-by li span.active,
+.wp-traveladvisor ul.cs-listing-short-by li:hover span,
+.cs-search-post .cs-text h3 a:hover, .cs-destination-listing.destination-grid .cs-text .cs-location-sec h6 a:hover, .breadcrumbs ul li a:hover, .mobile-menu .expand,
+.woocommerce ul.products li.product .price del,
+.widget_product_categories li a:hover,
+.woocommerce.widget_top_rated_products li a:hover span,
+.cs-blog .post-option a:hover,
+.input-button input:hover,
+.nav-widget ul li:hover a,
+.cs-services .cs-text h4 a:hover,
+.widget-faq a,
+.widget_shopping_cart li a:hover,
+.woocommerce.single-product #review_form #respond .input-button input,
+.woocommerce .woocommerce-info .showlogin:hover, .woocommerce-info .showcoupon:hover, .cs-list-short ul li a.active i {
+color:#0065b8 !important;
+}
+.cs-bgcolor, .chosen-container-multi .chosen-choices li.search-choice, .chosen-container .chosen-results li.highlighted, .cs-tags ul li a:hover ,.slicknav_nav,.slicknav_btn,
+#add_payment_method #payment ul.payment_methods li.wc_payment_method input[type="radio"]:checked + label:after, 
+.woocommerce-checkout #payment ul.payment_methods li.wc_payment_method input[type="radio"]:checked + label:after, .widget-price-filter .slider-selection, .cs-team-directors:hover .cs-media figcaption,
+.wp-traveladvisor ul.cs-listing-categories li a:hover,
+.wp-traveladvisor .cs-list .cs-text ul.cs-listing-option li a:hover,
+.wp-traveladvisor .cs-pagination ul.pagination li a:after,
+.wp-traveladvisor .page-sidebar .cs-listing-filters .cs-filter-title:after,
+.wp-traveladvisor .page-sidebar .cs-listing-filters  ul.cs-checkbox-list li input[type="checkbox"]:checked + label:after,
+.wp-traveladvisor .page-sidebar .cs-listing-filters  ul.cs-checkbox-list li input[type="radio"]:checked + label:after,
+.wp-traveladvisor .page-sidebar .cs-listing-filters  ul.price-list li a:hover:before,
+.wp-traveladvisor .page-sidebar .cs-listing-filters  ul.price-list li.active a:before,
+.wp-traveladvisor .cs-pagination ul.pagination li a.active:after,
+.wp-traveladvisor .woocommerce form.checkout .form-row input.button,
+.woocommerce form.login .form-row input.button,
+.woocommerce form.checkout_coupon .form-row input.button,
+.woocommerce.widget_shopping_cart .buttons a,
+.woocommerce form.lost_reset_password .form-row input.button,
+.cs-blog.fancy:hover .blog-fancy-detail .btn-fwd,
+.wp-traveladvisor .cs-counter .cs-text strong:after, 
+.wp-traveladvisor .cs-counter .cs-text strong:after,
+.slick-dots li.slick-active button,
+.cs-team.grid .cs-media:hover figcaption,
+.wp-traveladvisor .cs-gallery.grid .cs-media figcaption .media-title,
+.input-holder input[type="submit"], .cs-comments ul li .cs-text .cs-replay-btn:hover, .cs-team.classic .cs-text .social-media li a:hover, .mobile-menu .input-group-btn > .btn, .mobile-menu li.active, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover {
+background-color:#0065b8 !important;
+}
+.csborder-color, .cs-blog .cs-readmore-btn, .pagination > li > a:hover, .pagination > li > a.active  , blockquote, .cs-contact-form form .input-holder input[type="text"]:focus,.cs-contact-form form .input-holder input[type="email"]:focus, .cs-contact-form form .input-holder textarea:focus,
+.woocommerce.single-product div.product form.cart .button, .woocommerce.single-product #review_form #respond .form-submit input[type="submit"],
+.woocommerce #payment ul li .radiobox input[type="radio"]:checked + label:after, .nav-widget ul li:hover:after, .cs-construction .time-box h4,
+.slick-dots li.slick-active button {
+border-color:#0065b8 !important;
+}
+.cs-main-nav {
+position: relative !important;
+z-index: 99 !important;
+}
+.main-section p, .mce-content-body p {
+font:Normal  16px/30px "Raleway", sans-serif;text-transform: none;color: #808080 !important;            }
+#header .main-navigation > ul > li > a, #header .main-navigation > ul > li{
+font:700 Normal  11px/17px "Poppins", sans-serif !important;letter-spacing: 1px !important;text-transform: uppercase !important;color: #ffffff            }
+.on-ground .navigation ul li.current-menu-item a, .on-ground .navigation ul li.current-menu-parent a, .on-ground .navigation ul li:hover a, #header.on-ground .pinned .cs-search .form-holder .input-holder button:hover, #header.on-ground .pinned .cs-cart a:hover i, #header.on-ground.modern .pinned.unpinned .navigation ul li a:hover{
+color: #ffffff !important;            }
+#header .pinned.unpinned .navigation > ul > li.current-menu-item > a, #header .pinned.unpinned .navigation > ul > li.current_page_item > a{
+color: #ffffff!important;            }
+.main-navigation ul li a:hover{
+color: #ffffff !important;            }
+.main-navigation > ul ul li > a{
+color: #808080 !important;            }
+.main-navigation > ul ul li > a:hover {
+color: #1e73be !important;            }
+h1, h1 a{
+font:700 Normal  36px/42px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;}
+h2, h2 a{
+font:700 Normal  32px/36px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+h3, h3 a{ 
+font:700 Normal  24px/28px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+h4, h4 a{
+font:700 Normal  20px/26px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+h5, h5 a{
+font:700 Normal  18px/24px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+h6, h6 a{
+font:700 Normal  16px/22px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+.cs-section-title h2{
+font:700 Normal  30px/36px "Poppins", sans-serif !important;text-transform: uppercase !important;            }
+.post-title h3 a , .cs-blog .post-title h3 , .cs-blog .post-title h4 a , .blog-fancy-detail h3 a , .cs-heading-section .cs-post-title h3 a{
+font:700 Normal  20px/26px "Poppins", sans-serif !important;text-transform: capitalize !important;color: #303030 !important;            }
+.cs-page-title h2{
+font:700 Normal  30px/36px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #303030 !important;            }
+.widget .twitter-widget .widget .widget-title h5 , .widget .widget-title h4{
+font:700 Normal  18px/24px "Poppins", sans-serif !important;letter-spacing: 1px !important;text-transform: uppercase !important;color: #303030 !important;            }
+#footer .widget-title h5{ color: #909499 !important;}
+#footer .widget-title h5{
+font:700 Normal  16px/24px "Poppins", sans-serif !important;text-transform: uppercase !important;color: #909499 !important;            }
+.main-navigation > ul ul li > a{color:#808080 !important;}
+.on-ground .navigation ul li.current-menu-parent ul.sub-dropdown li.current-menu-item a,
+.on-ground .navigation ul li.current-menu-parent ul.sub-dropdown li:hover a {color:#1e73be !important;}
+.main-navigation > ul > li > a, .mm-toggle i, .cs-search-area .search-area a i, .cs-cart a i, .main-navigation ul li.menu-item-has-children:after {color:#ffffff !important;}
+.cs-user,.cs-user-login { border-color:#ffffff !important; }
+.page-sidebar .widget-title h3, .page-sidebar .widget-title h4, .page-sidebar .widget-title h5, .page-sidebar .widget-title h6{
+color:#303030 !important;
+}            .section-sidebar .widget-title h3, .section-sidebar .widget-title h4, .section-sidebar .widget-title h5, .section-sidebar .widget-title h6{
+color:#303030 !important;
+}
+footer#footer p, footer#footer span, footer#footer .textwidget {color:#303030 !important;}
+#footer{
+background-color:#f7f7f7 !important;
+}
+#copyright p, #copyright p a{color:#000000 !important;}
+.footer-btm {background-color:#f0f0f0 !important;}
+.footer-content  .copyrights{
+color:#000000 !important;
+}
+footer#footer a,.cs-footer-widgets ul li a:before  {
+color:#303030 !important;
+}            #footer .cs-copyright .copyright-text p, footer#footer .footer-links a.footer#footer .footer-links {color:#000000 !important;}

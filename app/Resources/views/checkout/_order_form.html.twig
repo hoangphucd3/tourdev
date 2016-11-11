@@ -1,0 +1,57 @@
+<div class="tour">
+    {{ form_start(form, {'attr':{'class':'checkout'}}) }}
+    <ul class="tour-error">
+        {{ form_errors(form) }}
+    </ul>
+
+    <div class="tour-billing-fields">
+        <h3>Billing Details</h3>
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.billingName) }}
+            {{ form_widget(form.billingName, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.billingPhone) }}
+            {{ form_widget(form.billingPhone, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.billingAddress1) }}
+            {{ form_widget(form.billingAddress1, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.billingAddress2) }}
+            {{ form_widget(form.billingAddress2, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.billingCity) }}
+            {{ form_widget(form.billingCity, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.country) }}
+            {{ form_widget(form.country, {'attr': {'class': 'country_to_state country_select', 'autocomplete': 'country'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.billingPostCode) }}
+            {{ form_widget(form.billingPostCode, {'attr': {'class': 'input-text'}}) }}
+        </p>
+    </div>
+
+    <div class="tour-checkout-payment">
+        <div class="form-row place-order">
+            <input type="submit" class="button alt" name="tour_checkout_place_order" id="place_order"
+                   value="Tạo hóa đơn">
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

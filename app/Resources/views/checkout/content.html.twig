@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Đặt tour {{ tour.tourName }}{% endblock %}
+
+{% block sub_header %}
+    <div class="cs-sub-header"
+         style="background:url({{ asset('assets/frontend/images/subheader-shop.jpg') }}) no-repeat;background-size:cover;padding-top:200px!important;height:415px!important">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-page-title left">
+                        <h2 style="color:#ffffff !important;">Đặt tour</h2>
+                        <p style="color:#ffffff !important;">
+                            Điền đầy đủ thông tin bên dưới để hoàn thành việc đặt
+                            tour</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="main-section">
+        <div class="container">
+            <div class="row">
+                <div class="page-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-rich-editor">
+                        {{ render(controller('AppBundle:Tour:orderForm', {'id' : tour.id})) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
