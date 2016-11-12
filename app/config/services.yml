@@ -23,11 +23,37 @@ services:
     app.tour_order_manager:
         class: AppBundle\Manager\TourOrderManager
         arguments:
+            - "@security.token_storage"
             - "@doctrine.orm.entity_manager"
             - AppBundle\Entity\TourOrder
 
+    app.comment_manager:
+            class: AppBundle\Manager\CommentManager
+            arguments:
+                - "@doctrine.orm.entity_manager"
+                - AppBundle\Entity\Comment
+
     app.slugger:
         class: AppBundle\Utils\Slugger
+
+    app.block.recent_user_comment:
+        class: AppBundle\Block\RecentUserCommentBlockService
+        arguments:
+            - app.block.recent_user_comment
+            - "@templating"
+            - "@app.comment_manager"
+            - "@app.user_manager"
+        tags:
+            - { name: sonata.block }
+
+    app.block.user_orders:
+            class: AppBundle\Block\UserOrderBlockService
+            arguments:
+                - app.block.recent_user_comment
+                - "@templating"
+                - "@app.tour_order_manager"
+            tags:
+                - { name: sonata.block }
 
     app.form.type.tour_order:
         class: AppBundle\Form\TourOrderType

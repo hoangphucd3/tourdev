@@ -1,0 +1,31 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    {% if orders %}
+        <div class="cs-shortcode-table">
+            <div class="cs-table-responsive">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Tên tour</th>
+                        <th>Ngày khởi hành</th>
+                        <th>Số lượng người</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('tour_detail', { 'slug': order.tour.slug }) }}">{{ order.tour.tourName }}</a>
+                            </td>
+                            <td>{{ order.departure | date('d-m-Y') }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

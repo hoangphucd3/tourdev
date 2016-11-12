@@ -39,7 +39,7 @@ class TourHotel
      * @var Tour
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour", inversedBy="hotels")
-     * @ORM\JoinColumn(name="tour_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tour_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tour;
 
@@ -47,7 +47,7 @@ class TourHotel
      * @var Hotel
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Hotel", inversedBy="tours")
-     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="hotel_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $hotel;
 

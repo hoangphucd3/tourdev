@@ -24,9 +24,56 @@
     <div class="main-section">
         <div class="container">
             <div class="row">
-                <div class="page-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-content col-lg-8 col-md-8 col-sm-12 col-xs-12">
                     <div class="cs-rich-editor">
                         {{ render(controller('AppBundle:Tour:orderForm', {'id' : tour.id})) }}
+                    </div>
+                </div>
+
+                <div class="page-sidebar col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="widget widget-tour-info">
+                        <div class="widget-title">
+                            <h4>
+                                Thông tin đặt tour
+                            </h4>
+                        </div>
+
+                        <div class="widget-content booking-item-payment">
+                            <header class="clearfix">
+                                <div class="cs-media">
+                                    <a href="{{ path('tour_detail', { 'slug': tour.slug }) }}">
+                                        <img src="{% path tour.featuredImage, 'reference' %}" width="150" height="113">
+                                    </a>
+                                </div>
+
+                                <div class="cs-title">
+                                    <a href="{{ path('tour_detail', { 'slug': tour.slug }) }}">
+                                        {{ tour.tourName }}
+                                    </a>
+                                </div>
+                            </header>
+                            <ul class="booking-item-payment-details">
+                                <li>
+                                    <div class="booking-item-payment-title">
+                                        Ngày khởi hành
+                                    </div>
+
+                                    <div class="booking-item-payment-content">
+                                        {{ departure }}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="booking-item-payment-title">
+                                        Số lượng khách
+                                    </div>
+
+                                    <div class="booking-item-payment-content">
+                                        {{ adults }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

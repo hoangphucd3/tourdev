@@ -1,0 +1,55 @@
+<div class="tour">
+    <form action="{{ path('sonata_user_profile_edit') }}" method="POST" class="form-horizontal">
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.firstname ) }}
+            {{ form_widget(form.firstname, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.lastname ) }}
+            {{ form_widget(form.lastname, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.gender ) }}
+            {{ form_widget(form.gender, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.dateOfBirth ) }}
+            {{ form_widget(form.dateOfBirth, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.phone) }}
+            {{ form_widget(form.phone, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-last">
+            {{ form_label(form.website ) }}
+            {{ form_widget(form.website, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.biography) }}
+            {{ form_widget(form.biography, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.locale) }}
+            {{ form_widget(form.locale, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.timezone) }}
+            {{ form_widget(form.timezone, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <div class="form-row place-order">
+            <input type="submit" name="submit" value="Cập nhật"
+                   class="button alt"/>
+        </div>
+
+        {{ form_rest(form) }}
+    </form>
+</div>

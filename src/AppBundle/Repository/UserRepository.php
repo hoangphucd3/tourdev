@@ -2,12 +2,12 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Repository\AppUserInterface;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * UserRepository
  */
-class UserRepository extends \Doctrine\ORM\EntityRepository implements AppUserInterface
+class UserRepository extends EntityRepository implements AppUserInterface
 {
     /**
      * {@inheritdoc}
@@ -15,5 +15,10 @@ class UserRepository extends \Doctrine\ORM\EntityRepository implements AppUserIn
     public function findUsers()
     {
         return $this->findAll();
+    }
+
+    public function getUserComments($userID)
+    {
+        return $this->find($userID)->getComments();
     }
 }

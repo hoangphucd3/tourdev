@@ -1,0 +1,31 @@
+{% form_theme form 'forms/form_errors.html.twig' %}
+
+<div class="tour">
+    <form action="{{ path('sonata_user_profile_edit_authentication') }}" method="POST" class="form-horizontal">
+        {{ form_errors(form.username) }}
+        {{ form_errors(form.email) }}
+        {{ form_errors(form.current_password) }}
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.username) }}
+            {{ form_widget(form.username, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-wide">
+            {{ form_label(form.current_password) }}
+            {{ form_widget(form.current_password, {'attr': {'class': 'input-text'}}) }}
+        </p>
+
+        {{ form_rest(form) }}
+
+        <div class="form-row place-order">
+            <input type="submit" name="submit" value="Cập nhật"
+                   class="button alt"/>
+        </div>
+    </form>
+</div>

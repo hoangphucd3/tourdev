@@ -31,4 +31,9 @@ class UserManager
     {
         return $this->container->get('security.token_storage')->getToken()->getUser();
     }
+
+    public function getComments($userID)
+    {
+        return $this->userRepository->getUserComments($userID);
+    }
 }

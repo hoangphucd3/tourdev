@@ -43,6 +43,13 @@ class Comment
     private $user;
 
     /**
+     * @var Tour
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour", inversedBy="comments")
+     */
+    private $tour;
+
+    /**
      * Get id
      *
      * @return int
@@ -156,5 +163,28 @@ class Comment
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set tour
+     *
+     * @param \AppBundle\Entity\Tour $tour
+     * @return Comment
+     */
+    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Get tour
+     *
+     * @return \AppBundle\Entity\Tour 
+     */
+    public function getTour()
+    {
+        return $this->tour;
     }
 }

@@ -1,11 +1,10 @@
+{% form_theme form 'forms/form_errors.html.twig' %}
 <div class="tour">
     {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr':{'class':'checkout'}}) }}
-    <ul class="tour-error">
-        {{ form_errors(form) }}
-    </ul>
+    {{ form_errors(form) }}
 
     <div class="tour-billing-fields">
-        <h3>Billing Details</h3>
+        <h3>Thông tin thanh toán</h3>
         <p class="form-row form-row form-row-first">
             {{ form_label(form.billingFirsttName) }}
             {{ form_widget(form.billingFirsttName, {'attr': {'class': 'input-text'}}) }}

@@ -1,0 +1,45 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="main-section">
+        <div class="container">
+            <div class="row">
+                <aside class="page-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    {% block sonata_profile_menu %}
+                        {{ sonata_block_render({'type': 'sonata.user.block.menu'}, {'current_uri': app.request.requestUri}) }}
+                    {% endblock %}
+                </aside>
+                <div class="page-content col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div id="cs-content" class="page-section parallex-bg" data-type="background">
+                        <div class="row">
+                            <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="element-heading left">
+                                        <h3>{% block sonata_profile_title %} Bảng điều khiển {% endblock %}</h3>
+                                    </div>
+
+                                    <div class="sonata-user-show">
+                                        {% include 'SonataCoreBundle:FlashMessage:render.html.twig' %}
+
+                                        {% block sonata_profile_content '' %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

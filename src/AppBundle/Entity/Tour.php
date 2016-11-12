@@ -100,6 +100,7 @@ class Tour
      * @var TourCategory
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TourCategory", inversedBy="tours", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $category;
 
@@ -107,21 +108,30 @@ class Tour
      * @var Media
      * @link http://bertrandg.github.io/symfony2-sonata-media-inline-validation-type-and-size/
      *
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"all"})
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $featured_image;
 
     /**
      * @var Gallery
      *
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $gallery;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourBackground", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $backgrounds;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $comments;
 
     /**
      * Get id
@@ -146,6 +156,7 @@ class Tour
         $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
         $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->backgrounds = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -620,5 +631,38 @@ class Tour
     public function getBackgrounds()
     {
         return $this->backgrounds;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     * @return Tour
+     */
+    public function addComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \AppBundle\Entity\Comment $comments
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

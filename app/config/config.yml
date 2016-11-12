@@ -101,6 +101,8 @@ sonata_block:
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
+        app.block.recent_user_comment:
+        app.block.user_orders:
 
 sonata_user:
     security_acl: false
@@ -109,6 +111,18 @@ sonata_user:
     manager_type: orm # can be orm or mongodb
     class:
         user: AppBundle\Entity\User
+    profile:
+        # Profile show page is a dashboard as in SonataAdminBundle
+        dashboard:
+            blocks:
+                - { type: app.block.recent_user_comment }
+                - { type: app.block.user_orders }
+        # Customize user portal menu by setting links
+        menu:
+            - { route: 'sonata_user_profile_show', label: 'sonata_profile_title', domain: 'SonataUserBundle'}
+            - { route: 'sonata_user_profile_edit', label: 'link_edit_profile', domain: 'SonataUserBundle'}
+            - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
+            - { route: 'sonata_user_change_password', label: 'sonata_change_password_link', domain: 'SonataUserBundle' }
 
 fos_user:
     db_driver:      orm # can be orm or odm

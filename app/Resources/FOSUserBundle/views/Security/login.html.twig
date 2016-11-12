@@ -1,0 +1,36 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    <h2>Đăng nhập</h2>
+
+    {# fix: http://stackoverflow.com/questions/26341728/fosuserbundle-badcredentialsexception #}
+    {% if error %}
+        <ul class="tour-error">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </ul>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+        <p class="form-row form-row-wide">
+            <label for="username">Tên đăng nhập</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
+        </p>
+
+        <p class="form-row form-row-wide">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="_password" required="required"/>
+        </p>
+
+        <p class="form-row">
+            <input type="submit" id="_submit" name="_submit" class="button"
+                   value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}"/>
+
+            <label for="remember_me" class="inline">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                Nhớ lần đăng nhập sau
+            </label>
+        </p>
+    </form>
+{% endblock fos_user_content %}

@@ -1,4 +1,4 @@
-{{ form_start(form, { method: 'POST', action: path('tour_booking_new', {'tourSlug' : tour.slug}) }) }}
+{{ form_start(form, { 'method': 'POST', 'action': path('tour_booking_new', {'tourSlug' : tour.slug}) }) }}
     {{ form_errors(form) }}
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="cs-search-field">

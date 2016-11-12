@@ -33,7 +33,7 @@ class TourBackground
      * @var Tour
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour", inversedBy="backgrounds")
-     * @ORM\JoinColumn(name="tour_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tour_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tour;
 
@@ -41,7 +41,7 @@ class TourBackground
      * @var Media
      *
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $media;
 

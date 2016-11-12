@@ -1,0 +1,24 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    {% if comments %}
+        <div class="cs-comments">
+            <ul>
+                {% for comment in comments %}
+                    <li>
+                        <div class="cs-text">
+                            <h6>
+                                <a href="{{ path('tour_detail', { 'slug': comment.tour.slug }) }}">
+                                    {{ comment.tour.tourName }}
+                                </a>
+                            </h6>
+                            <p>
+                                {{ comment.content }}
+                            </p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

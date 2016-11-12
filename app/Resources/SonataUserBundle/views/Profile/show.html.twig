@@ -1,0 +1,39 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block sonata_profile_content %}
+    <div class="cs-tabs ">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="active in">
+                <a data-toggle="tab" href="#cs-tab-1" aria-expanded="true">
+                    Bình luận của bạn
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#cs-tab-2" aria-expanded="true">
+                    Đơn đặt tour
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="cs-tab-1" class="tab-pane fade active in">
+                {{ sonata_block_render({ 'type': 'app.block.recent_user_comment' }) }}
+            </div>
+
+            <div id="cs-tab-2" class="tab-pane fade">
+                {{ sonata_block_render({ 'type': 'app.block.user_orders' }) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

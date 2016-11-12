@@ -1,0 +1,35 @@
+{% form_theme form 'forms/form_errors.html.twig' %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+      class="fos_user_registration_register">
+    {{ form_errors(form.username) }}
+    {{ form_errors(form.email) }}
+    {{ form_errors(form.plainPassword.first) }}
+    {{ form_errors(form.plainPassword.second) }}
+
+    <p class="form-row form-row-wide">
+        <label for="username">Tên đăng nhập</label>
+        {{ form_widget(form.username) }}
+    </p>
+
+    <p class="form-row form-row-wide">
+        <label for="email">Email</label>
+        {{ form_widget(form.email) }}
+    </p>
+
+    <p class="form-row form-row-first">
+        <label for="plainPassword_first">Mật khẩu</label>
+        {{ form_widget(form.plainPassword.first) }}
+    </p>
+
+    <p class="form-row form-row-last">
+        <label for="plainPassword_second">Nhập lại mật khẩu</label>
+        {{ form_widget(form.plainPassword.second) }}
+    </p>
+
+    <p class="form-row">
+        <input type="submit" class="button" value="Đăng ký">
+    </p>
+
+    {{ form_rest(form) }}
+</form>

@@ -60,7 +60,7 @@ security:
                 check_path: /login_check
                 failure_path: null
             logout:
-                path: /admin/logout
+                path: /logout
                 invalidate_session: false
             anonymous: true
             switch_user: true

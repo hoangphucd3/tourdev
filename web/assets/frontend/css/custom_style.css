@@ -75,3 +75,97 @@
     font-weight: bold;
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 1170px) {
+    .tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+        width: 47%;
+    }
+
+}
+
+@media screen and (max-width: 980px) {
+    .tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+        width: 100%;
+    }
+}
+
+h1, h2, h3, h4, h5, h6,
+.wp-traveladvisor .cs-search-field label,
+.page-sidebar .widget-title h3,
+.page-sidebar .widget-title h4,
+.page-sidebar .widget-title h5,
+.page-sidebar .widget-title h6 {
+    font-family: 'Raleway', sans-serif !important;
+}
+
+.booking-item-payment {
+    margin-bottom: 20px;
+}
+
+.booking-item-payment .cs-media {
+    float: left;
+    margin-right: 20px;
+}
+
+.booking-item-payment .cs-title {
+
+}
+
+.booking-item-payment .booking-item-payment-details li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.booking-item-payment .booking-item-payment-details > li {
+    width: 100%;
+    overflow: hidden;
+    border-bottom: 1px dashed #d9d9d9;
+}
+
+.booking-item-payment .booking-item-payment-details .booking-item-payment-title {
+    float: left;
+    margin: 0;
+}
+
+.booking-item-payment .booking-item-payment-details .booking-item-payment-content {
+    float: right;
+}
+
+.datepicker.datepicker-dropdown table > tbody > tr > td.today {
+    background: #565553;
+}
+
+.tour form .form-row input.button {
+    margin: 0 10px 0 0;
+    background-color: #0065b8 !important;
+}
+
+.tour .tour-error {
+    padding: 12px 15px 12px 55px !important;
+    margin: 0 0 30px 0 !important;
+    position: relative;
+    background-color: #e4f3df;
+    color: #666;
+    list-style: none !important;
+    width: auto;
+    word-wrap: break-word;
+    border: none;
+    font-size: 12px;
+}
+
+.tour .tour-error:before {
+    content: "\e9e3" !important;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    font-family: "icomoon" !important;
+    font-size: 24px;
+    color: rgba(0, 0, 0, .3);
+}
