@@ -87,6 +87,30 @@ sensio_framework_extra:
     router:  { annotations: true }
     request: { converters:  true }
 
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            client: default
+            types:
+                tour:
+                    mappings:
+                        tourName:
+                            type: string
+                        description:
+                            type: text
+                        locations:
+                            type: nested
+                            properties:
+                                location: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Tour
+                        provider: ~
+                        listener: ~
+                        finder: ~
+
 sonata_admin:
     title: Travel Admin
 #    title_logo: Travel Admin

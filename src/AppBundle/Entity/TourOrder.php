@@ -107,6 +107,27 @@ class TourOrder
     private $departure;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="nguoiLon", type="integer")
+     */
+    private $adults;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="treNho", type="integer")
+     */
+    private $children;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="emBe", type="integer")
+     */
+    private $infants;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string")
@@ -488,5 +509,76 @@ class TourOrder
     public function getTour()
     {
         return $this->tour;
+    }
+
+    /**
+     * Set adults
+     *
+     * @param integer $adults
+     * @return TourOrder
+     */
+    public function setAdults($adults)
+    {
+        $this->adults = $adults;
+
+        return $this;
+    }
+
+    /**
+     * Get adults
+     *
+     * @return integer 
+     */
+    public function getAdults()
+    {
+        return $this->adults;
+    }
+
+    /**
+     * Set children
+     *
+     * @param integer $children
+     *
+     * @return TourOrder
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+
+        return $this;
+    }
+
+    /**
+     * Get children
+     *
+     * @return integer
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set infants
+     *
+     * @param integer $infants
+     *
+     * @return TourOrder
+     */
+    public function setInfants($infants)
+    {
+        $this->infants = $infants;
+
+        return $this;
+    }
+
+    /**
+     * Get infants
+     *
+     * @return integer
+     */
+    public function getInfants()
+    {
+        return $this->infants;
     }
 }

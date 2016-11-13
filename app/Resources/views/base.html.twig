@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-datetimepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-datetimepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/chosen.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom_style.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -106,6 +107,123 @@
             </div>
         </div>
 
+        <div class="cs-footer-widgets">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>TOP DESTINATIONS</h5></div>
+                            <div class="menu-top-destinations-container">
+                                <ul id="menu-top-destinations" class="menu">
+                                    <li id="menu-item-166"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-166"><a
+                                                href="#">Germany</a></li>
+                                    <li id="menu-item-167"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-167"><a
+                                                href="#">Austria</a></li>
+                                    <li id="menu-item-168"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-168"><a
+                                                href="#">Italy</a></li>
+                                    <li id="menu-item-169"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-169"><a
+                                                href="#">Netherlands</a></li>
+                                    <li id="menu-item-170"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-170"><a
+                                                href="#">Poland</a></li>
+                                    <li id="menu-item-171"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-171"><a
+                                                href="#">Switzerland</a></li>
+                                    <li id="menu-item-172"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-172"><a
+                                                href="#">Find &amp; Save</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>INTERESTS</h5></div>
+                            <div class="menu-interests-container">
+                                <ul id="menu-interests" class="menu">
+                                    <li id="menu-item-173"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-173"><a
+                                                href="#">Adventure travel</a></li>
+                                    <li id="menu-item-174"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-174"><a
+                                                href="#">Beaches Budget</a></li>
+                                    <li id="menu-item-175"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-175"><a
+                                                href="#">travel</a></li>
+                                    <li id="menu-item-176"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-176"><a
+                                                href="#">Family travel</a></li>
+                                    <li id="menu-item-177"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-177"><a
+                                                href="#">Festivals and events</a></li>
+                                    <li id="menu-item-178"
+                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-178"><a
+                                                href="#">Food and drink</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget_traveladvisor_custom_menu_widget">
+                            <div class="widget-title"><h5>ABOUT US</h5></div>
+                            <div class="menu-about-us-container">
+                                <ul id="menu-about-us" class="menu">
+                                    <li id="menu-item-180"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-180">
+                                        <a href="http://traveladvisor.chimpgroup.com/about-us/">About Us</a></li>
+                                    <li id="menu-item-181"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-181">
+                                        <a href="http://traveladvisor.chimpgroup.com/tour-grid/">Tour Grid</a></li>
+                                    <li id="menu-item-179"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-179">
+                                        <a href="http://traveladvisor.chimpgroup.com/faqs/">Faq’s</a></li>
+                                    <li id="menu-item-182"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-182">
+                                        <a href="http://traveladvisor.chimpgroup.com/contact-us/">Contact Us</a></li>
+                                    <li id="menu-item-183"
+                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-183">
+                                        <a href="http://traveladvisor.chimpgroup.com/blog-grid/">Blog Grid</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget widget-news-letter">
+                            <div class="widget-title"><h5>Contact us Now</h5></div>
+                            <p>Enter your email below and stay up to date with the latest travel info.</p>
+
+
+                            <div id="process_newsletter_2">
+                                <div id="process_2" class="cs-show-msg"></div>
+                                <div id="newsletter_mess_2" style="display:none"></div>
+                                <div class="cs-form">
+                                    <form action="javascript:traveladvisor_mailchimp_submit('http://traveladvisor.chimpgroup.com/wp-content/themes/traveladvisor','2','http://traveladvisor.chimpgroup.com/wp-admin/admin-ajax.php')"
+                                          id="mcform_2" method="post">
+                                        <div class="input-holder">
+
+                                            <input id="traveladvisor_list_id523389" type="hidden"
+                                                   name="traveladvisor_list_id" value="d758a5298d">
+                                            <input type="text" id="mc_email523389" class="txt-bar" name="mc_email"
+                                                   placeholder="">
+                                            <label> <i class=""></i>
+                                                <input class="cs-bgcolor" id="btn_newsletter_2" type="submit"
+                                                       value="submit">
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div style="background-color:#f0f0f0;" class="cs-copyright">
             <div class="container">
                 <div class="row">
@@ -167,6 +285,7 @@
     <script src="{{ asset('assets/frontend/scripts/jquery-datetimepicker.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/select2.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/chosen.select.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/theme_functions.js') }}"></script>
 {% endblock %}
 </body>

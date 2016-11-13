@@ -80,7 +80,6 @@
     .tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
         width: 47%;
     }
-
 }
 
 @media screen and (max-width: 980px) {
@@ -170,6 +169,19 @@ h1, h2, h3, h4, h5, h6,
     color: rgba(0, 0, 0, .3);
 }
 
-.top-footer {
+.main-section {
+    margin-top: 40px;
+}
+
+.home .main-section,
+.single-trip .main-section {
+    margin-top: 0;
+}
+
+.cs-sub-header {
     margin-bottom: 0;
+}
+
+.single-trip ul.cs-list-detail-slider {
+    min-height: inherit;
 }

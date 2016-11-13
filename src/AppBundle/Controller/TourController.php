@@ -5,12 +5,13 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Tour;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\TourOrderType;
+use AppBundle\Form\TourSearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,14 +41,18 @@ class TourController extends Controller
     {
         $departure = $this->get('session')->get('departure');
         $adults = $this->get('session')->get('adults');
+        $children = $this->get('session')->get('children');
+        $infants = $this->get('session')->get('infants');
 
-        if (empty($departure) && empty($adults) && empty($tour_id)) {
+        if (empty($departure) && empty($tour_id) && (empty($adults) && empty($children) && empty($infants))) {
             return $this->redirectToRoute('tour_index');
         }
 
         $template_args = array(
             'tour' => $tour,
             'adults' => $adults,
+            'children' => $children,
+            'infants' => $infants,
             'departure' => $departure,
         );
 
@@ -66,7 +71,7 @@ class TourController extends Controller
      */
     public function bookingNewAction(Request $request, Tour $tour)
     {
-        $form = $this->getBookingForm();
+        $form = $this->getBookingForm($tour);
 
         $form->handleRequest($request);
 
@@ -75,6 +80,8 @@ class TourController extends Controller
 
             $this->get('session')->set('departure', $booking_data['departure']);
             $this->get('session')->set('adults', $booking_data['adults']);
+            $this->get('session')->set('children', $booking_data['children']);
+            $this->get('session')->set('infants', $booking_data['infants']);
 
             return $this->redirectToRoute('tour_order_show', ['id' => $tour->getId()]);
         }
@@ -105,6 +112,8 @@ class TourController extends Controller
             if ($this->get('app.tour_order_manager')->createTourOrder($order)) {
                 $this->get('session')->remove('departure');
                 $this->get('session')->remove('adults');
+                $this->get('session')->remove('children');
+                $this->get('session')->remove('infants');
 
                 return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
             } else {
@@ -148,7 +157,7 @@ class TourController extends Controller
      */
     public function bookingFormAction(Tour $tour)
     {
-        $form = $this->getBookingForm();
+        $form = $this->getBookingForm($tour);
 
         return $this->render('single-tour/_booking_form.html.twig', [
             'tour' => $tour,
@@ -184,19 +193,44 @@ class TourController extends Controller
         ));
     }
 
+    public function tourSearchFormAction()
+    {
+        $form = $this->createForm(TourSearchType::class);
+
+        return $this->render(':search:_tour_seach_form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
     /**
      * @return \Symfony\Component\Form\FormInterface
      */
-    private function getBookingForm()
+    private function getBookingForm(Tour $tour)
     {
+        $tourAmount = $tour->getAmount();
+
+        $amount = array('0' => 0);
+
+        for ($i = 1; $i < $tourAmount; $i++) {
+            $amount[$i] = $i;
+        }
+
         $form = $this->createFormBuilder(array())
             ->add('departure', TextType::class, array(
                 'label' => 'Chọn ngày khởi hành',
                 'attr' => ['placeholder' => 'Ngày khởi hành']
             ))
-            ->add('adults', IntegerType::class, array(
-                'label' => 'Số lượng người',
-                'attr' => ['min' => 1],
+            ->add('adults', ChoiceType::class, array(
+                'label' => 'Người lớn',
+                'choices' => $amount,
+            ))
+            ->add('children', ChoiceType::class, array(
+                'label' => 'Trẻ nhỏ',
+                'choices' => $amount,
+            ))
+            ->add('infants', ChoiceType::class, array(
+                'label' => 'Em bé',
+                'choices' => $amount,
             ))
             ->getForm();
 

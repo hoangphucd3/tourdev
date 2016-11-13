@@ -24,7 +24,7 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="noiDung", type="string")
+     * @ORM\Column(name="noiDung", type="text")
      */
     private $content;
 

@@ -8,22 +8,39 @@
         <div id="Deadline" class="cs-calendar-combo">
             {{ form_widget(form.departure, {'id' : 'booking_date'}) }}
         </div>
-        {{ form_errors(form.departure) }}
     </div>
 </div>
 
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="cs-search-field">
+    <div class="cs-select-fields">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="cs-search-field">
+                    {{ form_label(form.adults) }}
+                    {{ form_widget(form.adults, {'attr': {'class': 'chosen-select'}}) }}
+                </div>
+            </div>
 
-        {{ form_label(form.adults) }}
-        {{ form_widget(form.adults) }}
-        {{ form_errors(form.adults) }}
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="cs-search-field">
+                    {{ form_label(form.children) }}
+                    {{ form_widget(form.children, {'attr': {'class': 'chosen-select'}}) }}
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="cs-search-field">
+                    {{ form_label(form.infants) }}
+                    {{ form_widget(form.infants, {'attr': {'class': 'chosen-select'}}) }}
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="cs-search-field">
-        <input type="submit" class="acc-submit cs-bgcolor" value="Đặt tour">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="cs-search-field">
+            <input type="submit" class="acc-submit cs-bgcolor" value="Đặt tour">
+        </div>
     </div>
 </div>
 {{ form_end(form) }}

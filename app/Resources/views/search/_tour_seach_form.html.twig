@@ -1,0 +1,33 @@
+<div class="cs-main-search">
+    <div class="container">
+        {{ form_start(form) }}
+        <ul>
+            <li class="search-input">
+                <i class="icon-search2"></i>
+                {{ form_widget(form.content) }}
+            </li>
+
+            <li class="select-dropdown">
+                <div class="side-by-side clearfix">
+                    <i class="icon-map-o"></i>
+                    {{ form_widget(form.locations, {'attr': {'class': 'chosen-select'}}) }}
+                </div>
+            </li>
+
+            <li class="select-dropdown">
+                <div class="cs-datepicker"><i class="icon-calendar-minus-o"></i>
+                    <div id="Deadline" class="cs-calendar-combo">
+                        {{ form_widget(form.departure, {'attr': {'class': 'cs-datepicker'}}) }}
+                    </div>
+                    <em class="icon-keyboard_arrow_down"></em></div>
+            </li>
+
+            {{ form_rest(form) }}
+
+            <li class="search-btn">
+                <input type="submit" class="cs-bgcolor" value="Tìm tour">
+            </li>
+        </ul>
+        {{ form_end(form) }}
+    </div>
+</div>
