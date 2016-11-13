@@ -5,11 +5,13 @@ namespace AppBundle\Entity;
 use Application\Sonata\MediaBundle\Entity\Gallery;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\ElasticaBundle\Annotation\Search;
 
 /**
  * Tour
  *
  * @ORM\Table(name="tour")
+ * @Search(repositoryClass="AppBundle\SearchRepository\TourRepository")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourRepository")
  */
 class Tour

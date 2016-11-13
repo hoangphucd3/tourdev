@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.request.locale }}">
+{#<html lang="{{ app.request.locale }}">#}
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
@@ -9,15 +9,15 @@
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-theme.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/component-gallery.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/cs-traveladvisor-plugin.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/frontend/css/default-element.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery.mobile-menu.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/prettyPhoto.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap-datetimepicker.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/jquery-datetimepicker.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/select2.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/chosen.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/default-element.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom_style.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -264,28 +264,27 @@
 {% block javascripts %}
     <script src="{{ asset('assets/frontend/scripts/jquery.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/bootstrap-slider.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/masonry.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/counter.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/custom_functions.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/chosen.select.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/functions.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/jquery.circliful.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/jquery.countdown.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery-datetimepicker.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/lightbox.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/prettyPhoto.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/sticky-kit.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/jquery.fitvids.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/jquery.mobile-menu.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/modernizr.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/responsive.menu.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/skills-progress.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/slick.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/sticky-kit.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/lightbox.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/prettyPhoto.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/jquery-datetimepicker.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/select2.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.mobile-menu.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.countdown.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/jquery.circliful.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/counter.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap-slider.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/chosen.select.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/masonry.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/chosen.select.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/slick.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/select2.js') }}"></script>
+    <script src="{{ asset('assets/frontend/scripts/custom_functions.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/theme_functions.js') }}"></script>
 {% endblock %}
 </body>

@@ -156,4 +156,14 @@ class TourLocation
     {
         return $this->location;
     }
+
+    public function getLocationId()
+    {
+        return $this->getLocation()->getId();
+    }
+
+    public function __toString()
+    {
+        return $this->getId() . '';
+    }
 }

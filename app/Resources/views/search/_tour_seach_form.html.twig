@@ -1,10 +1,10 @@
 <div class="cs-main-search">
     <div class="container">
-        {{ form_start(form) }}
+        {{ form_start(form, { 'action': path('tour_listing') }) }}
         <ul>
             <li class="search-input">
                 <i class="icon-search2"></i>
-                {{ form_widget(form.content) }}
+                {{ form_widget(form.tourName) }}
             </li>
 
             <li class="select-dropdown">

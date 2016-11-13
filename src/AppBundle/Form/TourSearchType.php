@@ -16,22 +16,25 @@ class TourSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextType::class, array(
+            ->add('tourName', TextType::class, array(
                     'attr' => array(
                         'placeholder' => 'Nhập từ khóa tìm kiếm',
                     ),
+                    'required' => false,
                 )
             )
             ->add('locations', EntityType::class, array(
                     'class' => 'AppBundle\Entity\Location',
                     'choice_label' => 'name',
                     'choice_value' => 'slug',
-                    'placeholder' => 'Chọn địa điểm'
+                    'placeholder' => 'Chọn địa điểm',
+                    'required' => false,
                 )
             )
             ->add('departure', TextType::class, array(
                     'label' => 'Chọn ngày khởi hành',
-                    'attr' => ['placeholder' => 'Ngày khởi hành']
+                    'attr' => ['placeholder' => 'Ngày khởi hành'],
+                    'required' => false,
                 )
             );
     }

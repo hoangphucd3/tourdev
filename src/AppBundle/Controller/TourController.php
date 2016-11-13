@@ -152,6 +152,32 @@ class TourController extends Controller
     }
 
     /**
+     * @Route("/tour-listing", name="tour_listing")
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function tourSearchAction(Request $request)
+    {
+        $form = $this->createForm(TourSearchType::class);
+
+        $form->handleRequest($request);
+
+        $tours = $this->get('app.tour_manager')->getAllTours();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search_data = $form->getData();
+
+            $repositoryManager = $this->container->get('fos_elastica.manager');
+            $repository = $repositoryManager->getRepository('AppBundle:Tour');
+
+            $tours = $repository->findTours($search_data);
+        }
+
+        return $this->render('archive/tour-listing.html.twig', ['tours' => $tours]);
+    }
+
+    /**
      * @param Tour $tour
      * @return Response
      */

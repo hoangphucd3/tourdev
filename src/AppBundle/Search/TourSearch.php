@@ -4,30 +4,56 @@ namespace AppBundle\Search;
 
 class TourSearch
 {
-    private $title;
+    private $tourName;
 
-    private $description;
+    private $locations;
 
-    public function getTitle()
+    private $departure;
+
+    public function getId()
     {
-        return $this->title;
+        return $this->id;
     }
 
-    public function setTitle($title)
+    public function setId($id)
     {
-        $this->title = $title;
+        $this->id = $id;
 
         return $this;
     }
 
-    public function getDescription()
+    public function getTourName()
     {
-        return $this->description;
+        return $this->tourName;
     }
 
-    public function setDescription($description)
+    public function setTourName($tourName)
     {
-        $this->description = $description;
+        $this->tourName = $tourName;
+
+        return $this;
+    }
+
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    public function setLocations($locations)
+    {
+        $this->locations = $locations;
+
+        return $this;
+    }
+
+    public function getDeparture()
+    {
+        return $this->departure;
+    }
+
+    public function setDeparture($departure)
+    {
+        $this->departure = $departure;
 
         return $this;
     }

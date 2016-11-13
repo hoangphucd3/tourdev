@@ -65,11 +65,31 @@
 
                                 <li>
                                     <div class="booking-item-payment-title">
-                                        Số lượng khách
+                                        Người lớn
                                     </div>
 
                                     <div class="booking-item-payment-content">
                                         {{ adults }}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="booking-item-payment-title">
+                                        Trẻ em
+                                    </div>
+
+                                    <div class="booking-item-payment-content">
+                                        {% if children %}{{ children }}{% else %}0{% endif %}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="booking-item-payment-title">
+                                        Em bé
+                                    </div>
+
+                                    <div class="booking-item-payment-content">
+                                        {% if infants %}{{ infants }}{% else %}0{% endif %}
                                     </div>
                                 </li>
                             </ul>

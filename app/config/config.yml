@@ -103,6 +103,7 @@ fos_elastica:
                         locations:
                             type: nested
                             properties:
+                                locationId: ~
                                 location: ~
                     persistence:
                         driver: orm
@@ -110,6 +111,7 @@ fos_elastica:
                         provider: ~
                         listener: ~
                         finder: ~
+                        repository: AppBundle\SearchRepository\TourRepository
 
 sonata_admin:
     title: Travel Admin

@@ -1,0 +1,98 @@
+{% extends '::base.html.twig' %}
+
+{% block sub_header %}
+    <div class="cs-sub-header"
+         style="background:url({{ asset('assets/frontend/images/subheader-tour.jpg') }}) no-repeat;background-size:cover;padding-top:170px!important;height:415px!important">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-page-title left">
+                        <h2 style="color:#ffffff !important;">Tour Listing</h2>
+                        <p style="color:#ffffff !important;">Tortor mauris condimentum nibh, ut fermentum massa justo
+                            sit amet risus.<br>
+                            Duis mollis estnisi erat porttitor ligula, eget lacinia.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <!-- Main Content Section -->
+    <div class="main-section">
+        <!-- Page Section -->
+        <div class="page-section parallex-bg" data-type="background">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="cs-inventories-main-box">
+                                        <aside class="page-sidebar col-lg-3 col-md-3 col-sm-12 col-xs-12"></aside>
+
+                                        <div class="page-content col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                {% set count = 0 %}
+                                                {% for tour in tours %}
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="cs-list classic">
+                                                            <div class="cs-media classic">
+                                                                {% if tour.discountPercent %}
+                                                                    <span class="cs-off-price">
+                                                                        {{ tour.discountPercent }}%<em>Off</em>
+                                                                    </span>
+                                                                {% endif %}
+
+                                                                <ul class="cs-list-slider"
+                                                                    id="cs-list-slider{{ count }}">
+                                                                    <li>
+                                                                        <img src="{% path tour.featuredImage, 'reference' %}">
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+
+                                                            <div class="cs-text">
+                                                                <div class="cs-heading-section">
+                                                                    <div class="cs-post-title">
+                                                                        <h3>
+                                                                            <a href="{{ path('tour_detail', { 'slug': tour.slug }) }}">
+                                                                                {{ tour.tourName }}
+                                                                            </a>
+                                                                        </h3>
+                                                                    </div>
+
+                                                                    <div class="cs-price-box">
+                                                                        <em class="cs-bgcolor">Giá từ</em>
+                                                                        <strong>
+                                                                            <sup>$</sup>{{ tour.salePrice }}
+                                                                            <span class="cs-color"><sup>$</sup>{{ tour.regularPrice }}</span>
+                                                                        </strong>
+                                                                        <p> một người</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <p class="listing-text">
+                                                                    {% set content_length = 250 %}
+                                                                    {% set content = tour.description|length > content_length ? tour.description|striptags|slice(0, content_length) ~ '...' : tour.description|striptags %}
+                                                                    {{ content|raw }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
