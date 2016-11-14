@@ -1,0 +1,42 @@
+{% form_theme form ':forms:checkbox_widget.html.twig' %}
+
+<div class="cs-listing-filters">
+    <form action="{{ path('tour_listing_filters') }}" method="POST">
+        <div class="cs-search">
+            <h6>Tìm kiếm tour</h6>
+
+            {{ form_errors(form) }}
+            <div class="cs-field">
+                {{ form_widget(form.tourName, {'attr': {'class': 'form-control txt-field side-location-field'}}) }}
+
+                <label class="cs-bgcolor">
+                    <input name="name" type="submit" value="" placeholder="">
+                </label>
+            </div>
+        </div>
+
+        <div class="cs-filter-title">
+            <h5>Tìm kiếm nâng cao</h5>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true"
+                       aria-controls="collapseOne">
+                        Địa điểm
+                    </a>
+                </div>
+
+                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <ul class="cs-checkbox-list">
+                            {{ form_widget(form.locations) }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ form_rest(form) }}
+    </form>
+</div>

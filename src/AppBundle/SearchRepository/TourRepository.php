@@ -43,4 +43,41 @@ class TourRepository extends Repository
 
         return $this->find($query);
     }
+
+    public function advancedFindTours(TourSearch $tourSearch)
+    {
+        if (!empty($tourSearch->getTourName())) {
+            $query = new Query\MultiMatch();
+            $query->setQuery($tourSearch->getTourName());
+            $query->setFields(array('tourName', 'description'));
+        } else {
+            $query = new MatchAll();
+        }
+
+        $baseQuery = $query;
+
+        $boolFilter = new BoolQuery();
+
+        $boolFilter->addMust($baseQuery);
+
+        if (!empty($tourSearch->getLocations())) {
+            $locations = $tourSearch->getLocations();
+
+            foreach ($locations as $location) {
+                $nestedFilter = new Query\Nested();
+                $locationQuery = new Match();
+                $locationBool = new BoolQuery();
+
+                $nestedFilter->setPath('locations');
+                $locationFilter = $locationQuery->setFieldQuery('locations.locationId', $location->getId());
+                $locationBool->addMust($locationFilter);
+                $nestedFilter->setQuery($locationBool);
+                $boolFilter->addMust($nestedFilter);
+            }
+        }
+
+        $query = Query::create($boolFilter);
+
+        return $this->find($query);
+    }
 }

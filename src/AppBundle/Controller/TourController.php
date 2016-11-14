@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Tour;
+use AppBundle\Form\AdvancedTourSearchType;
 use AppBundle\Form\CommentType;
+use AppBundle\Form\TourAdvancedSearchType;
 use AppBundle\Form\TourOrderType;
 use AppBundle\Form\TourSearchType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -178,6 +180,32 @@ class TourController extends Controller
     }
 
     /**
+     * @Route("/tour-listing/filters", name="tour_listing_filters")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function tourAdvancedSearchAction(Request $request)
+    {
+        $form = $this->createForm(TourAdvancedSearchType::class);
+
+        $form->handleRequest($request);
+
+        $tours = $this->get('app.tour_manager')->getAllTours();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search_data = $form->getData();
+
+            $repositoryManager = $this->container->get('fos_elastica.manager');
+            $repository = $repositoryManager->getRepository('AppBundle:Tour');
+
+            $tours = $repository->advancedFindTours($search_data);
+        }
+
+        return $this->render('archive/tour-listing.html.twig', ['tours' => $tours]);
+    }
+
+    /**
      * @param Tour $tour
      * @return Response
      */
@@ -224,6 +252,15 @@ class TourController extends Controller
         $form = $this->createForm(TourSearchType::class);
 
         return $this->render(':search:_tour_seach_form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function tourAdvancedSearchFormAction()
+    {
+        $form = $this->createForm(TourAdvancedSearchType::class);
+
+        return $this->render(':archive:_advanced_search_form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
