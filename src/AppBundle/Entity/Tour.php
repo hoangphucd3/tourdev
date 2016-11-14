@@ -99,6 +99,10 @@ class Tour
     private $hotels;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourService", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $services;
+    /**
      * @var TourCategory
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TourCategory", inversedBy="tours", cascade={"persist"})
@@ -136,6 +140,14 @@ class Tour
     private $comments;
 
     /**
+     * @var TourRequest
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    private $tourRequests;
+
+    /**
      * Get id
      *
      * @return int
@@ -159,6 +171,7 @@ class Tour
         $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
         $this->backgrounds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -661,10 +674,96 @@ class Tour
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add service
+     *
+     * @param \AppBundle\Entity\TourService $service
+     *
+     * @return Tour
+     */
+    public function addService(\AppBundle\Entity\TourService $service)
+    {
+        $service->setTour($this);
+
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+
+    /**
+     * Set services
+     *
+     * @param $services
+     * @return $this
+     */
+    public function setServices($services)
+    {
+        foreach ($services as $service) {
+            $this->addLocation($service);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param \AppBundle\Entity\TourService $service
+     */
+    public function removeService(\AppBundle\Entity\TourService $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Get services
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * Add tourRequest
+     *
+     * @param \AppBundle\Entity\TourRequest $tourRequest
+     *
+     * @return Tour
+     */
+    public function addTourRequest(\AppBundle\Entity\TourRequest $tourRequest)
+    {
+        $this->tourRequests[] = $tourRequest;
+
+        return $this;
+    }
+
+    /**
+     * Remove tourRequest
+     *
+     * @param \AppBundle\Entity\TourRequest $tourRequest
+     */
+    public function removeTourRequest(\AppBundle\Entity\TourRequest $tourRequest)
+    {
+        $this->tourRequests->removeElement($tourRequest);
+    }
+
+    /**
+     * Get tourRequests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTourRequests()
+    {
+        return $this->tourRequests;
     }
 }

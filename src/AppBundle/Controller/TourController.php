@@ -8,6 +8,7 @@ use AppBundle\Form\CommentType;
 use AppBundle\Form\TourAdvancedSearchType;
 use AppBundle\Form\TourOrderType;
 use AppBundle\Form\TourSearchType;
+use AppBundle\Search\TourSearch;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;

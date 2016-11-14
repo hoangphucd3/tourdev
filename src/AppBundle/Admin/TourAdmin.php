@@ -52,32 +52,32 @@ class TourAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('group.content', array('class' => 'col-md-12'))
-                ->add('tourName', null, array(
-                        'label' => 'label.tour_name')
+            ->add('tourName', null, array(
+                    'label' => 'label.tour_name')
+            )
+            ->add('startDate', null, array(
+                    'label' => 'label.start_date')
+            )
+            ->add('endDate', null, array(
+                    'label' => 'label.end_date')
+            )
+            ->add('amount', null, array(
+                    'label' => 'label.amount')
+            )
+            ->add('description', CKEditorType::class, array(
+                    'label' => 'label.description',
                 )
-                ->add('startDate', null, array(
-                        'label' => 'label.start_date')
+            )
+            ->add('status')
+            ->add('regularPrice')
+            ->add('salePrice')
+            ->add('category', ModelType::class, array(
+                    'class' => 'AppBundle\Entity\TourCategory',
+                    'property' => 'name',
                 )
-                ->add('endDate', null, array(
-                        'label' => 'label.end_date')
-                )
-                ->add('amount', null, array(
-                        'label' => 'label.amount')
-                )
-                ->add('description', CKEditorType::class, array(
-                        'label' => 'label.description',
-                    )
-                )
-                ->add('status')
-                ->add('regularPrice')
-                ->add('salePrice')
-                ->add('category', ModelType::class, array(
-                        'class' => 'AppBundle\Entity\TourCategory',
-                        'property' => 'name',
-                    )
-                )
-                ->add('featured_image', MediaType::class, array('provider' => 'sonata.media.provider.image',
-                    'context' => 'default')/*, array(
+            )
+            ->add('featured_image', MediaType::class, array('provider' => 'sonata.media.provider.image',
+                'context' => 'default')/*, array(
                             'edit' => 'inline',
                             'inline' => 'table',
                             'link_parameters' => array(
@@ -85,30 +85,38 @@ class TourAdmin extends AbstractAdmin
                                 'context' => 'default'
                             )
                         )*/
+            )
+            ->add('backgrounds', CollectionType::class, array(), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
                 )
-                ->add('backgrounds', CollectionType::class, array(), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable' => 'position',
-                    )
+            )
+            ->add('gallery', ModelListType::class)
+            ->end()
+            ->with('group.tour_service', array('class' => 'col-md-12'))
+            ->add('services', CollectionType::class, array(), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_service',
                 )
-                ->add('gallery', ModelListType::class)
+            )
             ->end()
             ->with('group.tour_location', array('class' => 'col-md-12'))
-                ->add('locations', CollectionType::class, array(), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'admin_code' => 'app.admin.tour_location',
-                    )
+            ->add('locations', CollectionType::class, array(), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_location',
                 )
+            )
             ->end()
             ->with('group.tour_hotel', array('class' => 'col-md-12'))
-                ->add('hotels', CollectionType::class, array(), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'admin_code' => 'app.admin.tour_hotel',
-                    )
+            ->add('hotels', CollectionType::class, array(), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_hotel',
                 )
+            )
             ->end();
     }
 
@@ -140,6 +148,7 @@ class TourAdmin extends AbstractAdmin
         if ($object instanceof Tour) {
             $container = $this->getConfigurationPool()->getContainer();
 
+            $object->setServices($object->getServices());
             $object->setLocations($object->getLocations());
             $object->setHotels($object->getHotels());
             $object->setBackgrounds($object->getBackgrounds());

@@ -36,11 +36,19 @@ class User extends BaseUser
      */
     private $orders;
 
+    /**
+     * @var TourRequest
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="customer", cascade={"persist"})
+     */
+    private $touRequests;
+
     public function __construct()
     {
         parent::__construct();
         $this->comments = new ArrayCollection();
         $this->orders = new ArrayCollection();
+        $this->touRequests = new ArrayCollection();
     }
 
     /**
@@ -107,5 +115,39 @@ class User extends BaseUser
     public function getOrders()
     {
         return $this->orders;
+    }
+
+    /**
+     * Add touRequest
+     *
+     * @param \AppBundle\Entity\TourRequest $touRequest
+     *
+     * @return User
+     */
+    public function addTouRequest(\AppBundle\Entity\TourRequest $touRequest)
+    {
+        $this->touRequests[] = $touRequest;
+
+        return $this;
+    }
+
+    /**
+     * Remove touRequest
+     *
+     * @param \AppBundle\Entity\TourRequest $touRequest
+     */
+    public function removeTouRequest(\AppBundle\Entity\TourRequest $touRequest)
+    {
+        $this->touRequests->removeElement($touRequest);
+    }
+
+    /**
+     * Get touRequests
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTouRequests()
+    {
+        return $this->touRequests;
     }
 }

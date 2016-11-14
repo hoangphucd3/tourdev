@@ -58,3 +58,15 @@ services:
         arguments: [~, AppBundle\Entity\Comment, AppBundle:CommentAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Comment }
+
+    app.admin.service:
+        class: AppBundle\Admin\ServiceAdmin
+        arguments: [~, AppBundle\Entity\Service, AppBundle:ServiceAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Service }
+
+    app.admin.tour_service:
+        class: AppBundle\Admin\TourServiceAdmin
+        arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: TourService }
