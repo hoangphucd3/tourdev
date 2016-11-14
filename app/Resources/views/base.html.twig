@@ -20,6 +20,11 @@
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom_style.css') }}">
     {% endblock %}
+
+    {% block core_js %}
+        <script src="{{ asset('assets/frontend/scripts/jquery.js') }}"></script>
+        <script src="{{ asset('assets/frontend/scripts/bootstrap.min.js') }}"></script>
+    {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body class="{% block body_class %}wp-traveladvisor{% endblock %}">
@@ -262,8 +267,8 @@
     </footer>
 {% endblock %}
 {% block javascripts %}
-    <script src="{{ asset('assets/frontend/scripts/jquery.js') }}"></script>
-    <script src="{{ asset('assets/frontend/scripts/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/functions.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/jquery-datetimepicker.js') }}"></script>
     <script src="{{ asset('assets/frontend/scripts/lightbox.js') }}"></script>

@@ -1,0 +1,36 @@
+<div class="tour">
+    {{ form_start(form, { 'action': path('profile_tour_request_new', { 'tourOrderId': orderDetail.id }) }) }}
+    {{ form_errors(form) }}
+    <p class="form-row form-row form-row-wide">
+        {{ form_label(form.reason) }}
+        {{ form_widget(form.reason, {'attr': {'class': 'input-text'}}) }}
+    </p>
+
+    <p class="form-row form-row form-row-wide cs-calendar-combo">
+        {{ form_label(form.departure) }}
+        {{ form_widget(form.departure, {'attr': {'class': 'input-text'}}) }}
+    </p>
+
+    <p class="form-row form-row form-row-wide">
+        {{ form_label(form.adults) }}
+        {{ form_widget(form.adults, {'attr': {'class': 'input-text'}}) }}
+    </p>
+
+    <p class="form-row form-row form-row-wide">
+        {{ form_label(form.children) }}
+        {{ form_widget(form.children, {'attr': {'class': 'input-text'}}) }}
+    </p>
+
+    <p class="form-row form-row form-row-wide">
+        {{ form_label(form.infants) }}
+        {{ form_widget(form.infants, {'attr': {'class': 'input-text'}}) }}
+    </p>
+
+    <div class="form-row place-order">
+        <input type="submit" class="button alt" name="tour_checkout_place_order" id="place_order"
+               value="Hoàn tất">
+    </div>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+</div>

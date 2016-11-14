@@ -103,6 +103,22 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Raleway', sans-serif !important;
 }
 
+.widget-tour-info {
+    box-shadow: 0 2px 1px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.widget-tour-info .widget-title {
+    text-align: center;
+}
+
+.booking-item-payment header {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
 .booking-item-payment {
     margin-bottom: 20px;
 }

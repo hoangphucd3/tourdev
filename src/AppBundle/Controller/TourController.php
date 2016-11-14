@@ -8,7 +8,6 @@ use AppBundle\Form\CommentType;
 use AppBundle\Form\TourAdvancedSearchType;
 use AppBundle\Form\TourOrderType;
 use AppBundle\Form\TourSearchType;
-use AppBundle\Search\TourSearch;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -191,6 +190,8 @@ class TourController extends Controller
         $form = $this->createForm(TourAdvancedSearchType::class);
 
         $form->handleRequest($request);
+
+        dump($form->get('tourName'));
 
         $tours = $this->get('app.tour_manager')->getAllTours();
 

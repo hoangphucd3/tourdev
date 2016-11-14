@@ -15,10 +15,6 @@ class HomeController extends Controller
     {
         $tours = $this->get('app.tour_manager')->getAllTours();
 
-        $finder = $this->container->get('fos_elastica.finder.app.tour');
-        $results = $finder->find('bái đính');
-        dump($results);
-
         return $this->render('home/index.html.twig', ['tours' => $tours]);
     }
 }

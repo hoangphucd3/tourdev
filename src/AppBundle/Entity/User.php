@@ -39,7 +39,7 @@ class User extends BaseUser
     /**
      * @var TourRequest
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="customer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="user", cascade={"persist"})
      */
     private $touRequests;
 

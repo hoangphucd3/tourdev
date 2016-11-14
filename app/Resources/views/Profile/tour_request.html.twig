@@ -1,0 +1,75 @@
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block sonata_profile_title %}
+    Chỉnh sửa tour
+{% endblock %}
+
+{% block sonata_profile_content %}
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        {{ render(controller('AppBundle:User:tourRequestForm', {'id': tourOrder.id})) }}
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="widget widget-tour-info">
+            <div class="widget-title">
+                <h4>
+                    Thông tin đặt tour
+                </h4>
+            </div>
+
+            <div class="widget-content booking-item-payment">
+                <header class="clearfix">
+                    <div class="cs-media">
+                        <img src="{% path  tourOrder.tour.featuredImage, 'reference' %}" width="150"
+                             height="113">
+                    </div>
+
+                    <div class="cs-title">
+                        {{ tourOrder.tour.tourName }}
+                    </div>
+                </header>
+                <ul class="booking-item-payment-details">
+                    <li>
+                        <div class="booking-item-payment-title">
+                            Ngày khởi hành
+                        </div>
+
+                        <div class="booking-item-payment-content">
+                            {{ tourOrder.departure|date('d-m-Y') }}
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="booking-item-payment-title">
+                            Người lớn
+                        </div>
+
+                        <div class="booking-item-payment-content">
+                            {{ tourOrder.adults }}
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="booking-item-payment-title">
+                            Trẻ em
+                        </div>
+
+                        <div class="booking-item-payment-content">
+                            {% if tourOrder.children %}{{ tourOrder.children }}{% else %}0{% endif %}
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="booking-item-payment-title">
+                            Em bé
+                        </div>
+
+                        <div class="booking-item-payment-content">
+                            {% if tourOrder.infants %}{{ tourOrder.infants }}{% else %}0{% endif %}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

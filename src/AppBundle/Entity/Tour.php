@@ -140,14 +140,6 @@ class Tour
     private $comments;
 
     /**
-     * @var TourRequest
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
-     * @ORM\JoinColumn(onDelete="CASCADE")
-     */
-    private $tourRequests;
-
-    /**
      * Get id
      *
      * @return int
@@ -731,39 +723,5 @@ class Tour
     public function getServices()
     {
         return $this->services;
-    }
-
-    /**
-     * Add tourRequest
-     *
-     * @param \AppBundle\Entity\TourRequest $tourRequest
-     *
-     * @return Tour
-     */
-    public function addTourRequest(\AppBundle\Entity\TourRequest $tourRequest)
-    {
-        $this->tourRequests[] = $tourRequest;
-
-        return $this;
-    }
-
-    /**
-     * Remove tourRequest
-     *
-     * @param \AppBundle\Entity\TourRequest $tourRequest
-     */
-    public function removeTourRequest(\AppBundle\Entity\TourRequest $tourRequest)
-    {
-        $this->tourRequests->removeElement($tourRequest);
-    }
-
-    /**
-     * Get tourRequests
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTourRequests()
-    {
-        return $this->tourRequests;
     }
 }

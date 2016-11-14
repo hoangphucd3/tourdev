@@ -149,6 +149,7 @@ sonata_user:
             - { route: 'sonata_user_profile_edit', label: 'link_edit_profile', domain: 'SonataUserBundle'}
             - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
             - { route: 'sonata_user_change_password', label: 'sonata_change_password_link', domain: 'SonataUserBundle' }
+            - { route: 'profile_tour_orders', label: 'Tour của bạn' }
 
 fos_user:
     db_driver:      orm # can be orm or odm

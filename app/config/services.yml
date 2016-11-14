@@ -61,6 +61,12 @@ services:
         tags:
             - { name: form.type }
 
+    app.form.type.tour_request:
+        class: AppBundle\Form\TourRequestType
+        arguments: ["@app.tour_order_manager"]
+        tags:
+            - { name: form.type }
+
     app.admin.tour:
         class: AppBundle\Admin\TourAdmin
         arguments: [~, AppBundle\Entity\Tour, AppBundle:TourAdmin]
