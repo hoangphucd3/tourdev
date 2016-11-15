@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sonata_profile_content %}
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" xmlns="http://www.w3.org/1999/html">
         <div class="widget widget-tour-info">
             <div class="widget-title">
                 <h4>
@@ -70,13 +70,11 @@
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center">
-        <a class="cs-button large btn-primary"
+        <a class="cs-button large" style="background-color: #0065b8 !important"
            href="{{ path("profile_tour_order_edit", {'tourOrderId': orderDetail.id}) }}">
             Yêu cầu chỉnh sửa
         </a>
 
-        <a class="cs-button large btn-danger" target="_blank" href="#">
-            Hủy tour
-        </a>
+        {{ render(controller('AppBundle:User:tourOrderDeleteForm', { 'tourOrder':orderDetail })) }}
     </div>
 {% endblock %}

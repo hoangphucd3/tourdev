@@ -23,9 +23,9 @@ class TourOrder
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="trangThai", type="integer")
+     * @ORM\Column(name="trangThai", type="string")
      */
     private $status;
 
@@ -169,7 +169,7 @@ class TourOrder
     /**
      * Set status
      *
-     * @param integer $status
+     * @param string $status
      * @return TourOrder
      */
     public function setStatus($status)
@@ -182,7 +182,7 @@ class TourOrder
     /**
      * Get status
      *
-     * @return integer 
+     * @return string.
      */
     public function getStatus()
     {
