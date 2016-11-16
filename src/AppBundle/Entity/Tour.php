@@ -140,6 +140,11 @@ class Tour
     private $comments;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourOrder", mappedBy="tour")
+     */
+    private $tourOrders;
+
+    /**
      * Get id
      *
      * @return int
@@ -164,6 +169,7 @@ class Tour
         $this->backgrounds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->services = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tourOrders = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -723,5 +729,39 @@ class Tour
     public function getServices()
     {
         return $this->services;
+    }
+
+    /**
+     * Add tourOrder
+     *
+     * @param \AppBundle\Entity\TourOrder $tourOrder
+     *
+     * @return Tour
+     */
+    public function addTourOrder(\AppBundle\Entity\TourOrder $tourOrder)
+    {
+        $this->tourOrders[] = $tourOrder;
+
+        return $this;
+    }
+
+    /**
+     * Remove tourOrder
+     *
+     * @param \AppBundle\Entity\TourOrder $tourOrder
+     */
+    public function removeTourOrder(\AppBundle\Entity\TourOrder $tourOrder)
+    {
+        $this->tourOrders->removeElement($tourOrder);
+    }
+
+    /**
+     * Get tourOrders
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTourOrders()
+    {
+        return $this->tourOrders;
     }
 }

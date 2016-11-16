@@ -1,0 +1,49 @@
+{% extends ':Admin:standard_layout.html.twig' %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Danh sách tour</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="box-body no-padding">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <th>Tour</th>
+                                <th>Doanh thu</th>
+                                <th></th>
+                            </tr>
+                            {% for tour in tours %}
+                                {% set revenue = 0 %}
+                                {% for order in tour.tourOrders %}
+                                    {% set revenue = revenue + (order.adults + order.children + order.infants) * tour.salePrice %}
+                                {% endfor %}
+                                <tr>
+                                    <td>{{ tour.tourName }}</td>
+                                    <td>
+                                        {{ revenue }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_tour_detail_report', {'id': tour.id}) }}"
+                                           class="badge bg-light-blue">Xem chi tiết</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

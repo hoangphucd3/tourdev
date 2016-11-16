@@ -1,0 +1,89 @@
+{% extends ':Admin:standard_layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/highcharts.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/frontend/scripts/highcharts.js') }}"></script>
+{% endblock %}
+
+{% block sonata_page_content %}
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Doanh thu theo tháng</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="box-body">
+                        <div id="tour-container">
+
+                        </div>
+
+                        <script>
+                            $(function () {
+                                Highcharts.chart('tour-container', {
+                                    credits: false,
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Thống kê doanh thu'
+                                    },
+                                    xAxis: {
+                                        type: 'category',
+                                        labels: {
+                                            style: {
+                                                fontSize: '13px',
+                                                fontFamily: 'Verdana, sans-serif'
+                                            }
+                                        }
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Doanh thu (nghìn $)'
+                                        }
+                                    },
+                                    legend: {
+                                        enabled: false
+                                    },
+                                    tooltip: {
+                                        pointFormat: 'Doanh thu: <b>{point.y:.1f}</b>'
+                                    },
+                                    series: [{
+                                        name: 'Doanh thu',
+                                        data: {{ graph_data|raw }},
+                                        dataLabels: {
+                                            enabled: true,
+                                            color: '#FFFFFF',
+                                            align: 'right',
+                                            format: '{point.y:.1f}', // one decimal
+                                            y: 10, // 10 pixels down from the top
+                                            style: {
+                                                fontSize: '13px',
+                                                fontFamily: 'Verdana, sans-serif'
+                                            }
+                                        }
+                                    }]
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

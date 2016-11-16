@@ -145,7 +145,7 @@ class TourOrder
     /**
      * @var Tour
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour", inversedBy="tourOrders")
      * @ORM\JoinColumn(name="tour", referencedColumnName="id")
      */
     private $tour;

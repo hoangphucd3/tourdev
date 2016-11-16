@@ -47,13 +47,13 @@ services:
             - { name: sonata.block }
 
     app.block.user_orders:
-            class: AppBundle\Block\UserOrderBlockService
-            arguments:
-                - app.block.recent_user_comment
-                - "@templating"
-                - "@app.tour_order_manager"
-            tags:
-                - { name: sonata.block }
+          class: AppBundle\Block\UserOrderBlockService
+          arguments:
+              - app.block.recent_user_comment
+              - "@templating"
+              - "@app.tour_order_manager"
+          tags:
+              - { name: sonata.block }
 
     app.form.type.tour_order:
         class: AppBundle\Form\TourOrderType
@@ -66,3 +66,8 @@ services:
         arguments: ["@app.tour_order_manager"]
         tags:
             - { name: form.type }
+
+    app.menu_listener:
+        class: AppBundle\EventListener\MenuBuilderListener
+        tags:
+            - { name: kernel.event_listener, event: sonata.admin.event.configure.menu.sidebar, method: addMenuItems }

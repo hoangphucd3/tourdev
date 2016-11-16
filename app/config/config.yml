@@ -73,6 +73,12 @@ doctrine:
                     SonataMediaBundle: ~
                     SonataClassificationBundle: ~
                     SonataUserBundle: ~
+                dql:
+                    datetime_functions:
+                        date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                        day: DoctrineExtensions\Query\Mysql\Day
+                        month: DoctrineExtensions\Query\Mysql\Month
+                        year: DoctrineExtensions\Query\Mysql\Year
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -116,6 +122,12 @@ fos_elastica:
 sonata_admin:
     title: Travel Admin
 #    title_logo: Travel Admin
+    templates:
+        layout: Admin/standard_layout.html.twig
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+
     security:
         handler: sonata.admin.security.handler.role
 
@@ -140,11 +152,15 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts: [admin]
         # ...
+        sonata.block.service.text:
+        sonata.media.block.media:
         sonata.user.block.menu:    # used to display the menu in profile pages
         sonata.user.block.account: # used to display menu option (login option)
         sonata.block.service.text: # used to if you plan to use Sonata user routes
         app.block.recent_user_comment:
         app.block.user_orders:
+        app.block.test_block:
+            contexts: [admin]
 
 sonata_user:
     security_acl: false
