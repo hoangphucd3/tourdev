@@ -106,21 +106,24 @@ class TourController extends Controller
 
             $departure = \DateTime::createFromFormat("d/m/Y", $this->get('session')->get('departure'));
 
-            $order->setTour($tour);
-            $order->setCustomer($this->get('app.user_manager')->getCurrentUser());
-            $order->setDeparture($departure);
-            $order->setStatus('pending');
+//            $order->setTour($tour);
+//            $order->setCustomer($this->get('app.user_manager')->getCurrentUser());
+//            $order->setDeparture($departure);
+//            $order->setStatus('pending');
 
-            if ($this->get('app.tour_order_manager')->createTourOrder($order)) {
-                $this->get('session')->remove('departure');
-                $this->get('session')->remove('adults');
-                $this->get('session')->remove('children');
-                $this->get('session')->remove('infants');
+//            if ($this->get('app.tour_order_manager')->createTourOrder($order)) {
+            $this->get('session')->remove('departure');
+            $this->get('session')->remove('adults');
+            $this->get('session')->remove('children');
+            $this->get('session')->remove('infants');
 
-                return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
-            } else {
-                return new Response('Có vấn đề khi tạo hóa đơn?');
-            }
+            
+            return $this->render('single-tour/content.html.twig', ['tour' => $tour]);
+
+//                return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
+//            } else {
+            return new Response('Có vấn đề khi tạo hóa đơn?');
+//            }
         }
     }
 

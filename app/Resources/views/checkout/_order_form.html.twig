@@ -1,6 +1,6 @@
 {% form_theme form 'forms/form_errors.html.twig' %}
 <div class="tour">
-    {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr':{'class':'checkout'}}) }}
+    {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr':{'class':'checkout woocommerce-checkout'}}) }}
     {{ form_errors(form) }}
 
     <div class="tour-billing-fields">
@@ -35,20 +35,37 @@
             {{ form_widget(form.billingAddress2, {'attr': {'class': 'input-text'}}) }}
         </p>
 
-        <p class="form-row form-row form-row-first">
-            {{ form_label(form.billingCity) }}
-            {{ form_widget(form.billingCity, {'attr': {'class': 'input-text'}}) }}
-        </p>
-
         <p class="form-row form-row form-row-wide">
             {{ form_label(form.country) }}
             {{ form_widget(form.country, {'attr': {'class': 'country_to_state country_select', 'autocomplete': 'country'}}) }}
+        </p>
+
+        <p class="form-row form-row form-row-first">
+            {{ form_label(form.billingCity) }}
+            {{ form_widget(form.billingCity, {'attr': {'class': 'input-text'}}) }}
         </p>
 
         <p class="form-row form-row form-row-last">
             {{ form_label(form.billingPostCode) }}
             {{ form_widget(form.billingPostCode, {'attr': {'class': 'input-text'}}) }}
         </p>
+    </div>
+
+    <div id="payment" class="woocommerce-checkout-payment">
+        <ul class="wc_payment_methods payment_methods methods">
+            <li class="wc_payment_method payment_method_onepay">
+                <input id="payment_method_onepay" type="radio" class="input-radio" name="payment_method" value="bacs"
+                       checked='checked' data-order_button_text=""/>
+                <label for="payment_method_onepay">Thanh toán trực tuyến</label>
+
+                <div class="payment_box payment_method_onepay">
+                    <p>Thanh toán trực tuyến OnePay.</p>
+                </div>
+            </li>
+            <li class="wc_payment_method payment_method_cod">
+
+            </li>
+        </ul>
     </div>
 
     <div class="tour-checkout-payment">

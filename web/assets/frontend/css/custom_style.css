@@ -13,20 +13,14 @@
     margin-bottom: 30px;
 }
 
-.tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
-    width: 48%;
-    margin-bottom: 20px;
-    display: inline-block;
-}
-
-.tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
-    width: 48%;
-    margin-bottom: 20px;
-    display: inline-block;
-}
-
 .tour form .form-row.form-row-first {
     margin-right: 30px;
+}
+
+.tour form .form-row.form-row-first, .tour form .form-row.form-row-last {
+    width: 48%;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
 .tour .form-row-wide {
@@ -104,8 +98,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .widget-tour-info {
-    box-shadow: 0 2px 1px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.15);
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 15px;
     margin-bottom: 20px;
 }
@@ -201,4 +195,65 @@ h1, h2, h3, h4, h5, h6,
 
 .single-trip ul.cs-list-detail-slider {
     min-height: inherit;
+}
+
+.woocommerce-checkout #payment {
+    background: #ebe9eb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.woocommerce-checkout #payment ul.payment_methods {
+    text-align: left;
+    padding: 1em;
+    margin: 0;
+    list-style: none;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li {
+    line-height: 2;
+    text-align: left;
+    margin: 0;
+    font-weight: 400;
+    list-style: none;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li:after,
+.woocommerce-checkout #payment ul.payment_methods li:before,
+.woocommerce-checkout #payment ul.payment_methods:after,
+.woocommerce-checkout #payment ul.payment_methods:before {
+    content: " ";
+    display: table;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li:after,
+.woocommerce-checkout #payment ul.payment_methods:after,
+.woocommerce-checkout .checkout .shipping_address {
+    clear: both;
+}
+
+.woocommerce-checkout #payment div.payment_box:before {
+    content: "";
+    display: block;
+    border: 1em solid #dfdcde;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    margin: -1em 0 0 2em;
+}
+
+.woocommerce-checkout #payment div.payment_box {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em;
+    margin: 1em 0;
+    font-size: .92em;
+    border-radius: 2px;
+    line-height: 1.5;
+    background-color: #dfdcde;
+    color: #515151;
 }
