@@ -3,76 +3,90 @@ services:
         class: AppBundle\Admin\TourAdmin
         arguments: [~, AppBundle\Entity\Tour, AppBundle:TourAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Tour }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: Tour }
 
     app.admin.location:
         class: AppBundle\Admin\LocationAdmin
         arguments: [~, AppBundle\Entity\Location, AppBundle:LocationAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Location }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.location,  }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
-    app.admin.tour_location:
-        class: AppBundle\Admin\TourLocationAdmin
-        arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourLocation }
+#    app.admin.tour_location:
+#        class: AppBundle\Admin\TourLocationAdmin
+#        arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourLocation }
 
     app.admin.hotel:
         class: AppBundle\Admin\HotelAdmin
         arguments: [~, AppBundle\Entity\Hotel, AppBundle:HotelAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Hotel }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.hotel }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
-    app.admin.tour_hotel:
-        class: AppBundle\Admin\TourHotelAdmin
-        arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourHotel }
+#    app.admin.tour_hotel:
+#        class: AppBundle\Admin\TourHotelAdmin
+#        arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourHotel }
 
 #    app.admin.user:
 #        class: AppBundle\Admin\UserAdmin
 #        arguments: [~, AppBundle\Entity\User, AppBundle:UserAdmin]
 #        tags:
-#            - { name: sonata.admin, manager_type: orm, group: admin, label: User }
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: User }
 
     app.admin.tour_category:
         class: AppBundle\Admin\TourCategoryAdmin
         arguments: [~, AppBundle\Entity\TourCategory, AppBundle:TourCategoryAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourCategory }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.tour_category }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
-    app.admin.tour_background:
-        class: AppBundle\Admin\TourBackgroundAdmin
-        arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourBackground }
+#    app.admin.tour_background:
+#        class: AppBundle\Admin\TourBackgroundAdmin
+#        arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourBackground }
 
     app.admin.tour_order:
         class: AppBundle\Admin\TourOrderAdmin
         arguments: [~, AppBundle\Entity\TourOrder, AppBundle:TourOrderAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourOrder }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.order }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.comment:
         class: AppBundle\Admin\CommentAdmin
         arguments: [~, AppBundle\Entity\Comment, AppBundle:CommentAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Comment }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.comment }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.service:
         class: AppBundle\Admin\ServiceAdmin
         arguments: [~, AppBundle\Entity\Service, AppBundle:ServiceAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Service }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.service }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
-    app.admin.tour_service:
-        class: AppBundle\Admin\TourServiceAdmin
-        arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourService }
+#    app.admin.tour_service:
+#        class: AppBundle\Admin\TourServiceAdmin
+#        arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourService }
 
     app.admin.tour_request:
         class: AppBundle\Admin\TourRequestAdmin
         arguments: [~, AppBundle\Entity\TourRequest, AppBundle:TourRequestAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: TourRequest }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.tour_request }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]

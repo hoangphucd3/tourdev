@@ -52,71 +52,93 @@ class TourAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('group.content', array('class' => 'col-md-12'))
-            ->add('tourName', null, array(
-                    'label' => 'label.tour_name')
-            )
-            ->add('startDate', null, array(
-                    'label' => 'label.start_date')
-            )
-            ->add('endDate', null, array(
-                    'label' => 'label.end_date')
-            )
-            ->add('amount', null, array(
-                    'label' => 'label.amount')
-            )
-            ->add('description', CKEditorType::class, array(
-                    'label' => 'label.description',
+                ->add('tourName', null, array(
+                        'label' => 'label.tour_name')
                 )
-            )
-            ->add('status')
-            ->add('regularPrice')
-            ->add('salePrice')
-            ->add('category', ModelType::class, array(
-                    'class' => 'AppBundle\Entity\TourCategory',
-                    'property' => 'name',
+                ->add('startDate', null, array(
+                        'label' => 'label.tour_start_date')
                 )
-            )
-            ->add('featured_image', MediaType::class, array('provider' => 'sonata.media.provider.image',
-                'context' => 'default')/*, array(
-                            'edit' => 'inline',
-                            'inline' => 'table',
-                            'link_parameters' => array(
-                                'provider' => 'sonata.media.provider.image',
-                                'context' => 'default'
-                            )
-                        )*/
-            )
-            ->add('backgrounds', CollectionType::class, array(), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'sortable' => 'position',
+                ->add('endDate', null, array(
+                        'label' => 'label.tour_end_date')
                 )
-            )
-            ->add('gallery', ModelListType::class)
+                ->add('amount', null, array(
+                        'label' => 'label.tour_amount'
+                    )
+                )
+                ->add('description', CKEditorType::class, array(
+                        'label' => 'label.tour_description',
+                    )
+                )
+                ->add('status', null, array(
+                    'label' => 'label.tour_status',
+                    )
+                )
+                ->add('regularPrice', null, array(
+                        'label' => 'label.tour_regular_price',
+                    )
+                )
+                ->add('salePrice', null, array(
+                        'label' => 'label.tour_sale_price',
+                    )
+                )
+                ->add('category', ModelType::class, array(
+                        'label' => 'label.tour_category',
+                        'class' => 'AppBundle\Entity\TourCategory',
+                        'property' => 'name',
+                    )
+                )
+                ->add('featured_image', MediaType::class, array(
+                    'label' => 'label.tour_featured_image',
+                    'provider' => 'sonata.media.provider.image',
+                    'context' => 'default')/*, array(
+                                'edit' => 'inline',
+                                'inline' => 'table',
+                                'link_parameters' => array(
+                                    'provider' => 'sonata.media.provider.image',
+                                    'context' => 'default'
+                                )
+                            )*/
+                )
+                ->add('backgrounds', CollectionType::class, array(
+                    'label' => 'label.tour_backgrounds',
+                ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
+                    )
+                )
+                ->add('gallery', ModelListType::class, array(
+                        'label' => 'label.tour_gallery',
+                    )
+                )
             ->end()
-            ->with('group.tour_service', array('class' => 'col-md-12'))
-            ->add('services', CollectionType::class, array(), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'admin_code' => 'app.admin.tour_service',
+            ->with('group.tour_services', array('class' => 'col-md-12'))
+                ->add('services', CollectionType::class, array(
+                    'label' => 'label.tour_services',
+                    ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'admin_code' => 'app.admin.tour_service',
+                    )
                 )
-            )
             ->end()
             ->with('group.tour_location', array('class' => 'col-md-12'))
-            ->add('locations', CollectionType::class, array(), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'admin_code' => 'app.admin.tour_location',
+                ->add('locations', CollectionType::class, array(
+                    'label' => 'label.tour_locations',
+                ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'admin_code' => 'app.admin.tour_location',
+                    )
                 )
-            )
             ->end()
-            ->with('group.tour_hotel', array('class' => 'col-md-12'))
-            ->add('hotels', CollectionType::class, array(), array(
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                    'admin_code' => 'app.admin.tour_hotel',
+            ->with('group.tour_hotels', array('class' => 'col-md-12'))
+                ->add('hotels', CollectionType::class, array( 'label' => 'label.tour_hotels', ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'admin_code' => 'app.admin.tour_hotel',
+                    )
                 )
-            )
             ->end();
     }
 

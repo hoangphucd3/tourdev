@@ -6,7 +6,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: vi
     sonata.user.admin.user.class: AppBundle\Admin\UserAdmin
 
 framework:
@@ -121,7 +121,7 @@ fos_elastica:
 
 sonata_admin:
     title: Travel Admin
-#    title_logo: Travel Admin
+    title_logo: /assets/frontend/images/cs-footer-logo.png
     templates:
         layout: Admin/standard_layout.html.twig
     dashboard:

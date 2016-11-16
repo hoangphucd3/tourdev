@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file datatype="plaintext" original="file.ext" source-language="vi" target-language="vi">
+        <body>
+            <trans-unit id="1">
+                <source>Symfony is great</source>
+                <target>J'aime Symfony</target>
+            </trans-unit>
+            <trans-unit id="group.content">
+                <source>group.content</source>
+                <target>Nội dung</target>
+            </trans-unit>
+            <trans-unit id="label.tour_name">
+                <source>label.tour_name</source>
+                <target>Tên tour</target>
+            </trans-unit>
+            <trans-unit id="label.tour_start_date">
+                <source>label.tour_start_date</source>
+                <target>Ngày khởi hành</target>
+            </trans-unit>
+            <trans-unit id="label.tour_end_date">
+                <source>label.tour_end_date</source>
+                <target>Ngày kết thúc</target>
+            </trans-unit>
+            <trans-unit id="label.tour_amount">
+                <source>label.tour_amount</source>
+                <target>Số lượng khách</target>
+            </trans-unit>
+            <trans-unit id="label.tour_description">
+                <source>label.tour_description</source>
+                <target>Mô tả</target>
+            </trans-unit>
+            <trans-unit id="group.tour_location">
+                <source>group.tour_location</source>
+                <target>Địa điểm tham quan</target>
+            </trans-unit>
+            <trans-unit id="label.tour_status">
+                <source>label.tour_status</source>
+                <target>Trạng thái</target>
+            </trans-unit>
+            <trans-unit id="label.tour_regular_price">
+                <source>label.tour_regular_price</source>
+                <target>Giá gốc</target>
+            </trans-unit>
+            <trans-unit id="label.tour_sale_price">
+                <source>label.tour_sale_price</source>
+                <target>Giá khuyến mãi</target>
+            </trans-unit>
+            <trans-unit id="label.tour_category">
+                <source>label.tour_category</source>
+                <target>Danh mục tour</target>
+            </trans-unit>
+            <trans-unit id="label.tour_featured_image">
+                <source>label.tour_featured_image</source>
+                <target>Ảnh đại diện</target>
+            </trans-unit>
+            <trans-unit id="label.tour_backgrounds">
+                <source>label.tour_backgrounds</source>
+                <target>Ảnh nền</target>
+            </trans-unit>
+            <trans-unit id="label.tour_gallery">
+                <source>label.tour_gallery</source>
+                <target>Thư viện hình ảnh</target>
+            </trans-unit>
+            <trans-unit id="group.tour_services">
+                <source>group.tour_services</source>
+                <target>Các dịch vụ</target>
+            </trans-unit>
+            <trans-unit id="label.tour_locations">
+                <source>label.tour_locations</source>
+                <target>Các địa điểm</target>
+            </trans-unit>
+            <trans-unit id="group.tour_hotels">
+                <source>group.tour_hotels</source>
+                <target>Các khách sạn</target>
+            </trans-unit>
+            <trans-unit id="label.tour_hotels">
+                <source>label.tour_hotels</source>
+                <target>Các khách sạn</target>
+            </trans-unit>
+            <trans-unit id="admin.label.location">
+                <source>admin.label.location</source>
+                <target>Các địa điểm</target>
+            </trans-unit>
+            <trans-unit id="admin.label.hotel">
+                <source>admin.label.hotel</source>
+                <target>Các khách sạn</target>
+            </trans-unit>
+            <trans-unit id="admin.label.tour_category">
+                <source>admin.label.tour_category</source>
+                <target>Danh mục tour</target>
+            </trans-unit>
+            <trans-unit id="admin.label.order">
+                <source>admin.label.order</source>
+                <target>Đơn đặt tour</target>
+            </trans-unit>
+            <trans-unit id="admin.label.comment">
+                <source>admin.label.comment</source>
+                <target>Quản lý bình luận</target>
+            </trans-unit>
+            <trans-unit id="admin.label.service">
+                <source>admin.label.service</source>
+                <target>Quản lý dịch vụ</target>
+            </trans-unit>
+            <trans-unit id="admin.label.tour_request">
+                <source>admin.label.tour_request</source>
+                <target>Đơn yêu cầu chỉnh sửa</target>
+            </trans-unit>
+            <trans-unit id="admin.group_travel">
+                <source>admin.group_travel</source>
+                <target>Travel</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

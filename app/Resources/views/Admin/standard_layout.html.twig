@@ -1,3 +1,16 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .logo img {
+            max-width: 100%;
+        }
+
+        .logo span {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
 {% block side_bar_after_nav_content %}{% endblock %}
