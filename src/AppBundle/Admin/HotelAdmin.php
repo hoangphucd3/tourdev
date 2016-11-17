@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\Hotel;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -17,7 +18,6 @@ class HotelAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
             ->add('name')
             ->add('description')
             ->add('address')
@@ -30,7 +30,6 @@ class HotelAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
             ->add('name')
             ->add('description')
             ->add('address')
@@ -50,10 +49,22 @@ class HotelAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('description')
-            ->add('address')
-            ->add('phoneNumber');
+            ->add('name', null, array(
+                    'label' => 'label.hotel_name'
+                )
+            )
+            ->add('description', CKEditorType::class, array(
+                    'label' => 'label.hotel_desc'
+                )
+            )
+            ->add('address', null, array(
+                    'label' => 'label.hotel_address'
+                )
+            )
+            ->add('phoneNumber', null, array(
+                    'label' => 'label.hotel_phone_number'
+                )
+            );
     }
 
     /**
@@ -62,7 +73,6 @@ class HotelAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
             ->add('name')
             ->add('description')
             ->add('address')

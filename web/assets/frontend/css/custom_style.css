@@ -257,3 +257,17 @@ h1, h2, h3, h4, h5, h6,
     background-color: #dfdcde;
     color: #515151;
 }
+
+.wp-traveladvisor .cs-list.grid .cs-text .cs-heading-section .cs-post-title h3 {
+    height: 50px;
+    overflow: hidden;
+}
+
+.wp-traveladvisor .cs-list.grid {
+    min-height: 462px;
+    max-height: 462px;
+}
+
+.wp-traveladvisor .cs-list.classic .cs-text .cs-heading-section .cs-price-box strong {
+    font-size: 23px;
+}

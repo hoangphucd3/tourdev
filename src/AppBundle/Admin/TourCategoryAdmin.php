@@ -17,9 +17,14 @@ class TourCategoryAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('name')
-            ->add('description');
+            ->add('name', null, array(
+                    'label' => 'label.tour_category_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.tour_category_desc'
+                )
+            );
     }
 
     /**
@@ -28,9 +33,14 @@ class TourCategoryAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('description')
+            ->add('name', null, array(
+                    'label' => 'label.tour_category_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.tour_category_desc'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -46,8 +56,14 @@ class TourCategoryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('description');
+            ->add('name', null, array(
+                    'label' => 'label.tour_category_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.tour_category_desc'
+                )
+            );
     }
 
     /**
@@ -56,9 +72,14 @@ class TourCategoryAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('name')
-            ->add('description');
+            ->add('name', null, array(
+                    'label' => 'label.tour_category_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.tour_category_desc'
+                )
+            );
     }
 
     /**

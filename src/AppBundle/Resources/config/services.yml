@@ -13,11 +13,11 @@ services:
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
 
-#    app.admin.tour_location:
-#        class: AppBundle\Admin\TourLocationAdmin
-#        arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourLocation }
+    app.admin.tour_location:
+        class: AppBundle\Admin\TourLocationAdmin
+        arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourLocation }
 
     app.admin.hotel:
         class: AppBundle\Admin\HotelAdmin
@@ -27,11 +27,11 @@ services:
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
 
-#    app.admin.tour_hotel:
-#        class: AppBundle\Admin\TourHotelAdmin
-#        arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourHotel }
+    app.admin.tour_hotel:
+        class: AppBundle\Admin\TourHotelAdmin
+        arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourHotel }
 
 #    app.admin.user:
 #        class: AppBundle\Admin\UserAdmin
@@ -47,11 +47,11 @@ services:
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
 
-#    app.admin.tour_background:
-#        class: AppBundle\Admin\TourBackgroundAdmin
-#        arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourBackground }
+    app.admin.tour_background:
+        class: AppBundle\Admin\TourBackgroundAdmin
+        arguments: [~, AppBundle\Entity\TourBackground, AppBundle:TourBackgroundAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourBackground }
 
     app.admin.tour_order:
         class: AppBundle\Admin\TourOrderAdmin
@@ -77,11 +77,11 @@ services:
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
 
-#    app.admin.tour_service:
-#        class: AppBundle\Admin\TourServiceAdmin
-#        arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: TourService }
+    app.admin.tour_service:
+        class: AppBundle\Admin\TourServiceAdmin
+        arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourService }
 
     app.admin.tour_request:
         class: AppBundle\Admin\TourRequestAdmin

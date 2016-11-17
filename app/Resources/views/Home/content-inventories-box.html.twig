@@ -1,0 +1,35 @@
+<div class="page-content col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="cs-list grid">
+        <div class="cs-media grid">
+            {% if tour.regularPrice and tour.salePrice %}
+                {{ discount(tour.regularPrice, tour.salePrice)|raw }}
+            {% endif %}
+            <figure>
+                <a href="{{ path('tour_detail', { 'categorySlug': tour.category.slug, 'slug': tour.slug }) }}">
+                    <img src="{% path tour.featuredImage, 'reference' %}"
+                         class="attachment-traveladvisor_var_media_2 size-traveladvisor_var_media_2 wp-post-image">
+                </a>
+            </figure>
+        </div>
+
+        <div class="cs-text">
+            <div class="cs-heading-section">
+                <div class="cs-post-title">
+                    <h3>
+                        <a href="{{ path('tour_detail', { 'categorySlug': tour.category.slug, 'slug': tour.slug }) }}">
+                            {{ tour.tourName }}
+                        </a>
+                    </h3>
+                    <ul>
+                        {#<li>Duration: <span#}
+                        {#class="cs-color">8 Days</span>#}
+                        {#</li>#}
+                    </ul>
+                </div>
+                <div class="cs-price-box">
+                    {{ priceHtml(tour.salePrice, tour.regularPrice)|raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

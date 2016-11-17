@@ -38,7 +38,7 @@ class Hotel
     /**
      * @var string
      *
-     * @ORM\Column(name="moTa", type="string")
+     * @ORM\Column(name="moTa", type="string", nullable=true)
      */
     private $description;
 
@@ -70,11 +70,6 @@ class Hotel
     {
         return $this->id;
     }
-
-    /**
-     * @var string
-     */
-    private $condition;
 
     /**
      * Constructor
@@ -178,30 +173,6 @@ class Hotel
     public function getPhoneNumber()
     {
         return $this->phoneNumber;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return Hotel
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**

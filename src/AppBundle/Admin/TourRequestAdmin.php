@@ -16,13 +16,23 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('reason')
-            ->add('departure')
-            ->add('adults')
+            ->add('reason', null, array(
+                    'label' => 'label.tour_request_reason'
+                )
+            )
+            ->add('departure', null, array(
+                    'label' => 'label.tour_request_departure'
+                )
+            )
+            ->add('adults', null, array(
+                    'label' => 'label.tour_request_adults'
+                )
+            )
 //            ->add('children')
-            ->add('infants')
-        ;
+            ->add('infants', null, array(
+                    'label' => 'label.tour_request_infants'
+                )
+            );
     }
 
     /**
@@ -31,20 +41,30 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('reason')
-            ->add('departure')
-            ->add('adults')
+            ->add('reason', null, array(
+                    'label' => 'label.tour_request_reason'
+                )
+            )
+            ->add('departure', null, array(
+                    'label' => 'label.tour_request_departure'
+                )
+            )
+            ->add('adults', null, array(
+                    'label' => 'label.tour_request_adults'
+                )
+            )
 //            ->add('children')
-            ->add('infants')
+            ->add('infants', null, array(
+                    'label' => 'label.tour_request_infants'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -53,13 +73,24 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('reason')
-            ->add('departure')
-            ->add('adults')
+            ->add('reason', null, array(
+                    'label' => 'label.tour_request_reason'
+                )
+            )
+            ->add('departure', null, array(
+                    'label' => 'label.tour_request_departure'
+                )
+            )
+            ->add('adults', null, array(
+                    'label' => 'label.tour_request_adults'
+                )
+            )
 //            ->add('children')
-            ->add('infants')
-        ;
+            ->add('infants', null, array(
+                    'label' => 'label.tour_request_infants'
+                )
+            )
+            ->add('infants');
     }
 
     /**
@@ -68,12 +99,22 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('reason')
-            ->add('departure')
-            ->add('adults')
+            ->add('reason', null, array(
+                    'label' => 'label.tour_request_reason'
+                )
+            )
+            ->add('departure', null, array(
+                    'label' => 'label.tour_request_departure'
+                )
+            )
+            ->add('adults', null, array(
+                    'label' => 'label.tour_request_adults'
+                )
+            )
 //            ->add('children')
-            ->add('infants')
-        ;
+            ->add('infants', null, array(
+                    'label' => 'label.tour_request_infants'
+                )
+            );
     }
 }

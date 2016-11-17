@@ -44,6 +44,13 @@ class TourLocation
      */
     private $location;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="thuTu", type="integer")
+     */
+    private $position;
+
 
     /**
      * Get id
@@ -54,11 +61,6 @@ class TourLocation
     {
         return $this->id;
     }
-
-    /**
-     * @var string
-     */
-    private $condition;
 
 
     /**
@@ -83,30 +85,6 @@ class TourLocation
     public function getGuestStay()
     {
         return $this->guestStay;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return TourLocation
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**
@@ -165,5 +143,29 @@ class TourLocation
     public function __toString()
     {
         return $this->getId() . '';
+    }
+
+    /**
+     * Set position
+     *
+     * @param integer $position
+     *
+     * @return TourLocation
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

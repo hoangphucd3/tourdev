@@ -2,9 +2,9 @@
     <div class="row">
         <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                Viết một nhận xét
+                {{ 'tour_detail.write_comment'|trans }}
             </h3>
-            {{ form_start(form, {'action': path('tour_comment_new', {'tour_id' : tour.id}), 'attr' : {'class': 'comment-form contact-form'}}) }}
+            {{ form_start(form, {'action': path('tour_comment_new', {'tourId' : tour.id}), 'attr' : {'class': 'comment-form contact-form'}}) }}
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="input-holder">
                     {{ form_widget(form.content) }}
@@ -15,7 +15,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <input name="submit" type="submit" id="cs-bg-color"
                            class="cs-button cs-bgcolor csborder-color"
-                           value="Đăng nhận xét">
+                           value="{{ 'tour_detail.submit_comment'|trans }}">
                 </div>
                 {{ form_end(form) }}
             </div><!-- #respond -->

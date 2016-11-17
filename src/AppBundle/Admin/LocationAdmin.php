@@ -18,10 +18,18 @@ class LocationAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('name')
-            ->add('description')
-            ->add('location');
+            ->add('name', null, array(
+                    'label' => 'label.location_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.location_desc'
+                )
+            )
+            ->add('location', null, array(
+                    'label' => 'label.location_location'
+                )
+            );
     }
 
     /**
@@ -30,17 +38,22 @@ class LocationAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('description')
-            ->add('location')
-            ->add('_action', null, array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
+            ->add('name', null, array(
+                    'label' => 'label.location_name'
                 )
-            ));
+            )
+            ->add('location', null, array(
+                    'label' => 'label.location_location'
+                )
+            )
+            ->add('_action', null, array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    )
+                )
+            );
     }
 
     /**
@@ -49,9 +62,18 @@ class LocationAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('description')
-            ->add('location')
+            ->add('name', null, array(
+                    'label' => 'label.location_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.location_desc'
+                )
+            )
+            ->add('location', null, array(
+                    'label' => 'label.location_location'
+                )
+            )
             ->add('featuredImage', MediaType::class, array(
                     'provider' => 'sonata.media.provider.image',
                     'context' => 'default'
@@ -65,10 +87,18 @@ class LocationAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('name')
-            ->add('description')
-            ->add('location');
+            ->add('name', null, array(
+                    'label' => 'label.location_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.location_desc'
+                )
+            )
+            ->add('location', null, array(
+                    'label' => 'label.location_location'
+                )
+            );
     }
 
     /**

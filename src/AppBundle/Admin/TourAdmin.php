@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 
 class TourAdmin extends AbstractAdmin
@@ -55,10 +56,10 @@ class TourAdmin extends AbstractAdmin
                 ->add('tourName', null, array(
                         'label' => 'label.tour_name')
                 )
-                ->add('startDate', null, array(
+                ->add('startDate', DatePickerType::class, array(
                         'label' => 'label.tour_start_date')
                 )
-                ->add('endDate', null, array(
+                ->add('endDate', DatePickerType::class, array(
                         'label' => 'label.tour_end_date')
                 )
                 ->add('amount', null, array(

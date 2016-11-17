@@ -59,11 +59,6 @@ class TourCategory
         return $this->id;
     }
 
-    /**
-     * @var string
-     */
-    private $condition;
-
 
     /**
      * Set name
@@ -111,30 +106,6 @@ class TourCategory
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return TourCategory
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**

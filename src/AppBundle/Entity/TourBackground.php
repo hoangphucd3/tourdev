@@ -25,7 +25,7 @@ class TourBackground
     /**
      * @var int
      *
-     * @ORM\Column(name="sapXep", type="integer")
+     * @ORM\Column(name="thuTu", type="integer")
      */
     private $position;
 
@@ -53,34 +53,6 @@ class TourBackground
     public function getId()
     {
         return $this->id;
-    }
-    /**
-     * @var string
-     */
-    private $condition;
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return TourBackground
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**

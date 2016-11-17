@@ -59,11 +59,6 @@ class Comment
         return $this->id;
     }
 
-    /**
-     * @var string
-     */
-    private $condition;
-
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -115,30 +110,6 @@ class Comment
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return Comment
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**

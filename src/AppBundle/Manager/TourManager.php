@@ -25,17 +25,7 @@ class TourManager
 
     public function getAllTours()
     {
-        $output = array();
-
         $tours = $this->tourRepository->findAll();
-
-        foreach ($tours as $id => $tour) {
-            $output[$id] = $tour;
-
-            if ($tour->getRegularPrice() && $tour->getSalePrice()) {
-                $output[$id]->discountPercent = $this->getPercentDiscount($tour->getRegularPrice(), $tour->getSalePrice());
-            }
-        }
 
         return $tours;
     }

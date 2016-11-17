@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Tour;
+use AppBundle\Entity\TourCategory;
 use AppBundle\Form\AdvancedTourSearchType;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\TourAdvancedSearchType;
@@ -21,15 +22,18 @@ use Symfony\Component\HttpFoundation\Response;
 class TourController extends Controller
 {
     /**
-     * @Route("/tour/{slug}/", name="tour_detail")
+     * @Route("/{categorySlug}/{slug}.html", name="tour_detail")
      * @Method("GET")
      * @ParamConverter("tour", class="AppBundle:Tour", options={"mapping" : {"slug": "slug"}})
+     * @ParamConverter("tourCategory", class="AppBundle:TourCategory", options={"mapping" : {"categorySlug": "slug"}})
+     *
+     * @param TourCategory $tourCategory
+     * @param Tour $tour
+     * @return Response
      */
-    public function tourShowAction(Tour $tour)
+    public function tourShowAction(TourCategory $tourCategory, Tour $tour)
     {
-//        $comments = $this->getDoctrine()->getRepository('AppBundle:TourOrder');
-//        dump($comments);
-        return $this->render('single-tour/content.html.twig', ['tour' => $tour]);
+        return $this->render(':SingleTour:content.html.twig', ['tour' => $tour]);
     }
 
     /**
@@ -37,6 +41,8 @@ class TourController extends Controller
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @ParamConverter("tour", class="AppBundle:Tour", options={"mapping" : {"id": "id"}})
      *
+     * @param Request $request
+     * @param Tour $tour
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function orderShowAction(Request $request, Tour $tour)
@@ -58,7 +64,7 @@ class TourController extends Controller
             'departure' => $departure,
         );
 
-        return $this->render(':checkout:content.html.twig', $template_args);
+        return $this->render(':Checkout:content.html.twig', $template_args);
     }
 
 
@@ -107,30 +113,30 @@ class TourController extends Controller
             $departure = \DateTime::createFromFormat("d/m/Y", $this->get('session')->get('departure'));
 
 //            $order->setTour($tour);
-//            $order->setCustomer($this->get('app.user_manager')->getCurrentUser());
+//            $order->setCustomer($this->get('app . user_manager')->getCurrentUser());
 //            $order->setDeparture($departure);
 //            $order->setStatus('pending');
 
-//            if ($this->get('app.tour_order_manager')->createTourOrder($order)) {
+//            if ($this->get('app . tour_order_manager')->createTourOrder($order)) {
             $this->get('session')->remove('departure');
             $this->get('session')->remove('adults');
             $this->get('session')->remove('children');
             $this->get('session')->remove('infants');
 
-            
-            return $this->render('single-tour/content.html.twig', ['tour' => $tour]);
+
+            return $this->render(':SingleTour:content.html.twig', ['tour' => $tour]);
 
 //                return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
 //            } else {
-            return new Response('Có vấn đề khi tạo hóa đơn?');
+            return new Response('Có vấn đề khi tạo hóa đơn ?');
 //            }
         }
     }
 
     /**
-     * @Route("/comment/{tour_id}/new", name="tour_comment_new")
+     * @Route("/comment/{tourId}/new", name="tour_comment_new")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     * @ParamConverter("tour", options={"mapping": {"tour_id": "id"}})
+     * @ParamConverter("tour", options={"mapping": {"tourId": "id"}})
      *
      * @param Request $request
      * @param Tour $tour
@@ -151,7 +157,7 @@ class TourController extends Controller
             if ($this->get('app.comment_manager')->createComment($comment)) {
                 return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
             } else {
-                return new Response('Có vấn đề khi tạo bình luận?');
+                return new Response('Có vấn đề khi tạo bình luận ?');
             }
         }
     }
@@ -179,7 +185,7 @@ class TourController extends Controller
             $tours = $repository->findTours($search_data);
         }
 
-        return $this->render('archive/tour-listing.html.twig', ['tours' => $tours]);
+        return $this->render(':Archive:tour-listing.html.twig', ['tours' => $tours]);
     }
 
     /**
@@ -207,7 +213,7 @@ class TourController extends Controller
             $tours = $repository->advancedFindTours($search_data);
         }
 
-        return $this->render('archive/tour-listing.html.twig', ['tours' => $tours]);
+        return $this->render(':Archive:tour-listing.html.twig', ['tours' => $tours]);
     }
 
     /**
@@ -218,7 +224,7 @@ class TourController extends Controller
     {
         $form = $this->getBookingForm($tour);
 
-        return $this->render('single-tour/_booking_form.html.twig', [
+        return $this->render(':SingleTour:_booking_form.html.twig', [
             'tour' => $tour,
             'form' => $form->createView()
         ]);
@@ -232,7 +238,7 @@ class TourController extends Controller
     {
         $form = $this->createForm(TourOrderType::class);
 
-        return $this->render(':checkout:_order_form.html.twig', array(
+        return $this->render(':Checkout:_order_form.html.twig', array(
             'tour' => $tour,
             'form' => $form->createView(),
         ));
@@ -246,26 +252,32 @@ class TourController extends Controller
     {
         $form = $this->createForm(CommentType::class);
 
-        return $this->render(':single-tour:_comment_form.html.twig', array(
+        return $this->render(':SingleTour:_comment_form.html.twig', array(
             'tour' => $tour,
             'form' => $form->createView(),
         ));
     }
 
+    /**
+     * @return Response
+     */
     public function tourSearchFormAction()
     {
         $form = $this->createForm(TourSearchType::class);
 
-        return $this->render(':search:_tour_seach_form.html.twig', array(
+        return $this->render(':Search:_tour_seach_form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
 
+    /**
+     * @return Response
+     */
     public function tourAdvancedSearchFormAction()
     {
         $form = $this->createForm(TourAdvancedSearchType::class);
 
-        return $this->render(':archive:_advanced_search_form.html.twig', array(
+        return $this->render(':Archive:_advanced_search_form.html.twig', array(
             'form' => $form->createView(),
         ));
     }

@@ -31,7 +31,7 @@ class Service
     /**
      * @var string
      *
-     * @ORM\Column(name="icon", type="string")
+     * @ORM\Column(name="icon", type="string", nullable=true)
      */
     private $icon;
 

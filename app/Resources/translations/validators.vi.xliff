@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file datatype="plaintext" original="file.ext" source-language="vi" target-language="vi">
+        <body>
+            <trans-unit id="admin.sale_price_error">
+                <source>admin.sale_price_error</source>
+                <target>Giá khuyến mãi phải thấp hơn giá gốc</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

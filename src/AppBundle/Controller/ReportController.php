@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Tour;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class ReportController extends Controller
 {

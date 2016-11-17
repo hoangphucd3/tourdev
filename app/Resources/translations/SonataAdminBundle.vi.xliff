@@ -132,15 +132,15 @@
             </trans-unit>
             <trans-unit id="action_edit">
                 <source>action_edit</source>
-                <target>Edit</target>
+                <target>Sửa</target>
             </trans-unit>
             <trans-unit id="action_show">
                 <source>action_show</source>
-                <target>Show</target>
+                <target>Xem</target>
             </trans-unit>
             <trans-unit id="all_elements">
                 <source>all_elements</source>
-                <target>All elements</target>
+                <target>Tất cả</target>
             </trans-unit>
             <trans-unit id="flash_batch_empty">
                 <source>flash_batch_empty</source>
@@ -344,15 +344,15 @@
             </trans-unit>
             <trans-unit id="list_results_count_prefix">
                 <source>list_results_count_prefix</source>
-                <target>at least</target>
+                <target>ít nhất</target>
             </trans-unit>
             <trans-unit id="list_results_count">
                 <source>list_results_count</source>
-                <target>1 result|%count% results</target>
+                <target>1 kết quả|%count% results</target>
             </trans-unit>
             <trans-unit id="label_export_download">
                 <source>label_export_download</source>
-                <target>Download</target>
+                <target>Tải xuống</target>
             </trans-unit>
             <trans-unit id="export_format_json">
                 <source>export_format_json</source>
@@ -388,7 +388,7 @@
             </trans-unit>
             <trans-unit id="label_per_page">
                 <source>label_per_page</source>
-                <target>Per page</target>
+                <target>mỗi trang</target>
             </trans-unit>
             <trans-unit id="list_select">
                 <source>list_select</source>
@@ -424,7 +424,7 @@
             </trans-unit>
             <trans-unit id="search_placeholder">
                 <source>search_placeholder</source>
-                <target>Search</target>
+                <target>Tìm kiếm</target>
             </trans-unit>
             <trans-unit id="no_results_found">
                 <source>no_results_found</source>

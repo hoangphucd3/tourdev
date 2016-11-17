@@ -6,6 +6,7 @@ use Application\Sonata\MediaBundle\Entity\Gallery;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\ElasticaBundle\Annotation\Search;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Tour
@@ -40,16 +41,16 @@ class Tour
     private $slug;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="ngayBatDau", type="datetime")
+     * @ORM\Column(name="ngayBatDau", type="date")
      */
     private $startDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ngayKetThuc", type="datetime")
+     * @ORM\Column(name="ngayKetThuc", type="date")
      */
     private $endDate;
 
@@ -63,7 +64,7 @@ class Tour
     /**
      * @var string
      *
-     * @ORM\Column(name="moTa", type="text")
+     * @ORM\Column(name="moTa", type="text", nullable=true)
      */
     private $description;
 
@@ -123,7 +124,7 @@ class Tour
      * @var Gallery
      *
      * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Gallery", cascade={"persist"})
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $gallery;
 
@@ -140,7 +141,8 @@ class Tour
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourOrder", mappedBy="tour")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourOrder", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $tourOrders;
 
@@ -153,11 +155,6 @@ class Tour
     {
         return $this->id;
     }
-
-    /**
-     * @var string
-     */
-    private $condition;
 
     /**
      * Constructor
@@ -199,7 +196,7 @@ class Tour
     /**
      * Set startDate
      *
-     * @param \DateTime $startDate
+     * @param \Date $startDate
      *
      * @return Tour
      */
@@ -213,7 +210,7 @@ class Tour
     /**
      * Get startDate
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getStartDate()
     {
@@ -223,7 +220,7 @@ class Tour
     /**
      * Set endDate
      *
-     * @param \DateTime $endDate
+     * @param \Date $endDate
      *
      * @return Tour
      */
@@ -237,7 +234,7 @@ class Tour
     /**
      * Get endDate
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getEndDate()
     {
@@ -314,30 +311,6 @@ class Tour
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return Tour
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**
@@ -763,5 +736,17 @@ class Tour
     public function getTourOrders()
     {
         return $this->tourOrders;
+    }
+
+    /**
+     * @Assert\IsTrue(message = "admin.sale_price_error")
+     */
+    public function isSalePriceLegal()
+    {
+        if($this->salePrice >= $this->regularPrice) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file datatype="plaintext" original="file.ext" source-language="vi" target-language="vi">
+        <body>
+            <trans-unit id="tour_detail.overview">
+                <source>tour_detail.overview</source>
+                <target>Giới thiệu</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.gallery">
+                <source>tour_detail.gallery</source>
+                <target>Thư viện hình ảnh</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.reviews">
+                <source>tour_detail.reviews</source>
+                <target>Nhận xét khách hàng</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.customer_reviews">
+                <source>tour_detail.customer_reviews</source>
+                <target>Nhận xét khách hàng</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.write_comment">
+                <source>tour_detail.write_comment</source>
+                <target>Để lại nhận xét</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.submit_comment">
+                <source>tour_detail.submit_comment</source>
+                <target>Gửi nhận xét</target>
+            </trans-unit>
+            <trans-unit id="tour_detail.number_of_guess">
+                <source>tour_detail.number_of_guess</source>
+                <target>Số lượng khách</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

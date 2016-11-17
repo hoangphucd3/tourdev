@@ -1,0 +1,42 @@
+{% if tour.locations %}
+    <div class="page-section">
+        <div class="cs-overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-push-3 col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <ul class="cs-detail-next-post">
+                            {% set i = 1 %}
+                            {% for location in tour.locations %}
+                                <li>
+                                    <div class="cs-date-post" id="infobox0">
+                                        <span>Ngày {{ i }}</span>
+                                        <div class="cs-post-thumb">
+                                            <div class="cs-media">
+                                                <figure>
+                                                    <a href="#">
+                                                        {% if location.location.featuredImage %}
+                                                            <img src="{% path location.location.featuredImage, 'reference' %}"/>
+                                                        {% else %}
+                                                            <img src="{{ absolute_url(asset('assets/frontend/images/tour-gallery-03-300x169.jpg')) }}"/>
+                                                        {% endif %}
+                                                    </a>
+                                                </figure>
+                                            </div>
+                                            <div class="cs-text">
+                                                <h5>
+                                                    <a href="#">{{ location.location.name }}</a>
+                                                </h5>
+                                                <p>{{ location.location.description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% set i = i + 1 %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

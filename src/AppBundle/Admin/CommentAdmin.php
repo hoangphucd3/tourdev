@@ -16,10 +16,14 @@ class CommentAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('content')
-            ->add('createdAt')
-        ;
+            ->add('content', null, array(
+                    'label' => 'label.comment_content'
+                )
+            )
+            ->add('createdAt', null, array(
+                    'label' => 'label.comment_created_at'
+                )
+            );
     }
 
     /**
@@ -28,17 +32,21 @@ class CommentAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('content')
-            ->add('createdAt')
+            ->add('content', null, array(
+                    'label' => 'label.comment_content'
+                )
+            )
+            ->add('createdAt', null, array(
+                    'label' => 'label.comment_created_at'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -47,10 +55,14 @@ class CommentAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('content')
-            ->add('createdAt')
-        ;
+            ->add('content', null, array(
+                    'label' => 'label.comment_content'
+                )
+            )
+            ->add('createdAt', null, array(
+                    'label' => 'label.comment_created_at'
+                )
+            );
     }
 
     /**
@@ -59,9 +71,13 @@ class CommentAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('content')
-            ->add('createdAt')
-        ;
+            ->add('content', null, array(
+                    'label' => 'label.comment_content'
+                )
+            )
+            ->add('createdAt', null, array(
+                    'label' => 'label.comment_created_at'
+                )
+            );
     }
 }

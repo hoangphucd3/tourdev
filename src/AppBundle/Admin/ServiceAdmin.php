@@ -16,10 +16,14 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('name')
-            ->add('icon')
-        ;
+            ->add('name', null, array(
+                    'label' => 'label.service_name'
+                )
+            )
+            ->add('icon', null, array(
+                    'label' => 'label.service_icon'
+                )
+            );
     }
 
     /**
@@ -28,17 +32,21 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('id')
-            ->add('name')
-            ->add('icon')
+            ->add('name', null, array(
+                    'label' => 'label.service_name'
+                )
+            )
+            ->add('icon', null, array(
+                    'label' => 'label.service_icon'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -47,10 +55,14 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('id')
-            ->add('name')
-            ->add('icon')
-        ;
+            ->add('name', null, array(
+                    'label' => 'label.service_name'
+                )
+            )
+            ->add('icon', null, array(
+                    'label' => 'label.service_icon'
+                )
+            );
     }
 
     /**
@@ -59,9 +71,13 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('name')
-            ->add('icon')
-        ;
+            ->add('name', null, array(
+                    'label' => 'label.service_name'
+                )
+            )
+            ->add('icon', null, array(
+                    'label' => 'label.service_icon'
+                )
+            );
     }
 }

@@ -61,11 +61,6 @@ class TourHotel
         return $this->id;
     }
 
-    /**
-     * @var string
-     */
-    private $condition;
-
 
     /**
      * Set guestStay
@@ -113,30 +108,6 @@ class TourHotel
     public function getRoomPrice()
     {
         return $this->roomPrice;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return TourHotel
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
     }
 
     /**

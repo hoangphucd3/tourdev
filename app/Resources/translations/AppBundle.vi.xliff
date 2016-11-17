@@ -110,6 +110,78 @@
                 <source>admin.group_travel</source>
                 <target>Travel</target>
             </trans-unit>
+            <trans-unit id="label.tour_services">
+                <source>label.tour_services</source>
+                <target>Các dịch vụ</target>
+            </trans-unit>
+            <trans-unit id="label.hotel_name">
+                <source>label.hotel_name</source>
+                <target>Tên khách sạn</target>
+            </trans-unit>
+            <trans-unit id="label.hotel_desc">
+                <source>label.hotel_desc</source>
+                <target>Mô tả</target>
+            </trans-unit>
+            <trans-unit id="label.hotel_address">
+                <source>label.hotel_address</source>
+                <target>Địa chỉ khách sạn</target>
+            </trans-unit>
+            <trans-unit id="label.hotel_phone_number">
+                <source>label.hotel_phone_number</source>
+                <target>Điện thoại liên hệ</target>
+            </trans-unit>
+            <trans-unit id="label.location_name">
+                <source>label.location_name</source>
+                <target>Tên địa điểm</target>
+            </trans-unit>
+            <trans-unit id="label.location_desc">
+                <source>label.location_desc</source>
+                <target>Mô tả</target>
+            </trans-unit>
+            <trans-unit id="label.location_location">
+                <source>label.location_location</source>
+                <target>Địa điểm</target>
+            </trans-unit>
+            <trans-unit id="label.tour_category_name">
+                <source>label.tour_category_name</source>
+                <target>Tên danh mục</target>
+            </trans-unit>
+            <trans-unit id="label.tour_category_desc">
+                <source>label.tour_category_desc</source>
+                <target>Mô tả</target>
+            </trans-unit>
+            <trans-unit id="label.service_name">
+                <source>label.service_name</source>
+                <target>Tên dịch vụ</target>
+            </trans-unit>
+            <trans-unit id="label.service_icon">
+                <source>label.service_icon</source>
+                <target>Icon</target>
+            </trans-unit>
+            <trans-unit id="label.comment_content">
+                <source>label.comment_content</source>
+                <target>Bình luận</target>
+            </trans-unit>
+            <trans-unit id="label.comment_created_at">
+                <source>label.comment_created_at</source>
+                <target>Thời gian</target>
+            </trans-unit>
+            <trans-unit id="label.tour_request_reason">
+                <source>label.tour_request_reason</source>
+                <target>Lí do</target>
+            </trans-unit>
+            <trans-unit id="label.tour_request_departure">
+                <source>label.tour_request_departure</source>
+                <target>Ngày khởi hành</target>
+            </trans-unit>
+            <trans-unit id="label.tour_request_adults">
+                <source>label.tour_request_adults</source>
+                <target>Người lớn</target>
+            </trans-unit>
+            <trans-unit id="label.tour_request_infants">
+                <source>label.tour_request_infants</source>
+                <target>Em bé</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
