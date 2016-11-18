@@ -2,9 +2,11 @@
 
 namespace AppBundle\Admin;
 
+use Knp\Menu\ItemInterface as MenuItemInterface;
 use AppBundle\Entity\Tour;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -170,6 +172,22 @@ class TourAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper;
+    }
+
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $id = $admin->getRequest()->get('id');
+
+        $menu->addChild(
+            $this->trans('Test thoi', array(), 'SonataCustomerBundle'),
+            $admin->generateMenuUrl('app.admin.tour_category.list', array('id' => $id))
+        );
     }
 
     /**

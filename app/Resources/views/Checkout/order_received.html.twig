@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thanh toán{% endblock %}
+
+{% block body %}
+    <div class="main-section">
+        <div class="container">
+            <div class="row">
+                <div class="page-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="tour">
+                        <p class="woocommerce-thankyou-order-received">Cảm ơn bạn. Đơn đặt tour của bạn đã được
+                            nhận.</p>
+                        <ul class="woocommerce-thankyou-order-details order_details">
+                            <li class="order">
+                                Mã đơn đặt tour: <strong>{{ tourOrder.id }}</strong>
+                            </li>
+
+                            <li class="date">
+                                Ngày: {{ 'now'|date('d/m/Y') }}
+                            </li>
+
+                            <li class="total">
+                                Tổng cộng:
+                            </li>
+
+                            <li class="method">
+                                Phuong thức thanh toán:
+                            </li>
+                        </ul>
+
+                        <table class="shop_table customer_details">
+
+                            <tbody>
+                            <tr>
+                                <th>Email:</th>
+                                <td>admin@mail.com</td>
+                            </tr>
+
+                            <tr>
+                                <th>Số điện thoại:</th>
+                                <td>002858</td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

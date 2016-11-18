@@ -1,13 +1,13 @@
 {% form_theme form 'forms/form_errors.html.twig' %}
 <div class="tour">
-    {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr':{'class':'checkout woocommerce-checkout'}}) }}
+    {{ form_start(form, {'method': 'POST', 'action': path('tour_order_new', { 'tour': tour.id }),'attr': {'class':'checkout woocommerce-checkout'}}) }}
     {{ form_errors(form) }}
 
     <div class="tour-billing-fields">
         <h3>Thông tin thanh toán</h3>
         <p class="form-row form-row form-row-first">
-            {{ form_label(form.billingFirsttName) }}
-            {{ form_widget(form.billingFirsttName, {'attr': {'class': 'input-text'}}) }}
+            {{ form_label(form.billingFirstName) }}
+            {{ form_widget(form.billingFirstName, {'attr': {'class': 'input-text'}}) }}
         </p>
 
         <p class="form-row form-row form-row-last">
@@ -54,25 +54,55 @@
     <div id="payment" class="woocommerce-checkout-payment">
         <ul class="wc_payment_methods payment_methods methods">
             <li class="wc_payment_method payment_method_onepay">
-                <input id="payment_method_onepay" type="radio" class="input-radio" name="checkoutMethod" value="onepay"
+                <input id="payment_method_onepay" type="radio" class="input-radio" name="payment_method" value="onepay"
                        checked='checked' data-order_button_text=""/>
-                <label for="payment_method_onepay">Thanh toán trực tuyến</label>
 
+                <label for="payment_method_onepay">Thanh toán trực tuyến OnePay.</label>
                 <div class="payment_box payment_method_onepay">
                     <p>Thanh toán trực tuyến OnePay.</p>
                 </div>
             </li>
             <li class="wc_payment_method payment_method_cod">
+                <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cod"
+                       data-order_button_text="Tạo hóa đơn"/>
 
+                <label for="payment_method_cod">Thanh toán trực tiếp</label>
+                <div class="payment_box payment_method_cod" style="display:none;">
+                    <p>Thanh toán trực tiếp tại công ty.</p>
+                </div>
             </li>
         </ul>
     </div>
 
-    <div class="tour-checkout-payment">
-        <div class="form-row place-order">
-            <input type="submit" class="button alt" name="tour_checkout_place_order" id="place_order"
-                   value="Tạo hóa đơn">
-        </div>
+    <div class="form-row place-order">
+        <input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order"
+               value="Thanh toán OnePay" data-value="Thanh toán OnePay"/>
     </div>
     {{ form_end(form) }}
 </div>
+
+<script>
+    jQuery(function ($) {
+        $('form.checkout').on('click', 'input[name="payment_method"]', function () {
+            if ($('.payment_methods input.input-radio').length > 1) {
+                var target_payment_box = $('div.payment_box.' + $(this).attr('ID'));
+
+                if ($(this).is(':checked') && !target_payment_box.is(':visible')) {
+                    $('div.payment_box').filter(':visible').slideUp(250);
+
+                    if ($(this).is(':checked')) {
+                        $('div.payment_box.' + $(this).attr('ID')).slideDown(250);
+                    }
+                }
+            } else {
+                $('div.payment_box').show();
+            }
+
+            if ($(this).data('order_button_text')) {
+                $('#place_order').val($(this).data('order_button_text'));
+            } else {
+                $('#place_order').val($('#place_order').data('value'));
+            }
+        });
+    });
+</script>

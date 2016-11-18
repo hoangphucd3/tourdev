@@ -30,48 +30,38 @@ class User extends BaseUser
     private $comments;
 
     /**
-     * @var TourOrder
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourOrder", mappedBy="customer", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Customer", mappedBy="user", cascade={"persist"})
      */
-    private $orders;
-
-    /**
-     * @var TourRequest
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourRequest", mappedBy="user", cascade={"persist"})
-     */
-    private $touRequests;
+    private $customers;
 
     public function __construct()
     {
         parent::__construct();
         $this->comments = new ArrayCollection();
-        $this->orders = new ArrayCollection();
-        $this->touRequests = new ArrayCollection();
     }
 
     /**
-     * Add comments
+     * Add comment
      *
-     * @param \AppBundle\Entity\Comment $comments
+     * @param \AppBundle\Entity\Comment $comment
+     *
      * @return User
      */
-    public function addComment(\AppBundle\Entity\Comment $comments)
+    public function addComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->comments[] = $comments;
+        $this->comments[] = $comment;
 
         return $this;
     }
 
     /**
-     * Remove comments
+     * Remove comment
      *
-     * @param \AppBundle\Entity\Comment $comments
+     * @param \AppBundle\Entity\Comment $comment
      */
-    public function removeComment(\AppBundle\Entity\Comment $comments)
+    public function removeComment(\AppBundle\Entity\Comment $comment)
     {
-        $this->comments->removeElement($comments);
+        $this->comments->removeElement($comment);
     }
 
     /**
@@ -85,69 +75,36 @@ class User extends BaseUser
     }
 
     /**
-     * Add orders
+     * Add customer
      *
-     * @param \AppBundle\Entity\TourOrder $orders
+     * @param \AppBundle\Entity\Customer $customer
+     *
      * @return User
      */
-    public function addOrder(\AppBundle\Entity\TourOrder $orders)
+    public function addCustomer(\AppBundle\Entity\Customer $customer)
     {
-        $this->orders[] = $orders;
+        $this->customers[] = $customer;
 
         return $this;
     }
 
     /**
-     * Remove orders
+     * Remove customer
      *
-     * @param \AppBundle\Entity\TourOrder $orders
+     * @param \AppBundle\Entity\Customer $customer
      */
-    public function removeOrder(\AppBundle\Entity\TourOrder $orders)
+    public function removeCustomer(\AppBundle\Entity\Customer $customer)
     {
-        $this->orders->removeElement($orders);
+        $this->customers->removeElement($customer);
     }
 
     /**
-     * Get orders
+     * Get customers
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOrders()
+    public function getCustomers()
     {
-        return $this->orders;
-    }
-
-    /**
-     * Add touRequest
-     *
-     * @param \AppBundle\Entity\TourRequest $touRequest
-     *
-     * @return User
-     */
-    public function addTouRequest(\AppBundle\Entity\TourRequest $touRequest)
-    {
-        $this->touRequests[] = $touRequest;
-
-        return $this;
-    }
-
-    /**
-     * Remove touRequest
-     *
-     * @param \AppBundle\Entity\TourRequest $touRequest
-     */
-    public function removeTouRequest(\AppBundle\Entity\TourRequest $touRequest)
-    {
-        $this->touRequests->removeElement($touRequest);
-    }
-
-    /**
-     * Get touRequests
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTouRequests()
-    {
-        return $this->touRequests;
+        return $this->customers;
     }
 }

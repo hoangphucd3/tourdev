@@ -66,7 +66,7 @@ class TourRequest
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="touRequests")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="touRequests")
      */
     private $user;
 

@@ -28,7 +28,7 @@ class TourOrderType extends AbstractType
         $user_object = $this->container->get('security.token_storage')->getToken()->getUser();
 
         $builder
-            ->add('billingFirsttName', TextType::class, array(
+            ->add('billingFirstName', TextType::class, array(
                 'label' => 'Tên',
                 'data' => !empty($user_object->getFirstName()) ? $user_object->getFirstName() : '',
             ))

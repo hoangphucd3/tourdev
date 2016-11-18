@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * TourOrder
  *
- * @ORM\Table(name="tour_hoadon")
+ * @ORM\Table(name="don_dat_tour")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourOrderRepository")
  */
 class TourOrder
@@ -137,7 +137,7 @@ class TourOrder
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="orders")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="orders")
      * @ORM\JoinColumn(name="khachHang", referencedColumnName="id")
      */
     private $customer;
@@ -149,6 +149,13 @@ class TourOrder
      * @ORM\JoinColumn(name="tour", referencedColumnName="id")
      */
     private $tour;
+
+    /**
+     * @var Invoice
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Invoice", mappedBy="tourOrder")
+     */
+    private $invoice;
 
     public function __construct()
     {
@@ -553,11 +560,10 @@ class TourOrder
     /**
      * Set customer
      *
-     * @param User $customer
-     *
-     * @return TourOrder
+     * @param Customer|null $customer
+     * @return $this
      */
-    public function setCustomer(User $customer = null)
+    public function setCustomer(Customer $customer = null)
     {
         $this->customer = $customer;
 
@@ -596,5 +602,29 @@ class TourOrder
     public function getTour()
     {
         return $this->tour;
+    }
+
+    /**
+     * Set invoice
+     *
+     * @param \AppBundle\Entity\Invoice $invoice
+     *
+     * @return TourOrder
+     */
+    public function setInvoice(\AppBundle\Entity\Invoice $invoice = null)
+    {
+        $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    /**
+     * Get invoice
+     *
+     * @return \AppBundle\Entity\Invoice
+     */
+    public function getInvoice()
+    {
+        return $this->invoice;
     }
 }

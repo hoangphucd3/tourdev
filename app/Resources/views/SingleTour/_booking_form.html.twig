@@ -1,5 +1,6 @@
-{{ form_start(form, { 'method': 'POST', 'action': path('tour_booking_new', {'tourSlug' : tour.slug}) }) }}
+{{ form_start(form, { 'method': 'POST', 'action': path('tour_booking_new', {'tourSlug' : tour.slug}), 'attr': {'id': 'booking-form'} }) }}
     {{ form_errors(form) }}
+<div id="booking-response"></div>
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="cs-select-fields">
@@ -30,7 +31,7 @@
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="cs-search-field">
-            <input type="submit" class="acc-submit cs-bgcolor" value="Đặt tour">
+            <input type="submit" class="acc-submit cs-bgcolor" id="booking-submit" value="Đặt tour">
         </div>
     </div>
 </div>
