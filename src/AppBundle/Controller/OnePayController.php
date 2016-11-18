@@ -31,13 +31,15 @@ class OnePayController extends Controller
     /**
      * @Route("/checkout/onepay", name="onepay_checkout_url")
      *
-     * @return string|Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function builCheckoutUrl()
+    public function builCheckoutUrl(Request $request)
     {
-        $this->setReturnUrl($this->generateUrl('onepage_checkout_result', array(), UrlGeneratorInterface::ABSOLUTE_URL));
+        $price = $request->query->get('price');
+        $orderInfo = $request->query->get('orderInfo');
 
-        $this > $this->hashCode = $this->hashCode;
+        $this->setReturnUrl($this->generateUrl('onepay_checkout_result', array(), UrlGeneratorInterface::ABSOLUTE_URL));
 
         $vpcURL = $this->checkoutURL . "?";
 
@@ -49,8 +51,8 @@ class OnePayController extends Controller
             'vpc_AccessCode' => $this->accessCode,
             'vpc_MerchTxnRef' => date('YmdHis') . rand(),
             'vpc_Merchant' => $this->merchantId,
-            'vpc_OrderInfo' => 'JSECURETEST01',
-            'vpc_Amount' => '1000',
+            'vpc_OrderInfo' => $orderInfo,
+            'vpc_Amount' => $price,
             'vpc_Locale' => 'vn',
             'vpc_ReturnURL' => $this->returnURL,
             'vpc_TicketNo' => $_SERVER["REMOTE_ADDR"],
@@ -150,9 +152,9 @@ class OnePayController extends Controller
         $transactionNo = $this->null2unknown($returnData["vpc_TransactionNo"]);
         $txnResponseCode = $this->null2unknown($returnData["vpc_TxnResponseCode"]);
 
-        $tours = $this->get('app.tour_manager')->getAllTours();
+        $content = $this->getResponseDescription($txnResponseCode);
 
-        return $this->render('home/index.html.twig', ['tours' => $tours]);
+        return $this->render('Checkout/checkout_complete.html.twig', ['content' => $content]);
     }
 
     public function setOnePayInfo($checkoutURL, $merchantId, $accessCode, $hashCode, $returnURL)

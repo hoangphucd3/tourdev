@@ -31,9 +31,16 @@ class Comment
     /**
      * @var datetime
      *
-     * @ORM\Column(name="thoiGian", type="datetime")
+     * @ORM\Column(name="TGTao", type="datetime")
      */
     private $createdAt;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="TGCapNhat", type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @var User
@@ -52,16 +59,11 @@ class Comment
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -113,13 +115,37 @@ class Comment
     }
 
     /**
-     * Set user
+     * Set updatedAt
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \DateTime $updatedAt
      *
      * @return Comment
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     *
+     * @return Comment
+     */
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -129,7 +155,7 @@ class Comment
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
@@ -139,10 +165,11 @@ class Comment
     /**
      * Set tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
+     *
      * @return Comment
      */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    public function setTour(Tour $tour = null)
     {
         $this->tour = $tour;
 
@@ -152,7 +179,7 @@ class Comment
     /**
      * Get tour
      *
-     * @return \AppBundle\Entity\Tour 
+     * @return Tour
      */
     public function getTour()
     {

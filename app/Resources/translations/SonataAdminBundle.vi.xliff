@@ -124,7 +124,7 @@
             </trans-unit>
             <trans-unit id="no_result">
                 <source>no_result</source>
-                <target>No result</target>
+                <target>Chưa có gì</target>
             </trans-unit>
             <trans-unit id="confirm_msg">
                 <source>confirm_msg</source>
@@ -448,7 +448,7 @@
             </trans-unit>
             <trans-unit id="link_filters">
                 <source>link_filters</source>
-                <target>Filters</target>
+                <target>Lọc</target>
             </trans-unit>
             <trans-unit id="stats_view_more">
                 <source>stats_view_more</source>

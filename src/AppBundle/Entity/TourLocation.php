@@ -22,11 +22,11 @@ class TourLocation
     private $id;
 
     /**
-     * @var time
+     * @var int
      *
-     * @ORM\Column(name="thoiGianLuuTru", type="time")
+     * @ORM\Column(name="thuTu", type="integer")
      */
-    private $guestStay;
+    private $position;
 
     /**
      * @var Tour
@@ -45,104 +45,13 @@ class TourLocation
     private $location;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="thuTu", type="integer")
-     */
-    private $position;
-
-
-    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-
-    /**
-     * Set guestStay
-     *
-     * @param \DateTime $guestStay
-     *
-     * @return TourLocation
-     */
-    public function setGuestStay($guestStay)
-    {
-        $this->guestStay = $guestStay;
-
-        return $this;
-    }
-
-    /**
-     * Get guestStay
-     *
-     * @return \DateTime
-     */
-    public function getGuestStay()
-    {
-        return $this->guestStay;
-    }
-
-    /**
-     * Set tour
-     *
-     * @param \AppBundle\Entity\Tour $tour
-     *
-     * @return TourLocation
-     */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
-    {
-        $this->tour = $tour;
-
-        return $this;
-    }
-
-    /**
-     * Get tour
-     *
-     * @return \AppBundle\Entity\Tour
-     */
-    public function getTour()
-    {
-        return $this->tour;
-    }
-
-    /**
-     * Set location
-     *
-     * @param \AppBundle\Entity\Location $location
-     *
-     * @return TourLocation
-     */
-    public function setLocation(\AppBundle\Entity\Location $location = null)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return \AppBundle\Entity\Location
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    public function getLocationId()
-    {
-        return $this->getLocation()->getId();
-    }
-
-    public function __toString()
-    {
-        return $this->getId() . '';
     }
 
     /**
@@ -167,5 +76,53 @@ class TourLocation
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set tour
+     *
+     * @param Tour $tour
+     *
+     * @return TourLocation
+     */
+    public function setTour(Tour $tour = null)
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Get tour
+     *
+     * @return Tour
+     */
+    public function getTour()
+    {
+        return $this->tour;
+    }
+
+    /**
+     * Set location
+     *
+     * @param Location $location
+     *
+     * @return TourLocation
+     */
+    public function setLocation(Location $location = null)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

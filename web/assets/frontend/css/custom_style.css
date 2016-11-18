@@ -139,6 +139,28 @@ h1, h2, h3, h4, h5, h6,
     line-height: 40px;
 }
 
+.booking-item-payment .booking-item-payment-total {
+    padding: 8px 0;
+}
+
+.table_checkout {
+    display: table;
+    width: 100%;
+    border-top: 1px solid #d9d9d9;
+}
+
+.table_checkout td {
+    border: none;
+    padding: 2px 0 0;
+    border-bottom: 1px dashed #d9d9d9;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .booking-item-payment .booking-item-payment-details .booking-item-payment-title {
     float: left;
     margin: 0;

@@ -4,11 +4,12 @@ namespace AppBundle\Entity;
 
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Location
  *
- * @ORM\Table(name="dia_danh")
+ * @ORM\Table(name="dia_diem")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\LocationRepository")
  */
 class Location
@@ -53,38 +54,82 @@ class Location
     private $featuredImage;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="diaDiem", type="string")
-     */
-    private $location;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourLocation", mappedBy="location", cascade={"persist"}, orphanRemoval=true)
      */
     private $tours;
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @var string
-     */
-    private $condition;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->tours = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tours = new ArrayCollection();
+    }
+
+    /**
+     * Add tour
+     *
+     * @param TourLocation $tour
+     * @return $this
+     */
+    public function addTour(TourLocation $tour)
+    {
+        $this->tours[] = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Remove tour
+     *
+     * @param TourLocation $tour
+     */
+    public function removeTour(TourLocation $tour)
+    {
+        $this->tours->removeElement($tour);
+    }
+
+    /**
+     * Get tours
+     *
+     * @return ArrayCollection
+     */
+    public function getTours()
+    {
+        return $this->tours;
+    }
+
+    /**
+     * Set featuredImage
+     *
+     * @param Media|null $featuredImage
+     * @return $this
+     */
+    public function setFeaturedImage(Media $featuredImage = null)
+    {
+        $this->featuredImage = $featuredImage;
+
+        return $this;
+    }
+
+    /**
+     * Get featuredImage
+     *
+     * @return Media
+     */
+    public function getFeaturedImage()
+    {
+        return $this->featuredImage;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -112,6 +157,30 @@ class Location
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Location
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set description
      *
      * @param string $description
@@ -133,142 +202,5 @@ class Location
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set location
-     *
-     * @param string $location
-     *
-     * @return Location
-     */
-    public function setLocation($location)
-    {
-        $this->location = $location;
-
-        return $this;
-    }
-
-    /**
-     * Get location
-     *
-     * @return string
-     */
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    /**
-     * Set condition
-     *
-     * @param string $condition
-     *
-     * @return Location
-     */
-    public function setCondition($condition)
-    {
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    /**
-     * Get condition
-     *
-     * @return string
-     */
-    public function getCondition()
-    {
-        return $this->condition;
-    }
-
-    /**
-     * Add tour
-     *
-     * @param \AppBundle\Entity\TourLocation $tour
-     *
-     * @return Location
-     */
-    public function addTour(\AppBundle\Entity\TourLocation $tour)
-    {
-        $this->tours[] = $tour;
-
-        return $this;
-    }
-
-    /**
-     * Remove tour
-     *
-     * @param \AppBundle\Entity\TourLocation $tour
-     */
-    public function removeTour(\AppBundle\Entity\TourLocation $tour)
-    {
-        $this->tours->removeElement($tour);
-    }
-
-    /**
-     * Get tours
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTours()
-    {
-        return $this->tours;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * Set featuredImage
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $featuredImage
-     *
-     * @return Location
-     */
-    public function setFeaturedImage(\Application\Sonata\MediaBundle\Entity\Media $featuredImage = null)
-    {
-        $this->featuredImage = $featuredImage;
-
-        return $this;
-    }
-
-    /**
-     * Get featuredImage
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getFeaturedImage()
-    {
-        return $this->featuredImage;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Location
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

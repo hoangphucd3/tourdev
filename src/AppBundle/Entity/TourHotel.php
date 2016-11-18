@@ -22,20 +22,6 @@ class TourHotel
     private $id;
 
     /**
-     * @var time
-     *
-     * @ORM\Column(name="thoiGianLuuTru", type="time")
-     */
-    private $guestStay;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="giaPhong", type="bigint")
-     */
-    private $roomPrice;
-
-    /**
      * @var Tour
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tour", inversedBy="hotels")
@@ -54,70 +40,21 @@ class TourHotel
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-
-    /**
-     * Set guestStay
-     *
-     * @param \DateTime $guestStay
-     *
-     * @return TourHotel
-     */
-    public function setGuestStay($guestStay)
-    {
-        $this->guestStay = $guestStay;
-
-        return $this;
-    }
-
-    /**
-     * Get guestStay
-     *
-     * @return \DateTime
-     */
-    public function getGuestStay()
-    {
-        return $this->guestStay;
-    }
-
-    /**
-     * Set roomPrice
-     *
-     * @param integer $roomPrice
-     *
-     * @return TourHotel
-     */
-    public function setRoomPrice($roomPrice)
-    {
-        $this->roomPrice = $roomPrice;
-
-        return $this;
-    }
-
-    /**
-     * Get roomPrice
-     *
-     * @return integer
-     */
-    public function getRoomPrice()
-    {
-        return $this->roomPrice;
-    }
-
     /**
      * Set tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
      *
      * @return TourHotel
      */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    public function setTour(Tour $tour = null)
     {
         $this->tour = $tour;
 
@@ -127,7 +64,7 @@ class TourHotel
     /**
      * Get tour
      *
-     * @return \AppBundle\Entity\Tour
+     * @return Tour
      */
     public function getTour()
     {
@@ -137,11 +74,11 @@ class TourHotel
     /**
      * Set hotel
      *
-     * @param \AppBundle\Entity\Hotel $hotel
+     * @param Hotel $hotel
      *
      * @return TourHotel
      */
-    public function setHotel(\AppBundle\Entity\Hotel $hotel = null)
+    public function setHotel(Hotel $hotel = null)
     {
         $this->hotel = $hotel;
 
@@ -151,7 +88,7 @@ class TourHotel
     /**
      * Get hotel
      *
-     * @return \AppBundle\Entity\Hotel
+     * @return Hotel
      */
     public function getHotel()
     {

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Service
@@ -43,20 +44,54 @@ class Service
     private $tours;
 
     /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->tours = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tours = new ArrayCollection();
+    }
+
+    /**
+     * Add tour
+     *
+     * @param TourService $tour
+     * @return $this
+     */
+    public function addTour(TourService $tour)
+    {
+        $this->tours[] = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Remove tour
+     *
+     * @param TourService $tour
+     */
+    public function removeTour(TourService $tour)
+    {
+        $this->tours->removeElement($tour);
+    }
+
+    /**
+     * Get tours
+     *
+     * @return TourService|ArrayCollection
+     */
+    public function getTours()
+    {
+        return $this->tours;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -105,39 +140,5 @@ class Service
     public function getIcon()
     {
         return $this->icon;
-    }
-
-    /**
-     * Add tour
-     *
-     * @param \AppBundle\Entity\TourService $tour
-     *
-     * @return Service
-     */
-    public function addTour(\AppBundle\Entity\TourService $tour)
-    {
-        $this->tours[] = $tour;
-
-        return $this;
-    }
-
-    /**
-     * Remove tour
-     *
-     * @param \AppBundle\Entity\TourService $tour
-     */
-    public function removeTour(\AppBundle\Entity\TourService $tour)
-    {
-        $this->tours->removeElement($tour);
-    }
-
-    /**
-     * Get tours
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTours()
-    {
-        return $this->tours;
     }
 }

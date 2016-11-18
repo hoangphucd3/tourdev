@@ -2,12 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TourCategory
  *
- * @ORM\Table(name="danhmuc_tour")
+ * @ORM\Table(name="tour_danhmuc")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourCategoryRepository")
  */
 class TourCategory
@@ -50,15 +51,22 @@ class TourCategory
     private $tours;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tours = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     /**
      * Set name
@@ -82,6 +90,30 @@ class TourCategory
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return TourCategory
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -109,21 +141,13 @@ class TourCategory
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tours = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
      * Add tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
      *
      * @return TourCategory
      */
-    public function addTour(\AppBundle\Entity\Tour $tour)
+    public function addTour(Tour $tour)
     {
         $this->tours[] = $tour;
 
@@ -133,9 +157,9 @@ class TourCategory
     /**
      * Remove tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
      */
-    public function removeTour(\AppBundle\Entity\Tour $tour)
+    public function removeTour(Tour $tour)
     {
         $this->tours->removeElement($tour);
     }
@@ -143,38 +167,10 @@ class TourCategory
     /**
      * Get tours
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Tour|ArrayCollection
      */
     public function getTours()
     {
         return $this->tours;
-    }
-
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return TourCategory
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

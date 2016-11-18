@@ -25,10 +25,6 @@ class LocationAdmin extends AbstractAdmin
             ->add('description', null, array(
                     'label' => 'label.location_desc'
                 )
-            )
-            ->add('location', null, array(
-                    'label' => 'label.location_location'
-                )
             );
     }
 
@@ -42,8 +38,8 @@ class LocationAdmin extends AbstractAdmin
                     'label' => 'label.location_name'
                 )
             )
-            ->add('location', null, array(
-                    'label' => 'label.location_location'
+            ->add('description', null, array(
+                    'label' => 'label.location_desc'
                 )
             )
             ->add('_action', null, array(
@@ -70,10 +66,6 @@ class LocationAdmin extends AbstractAdmin
                     'label' => 'label.location_desc'
                 )
             )
-            ->add('location', null, array(
-                    'label' => 'label.location_location'
-                )
-            )
             ->add('featuredImage', MediaType::class, array(
                     'provider' => 'sonata.media.provider.image',
                     'context' => 'default'
@@ -93,10 +85,6 @@ class LocationAdmin extends AbstractAdmin
             )
             ->add('description', null, array(
                     'label' => 'label.location_desc'
-                )
-            )
-            ->add('location', null, array(
-                    'label' => 'label.location_location'
                 )
             );
     }

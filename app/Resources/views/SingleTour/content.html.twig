@@ -32,8 +32,6 @@
     <!-- Main Start -->
     <div class="main-section">
         <div class="tour-detail-holder">
-            {% include ':SingleTour:location.html.twig' with {'tour': tour} %}
-
             <div class="page-section">
                 <div class="container">
                     <div class="row">
@@ -44,28 +42,30 @@
                                         {{ contentPriceHtml(tour.regularPrice, tour.salePrice)|raw }}
                                     </div>
 
-                                    <div class="package-info-wrapper">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="package-info">
-                                                <i class="icon-users"></i>
+                                    <div class="cs-search">
+                                        <div class="package-info-wrapper">
+                                            {{ render(controller('AppBundle:Tour:bookingForm', {'tour' : tour})) }}
 
-                                                <span class="head">{{ 'tour_detail.number_of_guess'|trans }}:</span>
-                                                {{ tour.amount }}
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="package-info">
+                                                    <i class="icon-users"></i>
+
+                                                    <span class="head">{{ 'tour_detail.number_of_guess'|trans }}:</span>
+                                                    {{ tour.numberOfPeople }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="package-info">
+                                                    {# http://stackoverflow.com/questions/15657687/twig-date-difference #}
+                                                    {#{% set difference = date(tour.endDate).diff(date(tour.startDate)) %}#}
+                                                    {#{% set lefDays = difference.days %}#}
+                                                    <i class="icon-calendar"></i>
+
+                                                    <span class="head">Thời gian:</span> {{ tour.duration }} ngày
+                                                </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="package-info">
-                                                {# http://stackoverflow.com/questions/15657687/twig-date-difference #}
-                                                {% set difference = date(tour.endDate).diff(date(tour.startDate)) %}
-                                                {% set lefDays = difference.days %}
-                                                <i class="icon-calendar"></i>
-
-                                                <span class="head">Thời gian:</span> {{ lefDays }} ngày
-                                            </div>
-                                        </div>
-
-                                        {{ render(controller('AppBundle:Tour:bookingForm', {'tour' : tour})) }}
                                     </div>
                                 </div>
                             </div>

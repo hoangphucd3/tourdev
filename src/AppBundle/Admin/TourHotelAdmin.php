@@ -14,9 +14,7 @@ class TourHotelAdmin extends AbstractAdmin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper
-            ->add('guestStay')
-            ->add('roomPrice');
+        $listMapper;
     }
 
     /**
@@ -25,8 +23,6 @@ class TourHotelAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('hotel', ModelListType::class)
-            ->add('guestStay')
-            ->add('roomPrice');
+            ->add('hotel', ModelListType::class);
     }
 }

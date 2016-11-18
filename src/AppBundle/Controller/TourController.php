@@ -100,6 +100,10 @@ class TourController extends Controller
      * @Method("POST")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @ParamConverter("tour", options={"mapping": {"tour": "id"}})
+     *
+     * @param Request $request
+     * @param Tour $tour
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function orderNewAction(Request $request, Tour $tour)
     {
@@ -112,24 +116,53 @@ class TourController extends Controller
 
             $departure = \DateTime::createFromFormat("d/m/Y", $this->get('session')->get('departure'));
 
-//            $order->setTour($tour);
-//            $order->setCustomer($this->get('app . user_manager')->getCurrentUser());
-//            $order->setDeparture($departure);
-//            $order->setStatus('pending');
+            $order->setTour($tour);
+            $order->setCustomer($this->get('app.user_manager')->getCurrentUser());
+            $order->setAdults($this->get('session')->get('adults'));
+            $order->setChildren($this->get('session')->get('children'));
+            $order->setInfants($this->get('session')->get('infants'));
+            $order->setDeparture($departure);
+            $order->setStatus('pending');
+            $order->setCheckoutMethod($request->request->get('checkoutMethod'));
 
-//            if ($this->get('app . tour_order_manager')->createTourOrder($order)) {
-            $this->get('session')->remove('departure');
-            $this->get('session')->remove('adults');
-            $this->get('session')->remove('children');
-            $this->get('session')->remove('infants');
+            $em = $em = $this->getDoctrine()->getManager();
 
+            $em->persist($order);
+            $em->flush();
 
-            return $this->render(':SingleTour:content.html.twig', ['tour' => $tour]);
+            $orderId = $order->getId();
 
-//                return $this->redirectToRoute('tour_detail', ['slug' => $tour->getSlug()]);
-//            } else {
-            return new Response('Có vấn đề khi tạo hóa đơn ?');
-//            }
+            $tourOrder = $this->get('app.tour_order_manager')->createTourOrder($order);
+
+            if (!empty($tour->getSalePrice())) {
+                $price = $tour->getSalePrice();
+            } else {
+                $price = $tour->getRegularPrice();
+            }
+
+            $adultPrice = $this->get('session')->get('adults') * $price;
+            $childrenPrice = ($this->get('session')->get('children') * $price) / 1.5;
+
+            $totalPrice = $adultPrice + $childrenPrice;
+
+//            $this->get('session')->remove('departure');
+//            $this->get('session')->remove('adults');
+//            $this->get('session')->remove('children');
+//            $this->get('session')->remove('infants');
+
+            if ('onepay' === $request->request->get('checkoutMethod')) {
+                $onepay = new OnePayController();
+
+                return $this->redirectToRoute('onepay_checkout_url', array(
+                        'price' => $totalPrice,
+                        'orderInfo' => 'Thanh toán cho hóa đơn #' . $orderId
+                    )
+                );
+            } else {
+                return new Response('success');
+            }
+        } else {
+            return new Response('Có lỗi ?');
         }
     }
 
@@ -287,19 +320,15 @@ class TourController extends Controller
      */
     private function getBookingForm(Tour $tour)
     {
-        $tourAmount = $tour->getAmount();
+        $tourAmount = $tour->getNumberOfPeople();
 
         $amount = array('0' => 0);
 
-        for ($i = 1; $i < $tourAmount; $i++) {
+        for ($i = 1; $i <= $tourAmount; $i++) {
             $amount[$i] = $i;
         }
 
         $form = $this->createFormBuilder(array())
-            ->add('departure', TextType::class, array(
-                'label' => 'Chọn ngày khởi hành',
-                'attr' => ['placeholder' => 'Ngày khởi hành']
-            ))
             ->add('adults', ChoiceType::class, array(
                 'label' => 'Người lớn',
                 'choices' => $amount,

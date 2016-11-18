@@ -16,8 +16,7 @@ class TourLocationAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('tour')
-            ->add('location')
-            ->add('guestStay');
+            ->add('location');
     }
 
     /**
@@ -26,7 +25,6 @@ class TourLocationAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('location', ModelListType::class)
-            ->add('guestStay');
+            ->add('location', ModelListType::class);
     }
 }

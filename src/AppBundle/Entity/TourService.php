@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TourService
  *
- * @ORM\Table(name="tour_service")
+ * @ORM\Table(name="tour_dichvu")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourServiceRepository")
  */
 class TourService
@@ -40,7 +40,7 @@ class TourService
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -50,11 +50,11 @@ class TourService
     /**
      * Set tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
      *
      * @return TourService
      */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    public function setTour(Tour $tour = null)
     {
         $this->tour = $tour;
 
@@ -64,7 +64,7 @@ class TourService
     /**
      * Get tour
      *
-     * @return \AppBundle\Entity\Tour
+     * @return Tour
      */
     public function getTour()
     {
@@ -74,11 +74,11 @@ class TourService
     /**
      * Set service
      *
-     * @param \AppBundle\Entity\Service $service
+     * @param Service $service
      *
      * @return TourService
      */
-    public function setService(\AppBundle\Entity\Service $service = null)
+    public function setService(Service $service = null)
     {
         $this->service = $service;
 
@@ -88,7 +88,7 @@ class TourService
     /**
      * Get service
      *
-     * @return \AppBundle\Entity\Service
+     * @return Service
      */
     public function getService()
     {

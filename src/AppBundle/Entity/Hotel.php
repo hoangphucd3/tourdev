@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Hotel
@@ -62,21 +63,21 @@ class Hotel
     private $tours;
 
     /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->tours = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tours = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -101,6 +102,30 @@ class Hotel
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Hotel
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -154,7 +179,7 @@ class Hotel
     /**
      * Set phoneNumber
      *
-     * @param array $phoneNumber
+     * @param string $phoneNumber
      *
      * @return Hotel
      */
@@ -168,7 +193,7 @@ class Hotel
     /**
      * Get phoneNumber
      *
-     * @return array
+     * @return string
      */
     public function getPhoneNumber()
     {
@@ -178,11 +203,11 @@ class Hotel
     /**
      * Add tour
      *
-     * @param \AppBundle\Entity\TourHotel $tour
+     * @param TourHotel $tour
      *
      * @return Hotel
      */
-    public function addTour(\AppBundle\Entity\TourHotel $tour)
+    public function addTour(TourHotel $tour)
     {
         $this->tours[] = $tour;
 
@@ -192,9 +217,9 @@ class Hotel
     /**
      * Remove tour
      *
-     * @param \AppBundle\Entity\TourHotel $tour
+     * @param TourHotel $tour
      */
-    public function removeTour(\AppBundle\Entity\TourHotel $tour)
+    public function removeTour(TourHotel $tour)
     {
         $this->tours->removeElement($tour);
     }
@@ -207,36 +232,5 @@ class Hotel
     public function getTours()
     {
         return $this->tours;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Hotel
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

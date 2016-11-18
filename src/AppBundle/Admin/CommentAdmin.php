@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Comment;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -60,7 +61,8 @@ class CommentAdmin extends AbstractAdmin
                 )
             )
             ->add('createdAt', null, array(
-                    'label' => 'label.comment_created_at'
+                    'label' => 'label.comment_created_at',
+                    'disabled' => true,
                 )
             );
     }
@@ -76,8 +78,44 @@ class CommentAdmin extends AbstractAdmin
                 )
             )
             ->add('createdAt', null, array(
-                    'label' => 'label.comment_created_at'
+                    'label' => 'label.comment_created_at',
                 )
             );
+    }
+
+    /**
+     * @param mixed $object
+     *
+     * @link http://stackoverflow.com/questions/16993733/sonata-admin-bundle-one-to-many-relationship-not-saving-foreign-id
+     */
+    public function prePersist($object)
+    {
+        $this->preUpdate($object);
+    }
+
+    /**
+     * @param mixed $object
+     *
+     * @link http://stackoverflow.com/questions/16993733/sonata-admin-bundle-one-to-many-relationship-not-saving-foreign-id
+     */
+    public function preUpdate($object)
+    {
+        if ($object instanceof Comment) {
+            $object->setUpdatedAt(new \DateTime());
+        }
+    }
+
+    /**
+     * Returns "nice" name for object
+     * Can define with __toString() function in Entity
+     *
+     * @param mixed $object
+     * @return string
+     */
+    public function toString($object)
+    {
+        return $object instanceof Comment
+            ? 'Bình luận #' . $object->getId()
+            : ''; // shown in the breadcrumb on the create view
     }
 }

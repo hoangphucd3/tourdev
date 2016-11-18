@@ -41,13 +41,13 @@
                         <div class="widget-content booking-item-payment">
                             <header class="clearfix">
                                 <div class="cs-media">
-                                    <a href="{{ path('tour_detail', { 'slug': tour.slug }) }}">
+                                    <a href="{{ path('tour_detail', {'categorySlug': tour.category.slug, 'slug': tour.slug}) }}">
                                         <img src="{% path tour.featuredImage, 'reference' %}" width="150" height="113">
                                     </a>
                                 </div>
 
                                 <div class="cs-title">
-                                    <a href="{{ path('tour_detail', { 'slug': tour.slug }) }}">
+                                    <a href="{{ path('tour_detail', {'categorySlug': tour.category.slug, 'slug': tour.slug}) }}">
                                         {{ tour.tourName }}
                                     </a>
                                 </div>
@@ -93,6 +93,39 @@
                                     </div>
                                 </li>
                             </ul>
+
+                            {% set tourPrice = 0 %}
+                            {% if tour.salePrice %}
+                                {% set tourPrice = tour.salePrice %}
+                            {% else %}
+                                {% set tourPrice = tour.regularPrice %}
+                            {% endif %}
+                            <div class="booking-item-payment-total">
+                                <table border="0" class="table_checkout">
+                                    <tbody>
+                                    <tr>
+                                        <td>Người lớn</td>
+                                        <td class="text-right">
+                                            {% set adultPrice = tourPrice * adults %}
+                                            <strong>{{ adultPrice|priceFilter|raw }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ em</td>
+                                        <td class="text-right">
+                                            {% set childrenPrice = (tourPrice * children)/1.5 %}
+                                            <strong>{{ childrenPrice|priceFilter|raw }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Em bé</td>
+                                        <td class="text-right"><strong>{{ 0|priceFilter|raw }}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tổng cộng</strong></td>
+                                        <td class="text-right"><strong>{{ (adultPrice + childrenPrice)|priceFilter|raw }}</strong></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

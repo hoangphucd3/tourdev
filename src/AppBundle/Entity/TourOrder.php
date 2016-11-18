@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * TourOrder
  *
- * @ORM\Table(name="tour_order")
+ * @ORM\Table(name="tour_hoadon")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourOrderRepository")
  */
 class TourOrder
@@ -23,32 +23,18 @@ class TourOrder
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="trangThai", type="string")
-     */
-    private $status;
-
-    /**
      * @var datetime
      *
-     * @ORM\Column(name="thoiGianTao", type="datetime")
+     * @ORM\Column(name="TGTao", type="datetime")
      */
     private $createdAt;
 
     /**
      * @var datetime
      *
-     * @ORM\Column(name="thoigianCapNhat", type="datetime")
+     * @ORM\Column(name="TGCapNhat", type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="ten", type="string")
-     */
-    private $billingFirsttName;
 
     /**
      * @var string
@@ -56,6 +42,13 @@ class TourOrder
      * @ORM\Column(name="ho", type="string")
      */
     private $billingLastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ten", type="string")
+     */
+    private $billingFirstName;
 
     /**
      * @var string
@@ -74,7 +67,7 @@ class TourOrder
     /**
      * @var string
      *
-     * @ORM\Column(name="diaChi_2", type="string")
+     * @ORM\Column(name="diaChi_2", type="string", nullable=true)
      */
     private $billingAddress2;
 
@@ -100,32 +93,25 @@ class TourOrder
     private $country;
 
     /**
-     * @var date
-     *
-     * @ORM\Column(name="ngayKhoiHanh", type="date")
-     */
-    private $departure;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="nguoiLon", type="integer")
      */
-    private $adults;
+    private $numberOfAdults;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="treNho", type="integer")
+     * @ORM\Column(name="treEm", type="integer")
      */
-    private $children;
+    private $numberOfChildren;
 
     /**
      * @var int
      *
      * @ORM\Column(name="emBe", type="integer")
      */
-    private $infants;
+    private $numberOfInfants;
 
     /**
      * @var string
@@ -133,6 +119,20 @@ class TourOrder
      * @ORM\Column(name="email", type="string")
      */
     private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="PTThanhToan", type="string")
+     */
+    private $checkoutMethod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trangThai", type="string")
+     */
+    private $status;
 
     /**
      * @var User
@@ -159,7 +159,7 @@ class TourOrder
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -167,32 +167,10 @@ class TourOrder
     }
 
     /**
-     * Set status
-     *
-     * @param string $status
-     * @return TourOrder
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string.
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
+     *
      * @return TourOrder
      */
     public function setCreatedAt($createdAt)
@@ -205,7 +183,7 @@ class TourOrder
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -216,6 +194,7 @@ class TourOrder
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
+     *
      * @return TourOrder
      */
     public function setUpdatedAt($updatedAt)
@@ -228,7 +207,7 @@ class TourOrder
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -236,32 +215,10 @@ class TourOrder
     }
 
     /**
-     * Set billingFirsttName
-     *
-     * @param string $billingFirsttName
-     * @return TourOrder
-     */
-    public function setBillingFirsttName($billingFirsttName)
-    {
-        $this->billingFirsttName = $billingFirsttName;
-
-        return $this;
-    }
-
-    /**
-     * Get billingFirsttName
-     *
-     * @return string 
-     */
-    public function getBillingFirsttName()
-    {
-        return $this->billingFirsttName;
-    }
-
-    /**
      * Set billingLastName
      *
      * @param string $billingLastName
+     *
      * @return TourOrder
      */
     public function setBillingLastName($billingLastName)
@@ -274,7 +231,7 @@ class TourOrder
     /**
      * Get billingLastName
      *
-     * @return string 
+     * @return string
      */
     public function getBillingLastName()
     {
@@ -282,9 +239,34 @@ class TourOrder
     }
 
     /**
+     * Set billingFirstName
+     *
+     * @param string $billingFirstName
+     *
+     * @return TourOrder
+     */
+    public function setBillingFirstName($billingFirstName)
+    {
+        $this->billingFirstName = $billingFirstName;
+
+        return $this;
+    }
+
+    /**
+     * Get billingFirstName
+     *
+     * @return string
+     */
+    public function getBillingFirstName()
+    {
+        return $this->billingFirstName;
+    }
+
+    /**
      * Set billingPhone
      *
      * @param string $billingPhone
+     *
      * @return TourOrder
      */
     public function setBillingPhone($billingPhone)
@@ -297,7 +279,7 @@ class TourOrder
     /**
      * Get billingPhone
      *
-     * @return string 
+     * @return string
      */
     public function getBillingPhone()
     {
@@ -308,6 +290,7 @@ class TourOrder
      * Set billingAddress1
      *
      * @param string $billingAddress1
+     *
      * @return TourOrder
      */
     public function setBillingAddress1($billingAddress1)
@@ -320,7 +303,7 @@ class TourOrder
     /**
      * Get billingAddress1
      *
-     * @return string 
+     * @return string
      */
     public function getBillingAddress1()
     {
@@ -331,6 +314,7 @@ class TourOrder
      * Set billingAddress2
      *
      * @param string $billingAddress2
+     *
      * @return TourOrder
      */
     public function setBillingAddress2($billingAddress2)
@@ -343,7 +327,7 @@ class TourOrder
     /**
      * Get billingAddress2
      *
-     * @return string 
+     * @return string
      */
     public function getBillingAddress2()
     {
@@ -354,6 +338,7 @@ class TourOrder
      * Set billingCity
      *
      * @param string $billingCity
+     *
      * @return TourOrder
      */
     public function setBillingCity($billingCity)
@@ -366,7 +351,7 @@ class TourOrder
     /**
      * Get billingCity
      *
-     * @return string 
+     * @return string
      */
     public function getBillingCity()
     {
@@ -377,6 +362,7 @@ class TourOrder
      * Set billingPostCode
      *
      * @param string $billingPostCode
+     *
      * @return TourOrder
      */
     public function setBillingPostCode($billingPostCode)
@@ -389,7 +375,7 @@ class TourOrder
     /**
      * Get billingPostCode
      *
-     * @return string 
+     * @return string
      */
     public function getBillingPostCode()
     {
@@ -400,6 +386,7 @@ class TourOrder
      * Set country
      *
      * @param string $country
+     *
      * @return TourOrder
      */
     public function setCountry($country)
@@ -412,7 +399,7 @@ class TourOrder
     /**
      * Get country
      *
-     * @return string 
+     * @return string
      */
     public function getCountry()
     {
@@ -420,32 +407,82 @@ class TourOrder
     }
 
     /**
-     * Set departure
+     * Set numberOfAdults
      *
-     * @param \DateTime $departure
+     * @param integer $numberOfAdults
+     *
      * @return TourOrder
      */
-    public function setDeparture($departure)
+    public function setNumberOfAdults($numberOfAdults)
     {
-        $this->departure = $departure;
+        $this->numberOfAdults = $numberOfAdults;
 
         return $this;
     }
 
     /**
-     * Get departure
+     * Get numberOfAdults
      *
-     * @return \DateTime 
+     * @return integer
      */
-    public function getDeparture()
+    public function getNumberOfAdults()
     {
-        return $this->departure;
+        return $this->numberOfAdults;
+    }
+
+    /**
+     * Set numberOfChildren
+     *
+     * @param integer $numberOfChildren
+     *
+     * @return TourOrder
+     */
+    public function setNumberOfChildren($numberOfChildren)
+    {
+        $this->numberOfChildren = $numberOfChildren;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfChildren
+     *
+     * @return integer
+     */
+    public function getNumberOfChildren()
+    {
+        return $this->numberOfChildren;
+    }
+
+    /**
+     * Set numberOfInfants
+     *
+     * @param integer $numberOfInfants
+     *
+     * @return TourOrder
+     */
+    public function setNumberOfInfants($numberOfInfants)
+    {
+        $this->numberOfInfants = $numberOfInfants;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfInfants
+     *
+     * @return integer
+     */
+    public function getNumberOfInfants()
+    {
+        return $this->numberOfInfants;
     }
 
     /**
      * Set email
      *
      * @param string $email
+     *
      * @return TourOrder
      */
     public function setEmail($email)
@@ -458,7 +495,7 @@ class TourOrder
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -466,12 +503,61 @@ class TourOrder
     }
 
     /**
-     * Set customer
+     * Set checkoutMethod
      *
-     * @param \AppBundle\Entity\User $customer
+     * @param string $checkoutMethod
+     *
      * @return TourOrder
      */
-    public function setCustomer(\AppBundle\Entity\User $customer = null)
+    public function setCheckoutMethod($checkoutMethod)
+    {
+        $this->checkoutMethod = $checkoutMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get checkoutMethod
+     *
+     * @return string
+     */
+    public function getCheckoutMethod()
+    {
+        return $this->checkoutMethod;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return TourOrder
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param User $customer
+     *
+     * @return TourOrder
+     */
+    public function setCustomer(User $customer = null)
     {
         $this->customer = $customer;
 
@@ -481,7 +567,7 @@ class TourOrder
     /**
      * Get customer
      *
-     * @return \AppBundle\Entity\User 
+     * @return User
      */
     public function getCustomer()
     {
@@ -491,10 +577,11 @@ class TourOrder
     /**
      * Set tour
      *
-     * @param \AppBundle\Entity\Tour $tour
+     * @param Tour $tour
+     *
      * @return TourOrder
      */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
+    public function setTour(Tour $tour = null)
     {
         $this->tour = $tour;
 
@@ -504,81 +591,10 @@ class TourOrder
     /**
      * Get tour
      *
-     * @return \AppBundle\Entity\Tour 
+     * @return Tour
      */
     public function getTour()
     {
         return $this->tour;
-    }
-
-    /**
-     * Set adults
-     *
-     * @param integer $adults
-     * @return TourOrder
-     */
-    public function setAdults($adults)
-    {
-        $this->adults = $adults;
-
-        return $this;
-    }
-
-    /**
-     * Get adults
-     *
-     * @return integer 
-     */
-    public function getAdults()
-    {
-        return $this->adults;
-    }
-
-    /**
-     * Set children
-     *
-     * @param integer $children
-     *
-     * @return TourOrder
-     */
-    public function setChildren($children)
-    {
-        $this->children = $children;
-
-        return $this;
-    }
-
-    /**
-     * Get children
-     *
-     * @return integer
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * Set infants
-     *
-     * @param integer $infants
-     *
-     * @return TourOrder
-     */
-    public function setInfants($infants)
-    {
-        $this->infants = $infants;
-
-        return $this;
-    }
-
-    /**
-     * Get infants
-     *
-     * @return integer
-     */
-    public function getInfants()
-    {
-        return $this->infants;
     }
 }

@@ -7,6 +7,7 @@ use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\ElasticaBundle\Annotation\Search;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tour
@@ -43,23 +44,24 @@ class Tour
     /**
      * @var date
      *
-     * @ORM\Column(name="ngayBatDau", type="date")
+     * @ORM\Column(name="ngayKhoiHanh", type="date")
      */
     private $startDate;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="ngayKetThuc", type="date")
+     * @ORM\Column(name="thoiGian", type="integer")
+     * @Assert\GreaterThan(value="0")
      */
-    private $endDate;
+    private $duration;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="soLuong", type="integer")
+     * @ORM\Column(name="soLuongNguoi", type="integer")
      */
-    private $amount;
+    private $numberOfPeople;
 
     /**
      * @var string
@@ -78,14 +80,14 @@ class Tour
     /**
      * @var int
      *
-     * @ORM\Column(name="giaThongThuong", type="bigint")
+     * @ORM\Column(name="giaGoc", type="bigint")
      */
     private $regularPrice;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="giaBan", type="bigint", nullable=true)
+     * @ORM\Column(name="giaKhuyenMai", type="bigint", nullable=true)
      */
     private $salePrice;
 
@@ -147,26 +149,308 @@ class Tour
     private $tourOrders;
 
     /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->locations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->hotels = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->backgrounds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->services = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->tourOrders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->locations = new ArrayCollection();
+        $this->hotels = new ArrayCollection();
+        $this->backgrounds = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+        $this->services = new ArrayCollection();
+        $this->tourOrders = new ArrayCollection();
+    }
+
+    /**
+     * Add location
+     *
+     * @param TourLocation $location
+     * @return $this
+     */
+    public function addLocation(TourLocation $location)
+    {
+        $location->setTour($this);
+
+        $this->locations[] = $location;
+
+        return $this;
+    }
+
+    /**
+     * Remove location
+     *
+     * @param TourLocation $location
+     */
+    public function removeLocation(TourLocation $location)
+    {
+        $this->locations->removeElement($location);
+    }
+
+    /**
+     * Set locations
+     *
+     * @param $locations
+     * @return $this
+     */
+    public function setLocations($locations)
+    {
+        foreach ($locations as $location) {
+            $this->addLocation($location);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get locations
+     *
+     * @return ArrayCollection
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * Set hotels
+     *
+     * @param $hotels
+     * @return $this
+     */
+    public function setHotels($hotels)
+    {
+        foreach ($hotels as $hotel) {
+            $this->addHotel($hotel);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get hotels
+     *
+     * @return ArrayCollection
+     */
+    public function getHotels()
+    {
+        return $this->hotels;
+    }
+
+    /**
+     * Add hotel
+     *
+     * @param TourHotel $hotel
+     *
+     * @return Tour
+     */
+    public function addHotel(TourHotel $hotel)
+    {
+        $hotel->setTour($this);
+
+        $this->hotels[] = $hotel;
+
+        return $this;
+    }
+
+    /**
+     * Remove hotel
+     *
+     * @param TourHotel $hotel
+     */
+    public function removeHotel(TourHotel $hotel)
+    {
+        $this->hotels->removeElement($hotel);
+    }
+
+    /**
+     * Set backgrounds
+     *
+     * @param $backgrounds
+     * @return $this
+     */
+    public function setBackgrounds($backgrounds)
+    {
+        foreach ($backgrounds as $background) {
+            $this->addBackground($background);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get backgrounds
+     *
+     * @return ArrayCollection
+     */
+    public function getBackgrounds()
+    {
+        return $this->backgrounds;
+    }
+
+    /**
+     * Add background
+     *
+     * @param TourBackground $background
+     *
+     * @return Tour
+     */
+    public function addBackground(TourBackground $background)
+    {
+        $background->setTour($this);
+
+        $this->backgrounds[] = $background;
+
+        return $this;
+    }
+
+    /**
+     * Remove background
+     *
+     * @param TourBackground $background
+     */
+    public function removeBackground(TourBackground $background)
+    {
+        $this->backgrounds->removeElement($background);
+    }
+
+    /**
+     * Add comments
+     *
+     * @param Comment $comments
+     * @return Tour
+     */
+    public function addComment(Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param Comment $comments
+     */
+    public function removeComment(Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set services
+     *
+     * @param $services
+     * @return $this
+     */
+    public function setServices($services)
+    {
+        foreach ($services as $service) {
+            $this->addService($service);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get services
+     *
+     * @return ArrayCollection
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * Add service
+     *
+     * @param TourService $service
+     *
+     * @return Tour
+     */
+    public function addService(TourService $service)
+    {
+        $service->setTour($this);
+
+        $this->services[] = $service;
+
+        return $this;
+    }
+
+    /**
+     * Remove service
+     *
+     * @param TourService $service
+     */
+    public function removeService(TourService $service)
+    {
+        $this->services->removeElement($service);
+    }
+
+    /**
+     * Add tourOrder
+     *
+     * @param TourOrder $tourOrder
+     *
+     * @return Tour
+     */
+    public function addTourOrder(TourOrder $tourOrder)
+    {
+        $this->tourOrders[] = $tourOrder;
+
+        return $this;
+    }
+
+    /**
+     * Remove tourOrder
+     *
+     * @param TourOrder $tourOrder
+     */
+    public function removeTourOrder(TourOrder $tourOrder)
+    {
+        $this->tourOrders->removeElement($tourOrder);
+    }
+
+    /**
+     * Get tourOrders
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTourOrders()
+    {
+        return $this->tourOrders;
+    }
+
+    /**
+     * @Assert\IsTrue(message = "admin.sale_price_error")
+     */
+    public function isSalePriceLegal()
+    {
+        if ($this->salePrice >= $this->regularPrice) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -194,9 +478,33 @@ class Tour
     }
 
     /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Tour
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
      * Set startDate
      *
-     * @param \Date $startDate
+     * @param \DateTime $startDate
      *
      * @return Tour
      */
@@ -210,7 +518,7 @@ class Tour
     /**
      * Get startDate
      *
-     * @return \Date
+     * @return \DateTime
      */
     public function getStartDate()
     {
@@ -218,51 +526,51 @@ class Tour
     }
 
     /**
-     * Set endDate
+     * Set duration
      *
-     * @param \Date $endDate
+     * @param integer $duration
      *
      * @return Tour
      */
-    public function setEndDate($endDate)
+    public function setDuration($duration)
     {
-        $this->endDate = $endDate;
+        $this->duration = $duration;
 
         return $this;
     }
 
     /**
-     * Get endDate
-     *
-     * @return \Date
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    /**
-     * Set amount
-     *
-     * @param integer $amount
-     *
-     * @return Tour
-     */
-    public function setAmount($amount)
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    /**
-     * Get amount
+     * Get duration
      *
      * @return integer
      */
-    public function getAmount()
+    public function getDuration()
     {
-        return $this->amount;
+        return $this->duration;
+    }
+
+    /**
+     * Set numberOfPeople
+     *
+     * @param integer $numberOfPeople
+     *
+     * @return Tour
+     */
+    public function setNumberOfPeople($numberOfPeople)
+    {
+        $this->numberOfPeople = $numberOfPeople;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfPeople
+     *
+     * @return integer
+     */
+    public function getNumberOfPeople()
+    {
+        return $this->numberOfPeople;
     }
 
     /**
@@ -314,117 +622,6 @@ class Tour
     }
 
     /**
-     * Add location
-     *
-     * @param \AppBundle\Entity\TourLocation $location
-     *
-     * @return Tour
-     */
-    public function addLocation(\AppBundle\Entity\TourLocation $location)
-    {
-        $location->setTour($this);
-
-        $this->locations[] = $location;
-
-        return $this;
-    }
-
-    /**
-     * Remove location
-     *
-     * @param \AppBundle\Entity\TourLocation $location
-     */
-    public function removeLocation(\AppBundle\Entity\TourLocation $location)
-    {
-        $this->locations->removeElement($location);
-    }
-
-    /**
-     * Set locations
-     *
-     * @param $locations
-     * @return $this
-     */
-    public function setLocations($locations)
-    {
-        foreach ($locations as $location) {
-            $this->addLocation($location);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get locations
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLocations()
-    {
-        return $this->locations;
-    }
-
-    /**
-     * Add hotel
-     *
-     * @param \AppBundle\Entity\TourHotel $hotel
-     *
-     * @return Tour
-     */
-    public function addHotel(\AppBundle\Entity\TourHotel $hotel)
-    {
-        $hotel->setTour($this);
-
-        $this->hotels[] = $hotel;
-
-        return $this;
-    }
-
-    /**
-     * Set hotels
-     *
-     * @param $hotels
-     * @return $this
-     */
-    public function setHotels($hotels)
-    {
-        foreach ($hotels as $hotel) {
-            $this->addHotel($hotel);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove hotel
-     *
-     * @param \AppBundle\Entity\TourHotel $hotel
-     */
-    public function removeHotel(\AppBundle\Entity\TourHotel $hotel)
-    {
-        $this->hotels->removeElement($hotel);
-    }
-
-
-    /**
-     * Get hotels
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getHotels()
-    {
-        return $this->hotels;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getTourName();
-    }
-
-    /**
      * Set regularPrice
      *
      * @param integer $regularPrice
@@ -473,54 +670,6 @@ class Tour
     }
 
     /**
-     * Set featuredImage
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $featuredImage
-     *
-     * @return Tour
-     */
-    public function setFeaturedImage(\Application\Sonata\MediaBundle\Entity\Media $featuredImage = null)
-    {
-        $this->featured_image = $featuredImage;
-
-        return $this;
-    }
-
-    /**
-     * Get featuredImage
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getFeaturedImage()
-    {
-        return $this->featured_image;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Tour
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * Set category
      *
      * @param \AppBundle\Entity\TourCategory $category
@@ -545,13 +694,37 @@ class Tour
     }
 
     /**
-     * Set gallery
+     * Set featuredImage
      *
-     * @param \Application\Sonata\MediaBundle\Entity\Gallery $gallery
+     * @param Media $featuredImage
      *
      * @return Tour
      */
-    public function setGallery(\Application\Sonata\MediaBundle\Entity\Gallery $gallery = null)
+    public function setFeaturedImage(Media $featuredImage = null)
+    {
+        $this->featured_image = $featuredImage;
+
+        return $this;
+    }
+
+    /**
+     * Get featuredImage
+     *
+     * @return Media
+     */
+    public function getFeaturedImage()
+    {
+        return $this->featured_image;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param Gallery $gallery
+     *
+     * @return Tour
+     */
+    public function setGallery(Gallery $gallery = null)
     {
         $this->gallery = $gallery;
 
@@ -561,192 +734,10 @@ class Tour
     /**
      * Get gallery
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Gallery
+     * @return Gallery
      */
     public function getGallery()
     {
         return $this->gallery;
-    }
-
-    /**
-     * Set backgrounds
-     *
-     * @param $backgrounds
-     * @return $this
-     */
-    public function setBackgrounds($backgrounds)
-    {
-        foreach ($backgrounds as $background) {
-            $this->addBackground($background);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add background
-     *
-     * @param \AppBundle\Entity\TourBackground $background
-     *
-     * @return Tour
-     */
-    public function addBackground(\AppBundle\Entity\TourBackground $background)
-    {
-        $background->setTour($this);
-
-        $this->backgrounds[] = $background;
-
-        return $this;
-    }
-
-    /**
-     * Remove background
-     *
-     * @param \AppBundle\Entity\TourBackground $background
-     */
-    public function removeBackground(\AppBundle\Entity\TourBackground $background)
-    {
-        $this->backgrounds->removeElement($background);
-    }
-
-    /**
-     * Get backgrounds
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBackgrounds()
-    {
-        return $this->backgrounds;
-    }
-
-    /**
-     * Add comments
-     *
-     * @param \AppBundle\Entity\Comment $comments
-     * @return Tour
-     */
-    public function addComment(\AppBundle\Entity\Comment $comments)
-    {
-        $this->comments[] = $comments;
-
-        return $this;
-    }
-
-    /**
-     * Remove comments
-     *
-     * @param \AppBundle\Entity\Comment $comments
-     */
-    public function removeComment(\AppBundle\Entity\Comment $comments)
-    {
-        $this->comments->removeElement($comments);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getComments()
-    {
-        return $this->comments;
-    }
-
-    /**
-     * Add service
-     *
-     * @param \AppBundle\Entity\TourService $service
-     *
-     * @return Tour
-     */
-    public function addService(\AppBundle\Entity\TourService $service)
-    {
-        $service->setTour($this);
-
-        $this->services[] = $service;
-
-        return $this;
-    }
-
-
-    /**
-     * Set services
-     *
-     * @param $services
-     * @return $this
-     */
-    public function setServices($services)
-    {
-        foreach ($services as $service) {
-            $this->addLocation($service);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove service
-     *
-     * @param \AppBundle\Entity\TourService $service
-     */
-    public function removeService(\AppBundle\Entity\TourService $service)
-    {
-        $this->services->removeElement($service);
-    }
-
-    /**
-     * Get services
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getServices()
-    {
-        return $this->services;
-    }
-
-    /**
-     * Add tourOrder
-     *
-     * @param \AppBundle\Entity\TourOrder $tourOrder
-     *
-     * @return Tour
-     */
-    public function addTourOrder(\AppBundle\Entity\TourOrder $tourOrder)
-    {
-        $this->tourOrders[] = $tourOrder;
-
-        return $this;
-    }
-
-    /**
-     * Remove tourOrder
-     *
-     * @param \AppBundle\Entity\TourOrder $tourOrder
-     */
-    public function removeTourOrder(\AppBundle\Entity\TourOrder $tourOrder)
-    {
-        $this->tourOrders->removeElement($tourOrder);
-    }
-
-    /**
-     * Get tourOrders
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTourOrders()
-    {
-        return $this->tourOrders;
-    }
-
-    /**
-     * @Assert\IsTrue(message = "admin.sale_price_error")
-     */
-    public function isSalePriceLegal()
-    {
-        if($this->salePrice >= $this->regularPrice) {
-            return false;
-        } else {
-            return true;
-        }
     }
 }

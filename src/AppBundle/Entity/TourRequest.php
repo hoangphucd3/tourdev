@@ -3,12 +3,11 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\ElasticsearchBundle\Tests\app\fixture\Acme\FooBundle\Document\Customer;
 
 /**
  * TourRequest
  *
- * @ORM\Table(name="tour_request")
+ * @ORM\Table(name="tour_yeucau")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourRequestRepository")
  */
 class TourRequest
@@ -23,40 +22,46 @@ class TourRequest
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="lyDo", type="text")
-     */
-    private $reason;
-
-    /**
-     * @var date
-     *
-     * @ORM\Column(name="ngayKhoiHanh", type="date")
-     */
-
-    private $departure;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="nguoiLon", type="integer")
      */
-    private $adults;
+    private $numberOfAdults;
 
     /**
      * @var int
      *
      * @ORM\Column(name="treEm", type="integer")
      */
-    private $children;
+    private $numberOfChildren;
 
     /**
      * @var int
      *
      * @ORM\Column(name="emBe", type="integer")
      */
-    private $infants;
+    private $numberOfInfants;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trangThai", type="string")
+     */
+    private $status;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="TGTao", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="TGCapNhat", type="datetime")
+     */
+    private $updatedAt;
 
     /**
      * @var User
@@ -72,6 +77,12 @@ class TourRequest
      */
     private $tourOrder;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
     /**
      * Get id
      *
@@ -83,133 +94,157 @@ class TourRequest
     }
 
     /**
-     * Set reason
+     * Set numberOfAdults
      *
-     * @param string $reason
+     * @param integer $numberOfAdults
      *
      * @return TourRequest
      */
-    public function setReason($reason)
+    public function setNumberOfAdults($numberOfAdults)
     {
-        $this->reason = $reason;
+        $this->numberOfAdults = $numberOfAdults;
 
         return $this;
     }
 
     /**
-     * Get reason
+     * Get numberOfAdults
+     *
+     * @return integer
+     */
+    public function getNumberOfAdults()
+    {
+        return $this->numberOfAdults;
+    }
+
+    /**
+     * Set numberOfChildren
+     *
+     * @param integer $numberOfChildren
+     *
+     * @return TourRequest
+     */
+    public function setNumberOfChildren($numberOfChildren)
+    {
+        $this->numberOfChildren = $numberOfChildren;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfChildren
+     *
+     * @return integer
+     */
+    public function getNumberOfChildren()
+    {
+        return $this->numberOfChildren;
+    }
+
+    /**
+     * Set numberOfInfants
+     *
+     * @param integer $numberOfInfants
+     *
+     * @return TourRequest
+     */
+    public function setNumberOfInfants($numberOfInfants)
+    {
+        $this->numberOfInfants = $numberOfInfants;
+
+        return $this;
+    }
+
+    /**
+     * Get numberOfInfants
+     *
+     * @return integer
+     */
+    public function getNumberOfInfants()
+    {
+        return $this->numberOfInfants;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return TourRequest
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
      *
      * @return string
      */
-    public function getReason()
+    public function getStatus()
     {
-        return $this->reason;
+        return $this->status;
     }
 
     /**
-     * Set departure
+     * Set createdAt
      *
-     * @param \DateTime $departure
+     * @param \DateTime $createdAt
      *
      * @return TourRequest
      */
-    public function setDeparture($departure)
+    public function setCreatedAt($createdAt)
     {
-        $this->departure = $departure;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
     /**
-     * Get departure
+     * Get createdAt
      *
      * @return \DateTime
      */
-    public function getDeparture()
+    public function getCreatedAt()
     {
-        return $this->departure;
+        return $this->createdAt;
     }
 
     /**
-     * Set adults
+     * Set updatedAt
      *
-     * @param integer $adults
+     * @param \DateTime $updatedAt
      *
      * @return TourRequest
      */
-    public function setAdults($adults)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->adults = $adults;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * Get adults
+     * Get updatedAt
      *
-     * @return integer
+     * @return \DateTime
      */
-    public function getAdults()
+    public function getUpdatedAt()
     {
-        return $this->adults;
-    }
-
-    /**
-     * Set children
-     *
-     * @param integer $children
-     *
-     * @return TourRequest
-     */
-    public function setChildren($children)
-    {
-        $this->children = $children;
-
-        return $this;
-    }
-
-    /**
-     * Get children
-     *
-     * @return integer
-     */
-    public function getChildren()
-    {
-        return $this->children;
-    }
-
-    /**
-     * Set infants
-     *
-     * @param integer $infants
-     *
-     * @return TourRequest
-     */
-    public function setInfants($infants)
-    {
-        $this->infants = $infants;
-
-        return $this;
-    }
-
-    /**
-     * Get infants
-     *
-     * @return integer
-     */
-    public function getInfants()
-    {
-        return $this->infants;
+        return $this->updatedAt;
     }
 
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return TourRequest
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -219,7 +254,7 @@ class TourRequest
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {
@@ -229,11 +264,11 @@ class TourRequest
     /**
      * Set tourOrder
      *
-     * @param \AppBundle\Entity\TourOrder $tourOrder
+     * @param TourOrder $tourOrder
      *
      * @return TourRequest
      */
-    public function setTourOrder(\AppBundle\Entity\TourOrder $tourOrder = null)
+    public function setTourOrder(TourOrder $tourOrder = null)
     {
         $this->tourOrder = $tourOrder;
 
@@ -243,7 +278,7 @@ class TourRequest
     /**
      * Get tourOrder
      *
-     * @return \AppBundle\Entity\TourOrder
+     * @return TourOrder
      */
     public function getTourOrder()
     {

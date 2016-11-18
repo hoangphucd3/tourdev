@@ -48,59 +48,11 @@ class TourBackground
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set tour
-     *
-     * @param \AppBundle\Entity\Tour $tour
-     *
-     * @return TourBackground
-     */
-    public function setTour(\AppBundle\Entity\Tour $tour = null)
-    {
-        $this->tour = $tour;
-
-        return $this;
-    }
-
-    /**
-     * Get tour
-     *
-     * @return \AppBundle\Entity\Tour
-     */
-    public function getTour()
-    {
-        return $this->tour;
-    }
-
-    /**
-     * Set media
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $media
-     *
-     * @return TourBackground
-     */
-    public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = null)
-    {
-        $this->media = $media;
-
-        return $this;
-    }
-
-    /**
-     * Get media
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getMedia()
-    {
-        return $this->media;
     }
 
     /**
@@ -125,5 +77,53 @@ class TourBackground
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set tour
+     *
+     * @param Tour $tour
+     *
+     * @return TourBackground
+     */
+    public function setTour(Tour $tour = null)
+    {
+        $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * Get tour
+     *
+     * @return Tour
+     */
+    public function getTour()
+    {
+        return $this->tour;
+    }
+
+    /**
+     * Set media
+     *
+     * @param Media $media
+     *
+     * @return TourBackground
+     */
+    public function setMedia(Media $media = null)
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+    /**
+     * Get media
+     *
+     * @return Media
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }

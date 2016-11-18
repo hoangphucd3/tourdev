@@ -18,10 +18,22 @@ class HotelAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('description')
-            ->add('address')
-            ->add('phoneNumber');
+            ->add('name', null, array(
+                    'label' => 'label.hotel_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.hotel_desc'
+                )
+            )
+            ->add('address', null, array(
+                    'label' => 'label.hotel_address'
+                )
+            )
+            ->add('phoneNumber', null, array(
+                    'label' => 'label.hotel_phone_number'
+                )
+            );
     }
 
     /**
@@ -30,10 +42,22 @@ class HotelAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
-            ->add('description')
-            ->add('address')
-            ->add('phoneNumber')
+            ->add('name', null, array(
+                    'label' => 'label.hotel_name'
+                )
+            )
+            ->add('description', null, array(
+                    'label' => 'label.hotel_desc'
+                )
+            )
+            ->add('address', null, array(
+                    'label' => 'label.hotel_address'
+                )
+            )
+            ->add('phoneNumber', null, array(
+                    'label' => 'label.hotel_phone_number'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),

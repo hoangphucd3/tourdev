@@ -14,6 +14,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
 use Sonata\MediaBundle\Form\Type\MediaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TourAdmin extends AbstractAdmin
 {
@@ -33,10 +34,19 @@ class TourAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('tourName')
-            ->add('startDate')
-            ->add('endDate')
-            ->add('amount')
+            ->add('tourName', null, array(
+                    'label' => 'label.tour_name')
+            )
+            ->add('startDate', null, array(
+                    'label' => 'label.tour_start_date')
+            )
+            ->add('duration', null, array(
+                    'label' => 'label.tour_duration')
+            )
+            ->add('numberOfPeople', null, array(
+                    'label' => 'label.tour_number_of_people'
+                )
+            )
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -51,27 +61,38 @@ class TourAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        /**
+         * Fix intl format
+         * @link http://stackoverflow.com/questions/10280872/intldateformatterparse-returns-date-parsing-failed-u-parse-error
+         */
+
         $formMapper
             ->with('group.content', array('class' => 'col-md-12'))
                 ->add('tourName', null, array(
                         'label' => 'label.tour_name')
                 )
                 ->add('startDate', DatePickerType::class, array(
-                        'label' => 'label.tour_start_date')
+                        'label' => 'label.tour_start_date',
+                        'format' => 'dd-MM-yyyy',
+                    )
                 )
-                ->add('endDate', DatePickerType::class, array(
-                        'label' => 'label.tour_end_date')
+                ->add('duration', null, array(
+                        'label' => 'label.tour_duration')
                 )
-                ->add('amount', null, array(
-                        'label' => 'label.tour_amount'
+                ->add('numberOfPeople', null, array(
+                        'label' => 'label.tour_number_of_people'
                     )
                 )
                 ->add('description', CKEditorType::class, array(
                         'label' => 'label.tour_description',
                     )
                 )
-                ->add('status', null, array(
-                    'label' => 'label.tour_status',
+                ->add('status', ChoiceType::class, array(
+                        'label' => 'label.tour_status',
+                        'choices' => array(
+                            'open' => 'Mở',
+                            'closed' => 'Đã đóng',
+                        ),
                     )
                 )
                 ->add('regularPrice', null, array(

@@ -18,12 +18,12 @@
                 <source>label.tour_start_date</source>
                 <target>Ngày khởi hành</target>
             </trans-unit>
-            <trans-unit id="label.tour_end_date">
-                <source>label.tour_end_date</source>
-                <target>Ngày kết thúc</target>
+            <trans-unit id="label.tour_duration">
+                <source>label.tour_duration</source>
+                <target>Thời gian</target>
             </trans-unit>
-            <trans-unit id="label.tour_amount">
-                <source>label.tour_amount</source>
+            <trans-unit id="label.tour_number_of_people">
+                <source>label.tour_number_of_people</source>
                 <target>Số lượng khách</target>
             </trans-unit>
             <trans-unit id="label.tour_description">
@@ -138,10 +138,6 @@
                 <source>label.location_desc</source>
                 <target>Mô tả</target>
             </trans-unit>
-            <trans-unit id="label.location_location">
-                <source>label.location_location</source>
-                <target>Địa điểm</target>
-            </trans-unit>
             <trans-unit id="label.tour_category_name">
                 <source>label.tour_category_name</source>
                 <target>Tên danh mục</target>
@@ -166,10 +162,6 @@
                 <source>label.comment_created_at</source>
                 <target>Thời gian</target>
             </trans-unit>
-            <trans-unit id="label.tour_request_reason">
-                <source>label.tour_request_reason</source>
-                <target>Lí do</target>
-            </trans-unit>
             <trans-unit id="label.tour_request_departure">
                 <source>label.tour_request_departure</source>
                 <target>Ngày khởi hành</target>
@@ -178,9 +170,69 @@
                 <source>label.tour_request_adults</source>
                 <target>Người lớn</target>
             </trans-unit>
+            <trans-unit id="label.tour_request_children">
+                <source>label.tour_request_children</source>
+                <target>Trẻ em</target>
+            </trans-unit>
             <trans-unit id="label.tour_request_infants">
                 <source>label.tour_request_infants</source>
                 <target>Em bé</target>
+            </trans-unit>
+            <trans-unit id="label.order_id">
+                <source>label.order_id</source>
+                <target>Mã đơn</target>
+            </trans-unit>
+            <trans-unit id="label.order_first_name">
+                <source>label.order_first_name</source>
+                <target>Tên</target>
+            </trans-unit>
+            <trans-unit id="label.order_last_name">
+                <source>label.order_last_name</source>
+                <target>Họ</target>
+            </trans-unit>
+            <trans-unit id="label.order_departure">
+                <source>label.order_departure</source>
+                <target>Khởi hành</target>
+            </trans-unit>
+            <trans-unit id="label.order_email">
+                <source>label.order_email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="label.order_status">
+                <source>label.order_status</source>
+                <target>Trạng thái</target>
+            </trans-unit>
+            <trans-unit id="label.order_created_at">
+                <source>label.order_created_at</source>
+                <target>TG tạo</target>
+            </trans-unit>
+            <trans-unit id="label.order_updated_at">
+                <source>label.order_updated_at</source>
+                <target>TG cập nhật</target>
+            </trans-unit>
+            <trans-unit id="label.order_phone">
+                <source>label.order_phone</source>
+                <target>Điện thoại</target>
+            </trans-unit>
+            <trans-unit id="label.order_address1">
+                <source>label.order_address1</source>
+                <target>Địa chỉ 1</target>
+            </trans-unit>
+            <trans-unit id="label.order_address2">
+                <source>label.order_address2</source>
+                <target>Địa chỉ 2</target>
+            </trans-unit>
+            <trans-unit id="label.order_city">
+                <source>label.order_city</source>
+                <target>Thành phố</target>
+            </trans-unit>
+            <trans-unit id="label.order_postcode">
+                <source>label.order_postcode</source>
+                <target>Mã bưu chính</target>
+            </trans-unit>
+            <trans-unit id="label.order_country">
+                <source>label.order_country</source>
+                <target>Quốc gia</target>
             </trans-unit>
         </body>
     </file>
