@@ -106,11 +106,17 @@ fos_elastica:
                             type: string
                         description:
                             type: text
+                        regularPrice: ~
                         locations:
                             type: nested
                             properties:
                                 locationId: ~
                                 location: ~
+                        services:
+                            type: nested
+                            properties:
+                                serviceId: ~
+                                service: ~
                     persistence:
                         driver: orm
                         model: AppBundle\Entity\Tour

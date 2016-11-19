@@ -9,6 +9,8 @@ class AppExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('priceFilter', array($this, 'priceFilter')),
+            new \Twig_SimpleFilter('paymentMethod', array($this, 'paymentMethod')),
+            new \Twig_SimpleFilter('orderStatus', array($this, 'orderStatus')),
         );
     }
 
@@ -74,6 +76,43 @@ class AppExtension extends \Twig_Extension
         }
 
         return $output;
+    }
+
+    public function paymentMethod($method)
+    {
+        switch($method) {
+            case 'cod':
+                $return = 'Thanh toán trực tiếp';
+                break;
+            case 'onepay':
+                $return = 'Thanh toán trực tuyến OnePay';
+                break;
+            default:
+                $return = $method;
+                break;
+        }
+
+        return $return;
+    }
+
+    public function orderStatus($status)
+    {
+        switch($status) {
+            case 'pending':
+                $return = 'Chờ thanh toán';
+                break;
+            case 'completed':
+                $return = 'Đã hoàn thành';
+                break;
+            case 'canceled':
+                $return = 'Đã hủy';
+                break;
+            default:
+                $return = $status;
+                break;
+        }
+
+        return $return;
     }
 
     public function getName()

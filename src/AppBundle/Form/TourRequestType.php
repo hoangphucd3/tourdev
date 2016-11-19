@@ -26,21 +26,16 @@ class TourRequestType extends AbstractType
         $order_detail = $options['tourOrder'];
 
         $builder
-            ->add('reason')
-            ->add('departure', TextType::class, array(
-                    'data' => $order_detail->getDeparture()->format('d/m/Y'),
+            ->add('numberOfAdults', NumberType::class, array(
+                    'data' => $order_detail->getNumberOfAdults(),
                 )
             )
-            ->add('adults', NumberType::class, array(
-                    'data' => $order_detail->getAdults(),
+            ->add('numberOfChildren', NumberType::class, array(
+                    'data' => $order_detail->getNumberOfChildren(),
                 )
             )
-            ->add('children', NumberType::class, array(
-                    'data' => $order_detail->getChildren(),
-                )
-            )
-            ->add('infants', NumberType::class, array(
-                    'data' => $order_detail->getInfants(),
+            ->add('numberOfInfants', NumberType::class, array(
+                    'data' => $order_detail->getNumberOfInfants(),
                 )
             );
     }

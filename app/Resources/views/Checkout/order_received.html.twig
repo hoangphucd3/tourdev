@@ -2,6 +2,10 @@
 
 {% block title %}Thanh toán{% endblock %}
 
+{% block sub_header_content %}
+    <h1>Thông tin đặt tour</h1>
+{% endblock %}
+
 {% block body %}
     <div class="main-section">
         <div class="container">
@@ -16,33 +20,85 @@
                             </li>
 
                             <li class="date">
-                                Ngày: {{ 'now'|date('d/m/Y') }}
+                                Ngày: <strong>{{ 'now'|date('d/m/Y') }}</strong>
                             </li>
 
                             <li class="total">
-                                Tổng cộng:
+                                Tổng cộng: <strong>{{ tourOrder.invoice.totalPrice|priceFilter|raw }}</strong>
                             </li>
 
                             <li class="method">
-                                Phuong thức thanh toán:
+                                Phuong thức thanh toán: <strong>{{ tourOrder.checkoutMethod|paymentMethod }}</strong>
+                            </li>
+
+                            <li class="status">
+                                Tình trạng: <strong>{{ tourOrder.status|orderStatus }}</strong>
                             </li>
                         </ul>
+                        <div class="clear"></div>
 
-                        <table class="shop_table customer_details">
+                        <h2>Thông tin đặt tour</h2>
 
-                            <tbody>
-                            <tr>
-                                <th>Email:</th>
-                                <td>admin@mail.com</td>
-                            </tr>
+                        {% set tourPrice = 0 %}
+                        {% if tourOrder.tour.salePrice %}
+                            {% set tourPrice = tourOrder.tour.salePrice %}
+                        {% else %}
+                            {% set tourPrice = tourOrder.tour.regularPrice %}
+                        {% endif %}
 
-                            <tr>
-                                <th>Số điện thoại:</th>
-                                <td>002858</td>
-                            </tr>
+                        <div class="cs-shortcode-table">
+                            <div class="cs-table-responsive">
+                                <table class="shop_table_ order_details_">
+                                    <tbody>
+                                    <tr>
+                                        <td>Tên tour:</td>
+                                        <td>{{ tourOrder.tour.tourName }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Người lớn:</td>
+                                        <td>{{ tourOrder.numberOfAdults }} x {{ tourPrice|priceFilter|raw }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trẻ em:</td>
+                                        <td>{{ tourOrder.numberOfChildren }} x {{ tourPrice|priceFilter|raw }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Em bé:</td>
+                                        <td>{{ tourOrder.numberOfInfants }} x 0</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Tổng cộng:</th>
+                                        <th style="text-align: center;">{{ tourOrder.invoice.totalPrice|priceFilter|raw }}</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                            </tbody>
-                        </table>
+                        <h2>Thông tin khách hàng</h2>
+                        <div class="cs-shortcode-table">
+                            <div class="cs-table-responsive">
+                                <table class="shop_table_ customer_details_">
+                                    <tbody>
+                                    <tr>
+                                        <td>Email:</td>
+                                        <td>{{ tourOrder.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại:</td>
+                                        <td>{{ tourOrder.billingPhone }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <h2>Địa chỉ</h2>
+                        <address>
+                            <p>{{ tourOrder.billingAddress1 }}</p>
+                            <p>{{ tourOrder.billingAddress2 }}</p>
+                            <p>{{ tourOrder.billingCity }}</p>
+                        </address>
                     </div>
                 </div>
             </div>

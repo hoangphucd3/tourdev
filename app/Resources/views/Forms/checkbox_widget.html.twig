@@ -30,7 +30,16 @@
     <li class="radio">
         <div class="checkbox">
             <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
-            <label for="{{ id }}">{{ label|trans }}</label>
+            <label for="{{ id }}">{{ label|trans|raw }}</label>
         </div>
     </li>
 {%- endblock checkbox_widget -%}
+
+{%- block radio_widget -%}
+    <li class="radio">
+        <div class="checkbox">
+            <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+            <label for="{{ id }}">{{ label|trans|raw }}</label>
+        </div>
+    </li>
+{%- endblock radio_widget -%}

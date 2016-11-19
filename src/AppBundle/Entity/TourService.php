@@ -94,4 +94,9 @@ class TourService
     {
         return $this->service;
     }
+
+    public function getServiceId()
+    {
+        return $this->getService()->getId();
+    }
 }

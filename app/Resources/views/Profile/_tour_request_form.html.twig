@@ -1,29 +1,20 @@
 <div class="tour">
     {{ form_start(form, { 'action': path('profile_tour_request_new', { 'tourOrderId': orderDetail.id }) }) }}
     {{ form_errors(form) }}
-    <p class="form-row form-row form-row-wide">
-        {{ form_label(form.reason) }}
-        {{ form_widget(form.reason, {'attr': {'class': 'input-text'}}) }}
-    </p>
 
-    <p class="form-row form-row form-row-wide cs-calendar-combo">
-        {{ form_label(form.departure) }}
-        {{ form_widget(form.departure, {'attr': {'class': 'input-text'}}) }}
+    <p class="form-row form-row form-row-wide">
+        {{ form_label(form.numberOfAdults) }}
+        {{ form_widget(form.numberOfAdults, {'attr': {'class': 'input-text'}}) }}
     </p>
 
     <p class="form-row form-row form-row-wide">
-        {{ form_label(form.adults) }}
-        {{ form_widget(form.adults, {'attr': {'class': 'input-text'}}) }}
+        {{ form_label(form.numberOfChildren) }}
+        {{ form_widget(form.numberOfChildren, {'attr': {'class': 'input-text'}}) }}
     </p>
 
     <p class="form-row form-row form-row-wide">
-        {{ form_label(form.children) }}
-        {{ form_widget(form.children, {'attr': {'class': 'input-text'}}) }}
-    </p>
-
-    <p class="form-row form-row form-row-wide">
-        {{ form_label(form.infants) }}
-        {{ form_widget(form.infants, {'attr': {'class': 'input-text'}}) }}
+        {{ form_label(form.numberOfInfants) }}
+        {{ form_widget(form.numberOfInfants, {'attr': {'class': 'input-text'}}) }}
     </p>
 
     <div class="form-row place-order">

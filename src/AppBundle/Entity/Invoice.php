@@ -45,7 +45,7 @@ class Invoice
      * @var TourOrder
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourOrder", inversedBy="invoice")
-     * @ORM\JoinColumn(name="tour_order_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tour_order_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tourOrder;
 

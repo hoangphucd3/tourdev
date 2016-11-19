@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {{ tourOrder.departure|date('d-m-Y') }}
+                            {{ tourOrder.tour.startDate|date('d/m/Y') }}
                         </div>
                     </li>
 
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {{ tourOrder.adults }}
+                            {{ tourOrder.numberOfAdults }}
                         </div>
                     </li>
 
@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {% if tourOrder.children %}{{ tourOrder.children }}{% else %}0{% endif %}
+                            {{ tourOrder.numberOfChildren }}
                         </div>
                     </li>
 
@@ -65,7 +65,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {% if tourOrder.infants %}{{ tourOrder.infants }}{% else %}0{% endif %}
+                            {{ tourOrder.numberOfInfants }}
                         </div>
                     </li>
                 </ul>

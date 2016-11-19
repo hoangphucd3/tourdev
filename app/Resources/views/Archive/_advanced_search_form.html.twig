@@ -21,17 +21,53 @@
 
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true"
-                       aria-controls="collapseOne">
+                <div class="panel-heading" role="tab" id="headingLocations">
+                    <a role="button" data-toggle="collapse" href="#collapseLocations" aria-expanded="true"
+                       aria-controls="collapseLocations">
                         Địa điểm
                     </a>
                 </div>
 
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div id="collapseLocations" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="headingLocations">
                     <div class="panel-body">
                         <ul class="cs-checkbox-list">
                             {{ form_widget(form.locations) }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingServices">
+                    <a role="button" data-toggle="collapse" href="#collapseServices" aria-expanded="true"
+                       aria-controls="collapseServices">
+                        Dịch vụ
+                    </a>
+                </div>
+
+                <div id="collapseServices" class="panel-collapse collapse" role="tabpanel"
+                     aria-labelledby="headingServices">
+                    <div class="panel-body">
+                        <ul class="cs-checkbox-list">
+                            {{ form_widget(form.services) }}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingPrice">
+                    <a role="button" data-toggle="collapse" href="#collapsePrice" aria-expanded="true"
+                       aria-controls="collapsePrice">
+                        Giá
+                    </a>
+                </div>
+
+                <div id="collapsePrice" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPrice">
+                    <div class="panel-body">
+                        <ul class="cs-checkbox-list">
+                            {{ form_widget(form.price) }}
                         </ul>
                     </div>
                 </div>

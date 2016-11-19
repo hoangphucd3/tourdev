@@ -13,8 +13,8 @@
                     <tr>
                         <th>Tên tour</th>
                         <th>Ngày khởi hành</th>
-                        <th>Số lượng người</th>
                         <th>Giá</th>
+                        <th>Tình trạng</th>
                     </tr>
                     </thead>
 
@@ -24,18 +24,14 @@
                             <td>
                                 <a href="{{ path('profile_tour_order_detail', { 'tourOrderId': order.id }) }}">{{ order.tour.tourName }}</a>
                             </td>
-                            <td>{{ order.departure | date('d-m-Y') }}</td>
                             <td>
-                                {{ order.adults }}
+                                {{ order.tour.startDate|date('d/m/Y') }}
                             </td>
                             <td>
-                                {% if order.tour.salePrice %}
-                                    {% set price = order.tour.salePrice %}
-                                {% else %}
-                                    {% set price = order.tour.regularPrice %}
-                                {% endif %}
-
-                                {{ order.adults * price }}
+                                {{ order.invoice.totalPrice|priceFilter|raw }}
+                            </td>
+                            <td>
+                                {{ order.status|orderStatus }}
                             </td>
                         </tr>
                     {% endfor %}

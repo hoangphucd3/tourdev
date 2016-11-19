@@ -51,18 +51,27 @@
         </div>
     </header>
 
-    {% block sub_header %}
+    {% block cs_sub_header %}
         {#<div class="cs-sub-header"#}
-             {#style="background:url({{ asset('assets/frontend/images/sl_161114_slide-phu-quoc-Hon-Gam-Gi-Dam-Ngang.jpg') }}) no-repeat;background-size:cover;padding-top:200px!important;height:415px!important">#}
+        {#style="background:url({{ asset('assets/frontend/images/sl_161114_slide-phu-quoc-Hon-Gam-Gi-Dam-Ngang.jpg') }}) no-repeat;background-size:cover;padding-top:200px!important;height:415px!important">#}
         {#</div>#}
+    {% endblock %}
+
+    {% block sub_header %}
         <ul class="cs-list-detail-slider">
-            <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/tour-slide-2.jpg"/></ul>
+            {% block sub_header_slide %}
+                <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/tour-slide-2.jpg"/>
+            {% endblock %}
+        </ul>
+
         <div class="cs-fixed-sub-header">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="cs-page-title">
-                            <h1>Top places to visit in Jordan Petra</h1>
+                            {% block sub_header_content %}
+                                <h1>Trang web đặt tour du lịch lớn nhất thế giới</h1>
+                            {% endblock %}
                         </div>
                     </div>
                 </div>

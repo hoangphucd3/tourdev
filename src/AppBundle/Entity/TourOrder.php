@@ -153,7 +153,7 @@ class TourOrder
     /**
      * @var Invoice
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Invoice", mappedBy="tourOrder")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Invoice", mappedBy="tourOrder", cascade={"persist"}, orphanRemoval=true)
      */
     private $invoice;
 

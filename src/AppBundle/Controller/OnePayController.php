@@ -37,9 +37,9 @@ class OnePayController extends Controller
     public function builCheckoutUrl(Request $request)
     {
         $price = $request->query->get('price');
-        $orderInfo = $request->query->get('orderInfo');
+        $orderInfo = $request->query->get('orderId');
 
-        $this->setReturnUrl($this->generateUrl('onepay_checkout_result', array(), UrlGeneratorInterface::ABSOLUTE_URL));
+        $this->setReturnUrl($this->generateUrl('onepay_checkout_result', array('orderId' => $orderInfo), UrlGeneratorInterface::ABSOLUTE_URL));
 
         $vpcURL = $this->checkoutURL . "?";
 
@@ -51,7 +51,7 @@ class OnePayController extends Controller
             'vpc_AccessCode' => $this->accessCode,
             'vpc_MerchTxnRef' => date('YmdHis') . rand(),
             'vpc_Merchant' => $this->merchantId,
-            'vpc_OrderInfo' => $orderInfo,
+            'vpc_OrderInfo' => 'Thanh toán cho hóa đơn #' . $orderInfo,
             'vpc_Amount' => $price,
             'vpc_Locale' => 'vn',
             'vpc_ReturnURL' => $this->returnURL,
@@ -152,9 +152,15 @@ class OnePayController extends Controller
         $transactionNo = $this->null2unknown($returnData["vpc_TransactionNo"]);
         $txnResponseCode = $this->null2unknown($returnData["vpc_TxnResponseCode"]);
 
-        $content = $this->getResponseDescription($txnResponseCode);
+        if ('0' == $txnResponseCode) {
+            $orderId = $this->null2unknown($returnData["orderId"]);
 
-        return $this->render('Checkout/checkout_complete.html.twig', ['content' => $content]);
+            return $this->redirectToRoute('tour_order_checkout_onepay_complete', array('id' => $orderId));
+        } else {
+            $content = $this->getResponseDescription($txnResponseCode);
+
+            return $this->render('Checkout/checkout_onepay_error.html.twig', ['content' => $content]);
+        }
     }
 
     public function setOnePayInfo($checkoutURL, $merchantId, $accessCode, $hashCode, $returnURL)

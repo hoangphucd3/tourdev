@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {{ orderDetail.departure|date('d-m-Y') }}
+                            {{ orderDetail.tour.startDate|date('d/m/Y') }}
                         </div>
                     </li>
 
@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {{ orderDetail.adults }}
+                            {{ orderDetail.numberOfAdults }}
                         </div>
                     </li>
 
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {% if orderDetail.children %}{{ orderDetail.children }}{% else %}0{% endif %}
+                            {{ orderDetail.numberOfChildren }}
                         </div>
                     </li>
 
@@ -61,10 +61,44 @@
                         </div>
 
                         <div class="booking-item-payment-content">
-                            {% if orderDetail.infants %}{{ orderDetail.infants }}{% else %}0{% endif %}
+                            {{ orderDetail.numberOfInfants }}
                         </div>
                     </li>
                 </ul>
+
+                {% set tourPrice = 0 %}
+                {% if orderDetail.tour.salePrice %}
+                    {% set tourPrice = orderDetail.tour.salePrice %}
+                {% else %}
+                    {% set tourPrice = orderDetail.tour.regularPrice %}
+                {% endif %}
+                <div class="booking-item-payment-total">
+                    <table border="0" class="table_checkout">
+                        <tbody>
+                        <tr>
+                            <td>Người lớn</td>
+                            <td class="text-right">
+                                {% set adultPrice = tourPrice * orderDetail.numberOfAdults %}
+                                <strong>{{ adultPrice|priceFilter|raw }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Trẻ em</td>
+                            <td class="text-right">
+                                {% set childrenPrice = (tourPrice * orderDetail.numberOfInfants)/1.5 %}
+                                <strong>{{ childrenPrice|priceFilter|raw }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Em bé</td>
+                            <td class="text-right"><strong>{{ 0|priceFilter|raw }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tổng cộng</strong></td>
+                            <td class="text-right"><strong>{{ (adultPrice + childrenPrice)|priceFilter|raw }}</strong>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

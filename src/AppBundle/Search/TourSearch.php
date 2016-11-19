@@ -8,7 +8,9 @@ class TourSearch
 
     private $locations;
 
-    private $departure;
+    private $services;
+
+    private $price;
 
     public function getId()
     {
@@ -46,14 +48,26 @@ class TourSearch
         return $this;
     }
 
-    public function getDeparture()
+    public function getServices()
     {
-        return $this->departure;
+        return $this->services;
     }
 
-    public function setDeparture($departure)
+    public function setServices($services)
     {
-        $this->departure = $departure;
+        $this->services = $services;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
 
         return $this;
     }

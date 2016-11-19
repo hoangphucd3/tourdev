@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Customer;
+use AppBundle\Entity\Invoice;
 use AppBundle\Entity\Tour;
 use AppBundle\Entity\TourOrder;
 use AppBundle\Form\TourOrderType;
@@ -67,8 +68,9 @@ class OrderController extends Controller
             $customer = $this->getCustomer();
 
             if (null === $customer) {
+                $currentUser = $this->getUser();
                 $customer = new Customer();
-                $customer->setUser($this->getUser());
+                $customer->setUser($currentUser);
 
                 $em->persist($customer);
                 $em->flush();
@@ -100,18 +102,28 @@ class OrderController extends Controller
 
             $totalPrice = $adultPrice + $childrenPrice;
 
-//            $this->get('session')->remove('departure');
-//            $this->get('session')->remove('adults');
-//            $this->get('session')->remove('children');
-//            $this->get('session')->remove('infants');
+            $this->get('session')->remove('departure');
+            $this->get('session')->remove('adults');
+            $this->get('session')->remove('children');
+            $this->get('session')->remove('infants');
+
+            $invoice = new Invoice();
+            $invoice->setCustomer($customer);
+            $invoice->setStatus('pending');
+            $invoice->setTourOrder($order);
+            $invoice->setTotalPrice($totalPrice);
+
+            $em->persist($invoice);
+            $em->flush();
 
             if ('onepay' === $request->request->get('payment_method')) {
                 return $this->redirectToRoute('onepay_checkout_url', array(
                         'price' => $totalPrice,
-                        'orderInfo' => 'Thanh toán cho hóa đơn #' . $orderId
+                        'orderId' => $orderId,
                     )
                 );
             } else {
+                $this->get('session')->set('new_order_created', 1);
                 return $this->redirectToRoute('tour_order_received', array('id' => $orderId));
             }
         } else {
@@ -142,6 +154,30 @@ class OrderController extends Controller
      */
     public function codCheckoutAction(TourOrder $tourOrder)
     {
+        if (empty($this->get('session')->get('new_order_created'))) {
+            return $this->redirect('/');
+        }
+
+        $this->get('session')->remove('new_order_viewed');
+
+        return $this->render(':Checkout:order_received.html.twig', array('tourOrder' => $tourOrder));
+    }
+
+    /**
+     * @Route("/order/received/{id}/complete", name="tour_order_checkout_onepay_complete")
+     * @ParamConverter("tourOrder", class="AppBundle:TourOrder", options={"mapping" : {"id": "id"}})
+     *
+     * @param TourOrder $tourOrder
+     * @return Response
+     */
+    public function onePayCheckoutAction(TourOrder $tourOrder)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository('AppBundle:TourOrder')->find($tourOrder->getId());
+
+        $order->setStatus('completed');
+        $em->flush();
+
         return $this->render(':Checkout:order_received.html.twig', array('tourOrder' => $tourOrder));
     }
 
@@ -150,5 +186,7 @@ class OrderController extends Controller
         $user = $this->getUser();
 
         $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneBy(array('user' => $user));
+
+        return $customer;
     }
 }

@@ -141,4 +141,9 @@ class Service
     {
         return $this->icon;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

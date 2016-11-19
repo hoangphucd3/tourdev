@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lỗi thanh toán{% endblock %}
+
+{% block sub_header %}{% endblock %}
+
+{% block cs_sub_header %}
+    <div class="cs-sub-header"
+         style="background:url({{ absolute_url(asset('assets/frontend/images/subheader-default.jpg')) }}) no-repeat;background-size:cover;padding-top:200px!important;height:364px!important">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cs-page-title left">
+                        <h2>Lỗi thanh toán</h2>
+                        <p style="color: #fff;">Đã có lỗi xảy ra trong quá trình thanh toán</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="main-section">
+        <div class="page-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="cs-error-content">
+                            <span>Có lỗi xảy ra</span>
+                            <strong>Giao dịch thất bại</strong>
+                            <p>{{ content }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

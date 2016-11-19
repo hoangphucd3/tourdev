@@ -104,17 +104,20 @@ class BookingController extends Controller
             $infants = $form_data['infants'];
             $tourId = $request->get('tourId');
 
-            $totalNum = abs(intval($adults + $children + $infants));
-
             $tourInfo = $this->getDoctrine()->getRepository('AppBundle:Tour')->find($tourId);
+
+            $totalNum = abs(intval($adults + $children + $infants));
 
             $remainSeats = abs(intval($tourInfo->getNumberOfPeople() - count($tourInfo->getTourOrders())));
 
-            if ($totalNum < $remainSeats) {
-                $return['status'] = 'success';
-            } else {
+            if (0 == $totalNum) {
+                $return['status'] = 'error';
+                $return['info'] = 'Hãy chọn số lượng người';
+            } elseif ($totalNum > $remainSeats) {
                 $return['status'] = 'error';
                 $return['info'] = 'Tour này chỉ còn ' . $remainSeats . ' chỗ ';
+            } else {
+                $return['status'] = 'success';
             }
 
             return new JsonResponse($return);

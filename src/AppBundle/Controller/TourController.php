@@ -67,8 +67,6 @@ class TourController extends Controller
 
         $form->handleRequest($request);
 
-        dump($form->get('tourName'));
-
         $tours = $this->get('app.tour_manager')->getAllTours();
 
         if ($form->isSubmitted() && $form->isValid()) {

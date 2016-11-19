@@ -30,9 +30,37 @@
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="cs-search-field">
+        <div class="cs-search-field" id="submit-section">
             <input type="submit" class="acc-submit cs-bgcolor" id="booking-submit" value="Đặt tour">
+            <i class="icon-spinner9 spinner"></i>
         </div>
     </div>
 </div>
 {{ form_end(form) }}
+<script>
+    jQuery(document).ready(function ($) {
+        $('#booking-submit').click(function (event) {
+            event.preventDefault();
+
+            $('#submit-section').addClass('loading');
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('tour_booking_check') }}',
+                data: $('#booking-form').serialize() + '&tourId={{ tour.id }}',
+                success: function (response) {
+                    $('#submit-section').removeClass('loading');
+                    console.log(response.status);
+                    var error_container = '';
+                    if ('error' == response.status) {
+                        error_container = '<div class="alert alert-danger"><button aria-hidden="true" data-dismiss="alert" type="button" class="close">X</button><p><i class="icon-warning4"></i>' + response.info + '</p></div>';
+
+                        $('#booking-response').html(error_container);
+                    } else {
+                        $('#booking-form').submit();
+                    }
+                }
+            });
+        });
+    });
+</script>

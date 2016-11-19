@@ -24,7 +24,7 @@ class TourLocation
     /**
      * @var int
      *
-     * @ORM\Column(name="thuTu", type="integer")
+     * @ORM\Column(name="thuTu", type="integer", nullable=true)
      */
     private $position;
 
@@ -124,5 +124,10 @@ class TourLocation
     public function getLocation()
     {
         return $this->location;
+    }
+
+    public function getLocationId()
+    {
+        return $this->getLocation()->getId() . '';
     }
 }

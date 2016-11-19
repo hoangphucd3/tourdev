@@ -87,30 +87,4 @@
         </div>
     </div>
 
-    <script>
-        jQuery(document).ready(function ($) {
-            $('#booking-submit').click(function (event) {
-                event.preventDefault();
-
-                $.ajax({
-                    type: 'POST',
-                    url: '{{ path('tour_booking_check') }}',
-                    data: $(this).serialize() + '&tourId={{ tour.id }}',
-                    success: function (response) {
-                        console.log(response);
-
-                        var error_container = '';
-                        if ('error' == response.status) {
-                            error_container = '<div class="alert alert-danger"><button aria-hidden="true" data-dismiss="alert" type="button" class="close">X</button><p><i class="icon-warning4"></i>' + response.info + '</p></div>';
-
-                            $('#booking-response').html(error_container);
-                        } else {
-                            $('#booking-form').submit();
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
 {% endblock %}

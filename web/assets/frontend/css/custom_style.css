@@ -293,3 +293,73 @@ h1, h2, h3, h4, h5, h6,
 .wp-traveladvisor .cs-list.classic .cs-text .cs-heading-section .cs-price-box strong {
     font-size: 23px;
 }
+
+.tour .order_details {
+    margin: 0 0 60px;
+    list-style: none;
+}
+
+.tour .order_details:after, .tour .order_details:before {
+    content: " ";
+    display: table;
+}
+
+.clear {
+    clear: both;
+}
+
+.tour .order_details li {
+    float: left;
+    margin-right: 2em;
+    text-transform: uppercase;
+    font-size: .715em;
+    line-height: 1;
+    border-right: 1px dashed #d3ced2;
+    padding-right: 2em;
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.tour .order_details li strong {
+    display: block;
+    font-size: 1.4em;
+    text-transform: none;
+    line-height: 1.5;
+}
+
+.tour .order_details li:last-of-type {
+    border: none;
+}
+
+@keyframes anim-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    animation: anim-rotate 2s infinite linear;
+    color: #fff;
+    text-shadow: 0 0 .25em rgba(255,255,255, .3);
+}
+
+.wp-traveladvisor #submit-section.cs-search-field i {
+    display: none;
+}
+
+.wp-traveladvisor #submit-section.cs-search-field.loading i {
+    display: inline-block;
+}
+
+.wp-traveladvisor .cs-search-field.loading input[type=submit] {
+    background-color: #ccc!important;
+    cursor: not-allowed;
+}
+
+.cs-error-content strong {
+    font-family: 'Raleway', sans-serif;;
+}

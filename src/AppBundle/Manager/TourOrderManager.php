@@ -40,9 +40,18 @@ class TourOrderManager
     public function getUserOrders()
     {
         $findBy = array(
-            'customer' => $this->tokenStorage->getToken()->getUser()->getId(),
+            'customer' => $this->getCustomer(),
         );
 
         return $this->tourOrderRepository->getUserOrders($findBy);
+    }
+
+    private function getCustomer()
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $customer = $this->em->getRepository('AppBundle:Customer')->findOneBy(array('user' => $user));
+
+        return $customer;
     }
 }

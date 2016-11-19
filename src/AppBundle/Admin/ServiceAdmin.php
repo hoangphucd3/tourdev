@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Service;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -79,5 +80,19 @@ class ServiceAdmin extends AbstractAdmin
                     'label' => 'label.service_icon'
                 )
             );
+    }
+
+    /**
+     * Returns "nice" name for object
+     * Can define with __toString() function in Entity
+     *
+     * @param mixed $object
+     * @return string
+     */
+    public function toString($object)
+    {
+        return $object instanceof Service
+            ? $object->getName()
+            : ''; // shown in the breadcrumb on the create view
     }
 }

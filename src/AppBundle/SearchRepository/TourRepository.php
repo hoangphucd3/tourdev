@@ -76,6 +76,38 @@ class TourRepository extends Repository
             }
         }
 
+        if (!empty($tourSearch->getServices())) {
+            $services = $tourSearch->getServices();
+
+            foreach ($services as $service) {
+                $nestedFilter = new Query\Nested();
+                $serviceQuery = new Match();
+                $serviceBool = new BoolQuery();
+
+                $nestedFilter->setPath('services');
+                $serviceFilter = $serviceQuery->setFieldQuery('services.serviceId', $service->getId());
+                $serviceBool->addMust($serviceFilter);
+                $nestedFilter->setQuery($serviceBool);
+                $boolFilter->addMust($nestedFilter);
+            }
+        }
+
+        if (!empty($tourSearch->getPrice())) {
+            $price_range = array();
+            $price_data = $tourSearch->getPrice();
+
+            $price_range = explode('-', $price_data);
+
+            $minPrice = $price_range[0];
+            $maxPrice = $price_range[1];
+
+            $priceRangeQuery = new Query\Range();
+
+            $priceRangeQuery->addField('regularPrice', array('gte' => $minPrice, 'lte' => $maxPrice));
+
+            $boolFilter->addMust($priceRangeQuery);
+        }
+
         $query = Query::create($boolFilter);
 
         return $this->find($query);
