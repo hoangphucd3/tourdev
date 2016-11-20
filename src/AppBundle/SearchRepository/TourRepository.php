@@ -25,6 +25,8 @@ class TourRepository extends Repository
 
         $boolFilter = new BoolQuery();
 
+        $boolFilter->addShould($baseQuery);
+
         if (!empty($tourSearch->getLocations())) {
             $nestedFilter = new Query\Nested();
             $locationQuery = new Match();
@@ -37,7 +39,19 @@ class TourRepository extends Repository
             $boolFilter->addMust($nestedFilter);
         }
 
-        $boolFilter->addShould($baseQuery);
+        if (!empty($tourSearch->getDeparture())) {
+            $departure = \DateTime::createFromFormat('d/m/Y', $tourSearch->getDeparture());
+            $fomartDeparture = $departure->format('Y-m-d');
+            $beforeDeparture = $departure->sub(new \DateInterval('P1D'))->format('Y-m-d');
+
+            $departureRangeQuery = new Query\Range();
+            $departureRangeQuery->addField('startDate', array(
+                    'gte' => \Elastica\Util::convertDate($beforeDeparture),
+                    'lte' => \Elastica\Util::convertDate($fomartDeparture),
+                )
+            );
+            $boolFilter->addMust($departureRangeQuery);
+        }
 
         $query = Query::create($boolFilter);
 
@@ -93,7 +107,6 @@ class TourRepository extends Repository
         }
 
         if (!empty($tourSearch->getPrice())) {
-            $price_range = array();
             $price_data = $tourSearch->getPrice();
 
             $price_range = explode('-', $price_data);
@@ -106,6 +119,20 @@ class TourRepository extends Repository
             $priceRangeQuery->addField('regularPrice', array('gte' => $minPrice, 'lte' => $maxPrice));
 
             $boolFilter->addMust($priceRangeQuery);
+        }
+
+        if (!empty($tourSearch->getDeparture())) {
+            $departure = \DateTime::createFromFormat('d/m/Y', $tourSearch->getDeparture());
+            $fomartDeparture = $departure->format('Y-m-d');
+            $beforeDeparture = $departure->sub(new \DateInterval('P1D'))->format('Y-m-d');
+
+            $departureRangeQuery = new Query\Range();
+            $departureRangeQuery->addField('startDate', array(
+                    'gte' => \Elastica\Util::convertDate($beforeDeparture),
+                    'lte' => \Elastica\Util::convertDate($fomartDeparture),
+                )
+            );
+            $boolFilter->addMust($departureRangeQuery);
         }
 
         $query = Query::create($boolFilter);

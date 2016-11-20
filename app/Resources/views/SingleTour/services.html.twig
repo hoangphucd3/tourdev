@@ -1,0 +1,11 @@
+{% for service in services %}
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="cs-tour-category">
+            <i class="{{ service.service.icon }}"></i>
+
+            <div class="cs-text">
+                {{ service.service.name }}
+            </div>
+        </div>
+    </div>
+{% endfor %}

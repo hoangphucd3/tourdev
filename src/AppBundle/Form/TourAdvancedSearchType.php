@@ -22,11 +22,35 @@ class TourAdvancedSearchType extends AbstractType
 
     private $priceSearch;
 
+    private $departureSearch;
+
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $session = $options['session'];
+
+        $tourName = $session->get('search_tourName');
+        $location = $session->get('search_locations');
+        $deparure = $session->get('search_departure');
+
+        if (!empty($tourName)) {
+            $this->setTourNameSearch($tourName);
+        }
+
+        if (!empty($location)) {
+            $this->setLocationSearch(array($location));
+        }
+
+        if (!empty($deparure)) {
+            $this->setDepartureSearch($deparure);
+        }
+
+        $session->remove('search_tourName');
+        $session->remove('search_locations');
+        $session->remove('search_departure');
+
         $builder
             ->add('tourName', TextType::class, array(
                     'attr' => array(
@@ -34,6 +58,13 @@ class TourAdvancedSearchType extends AbstractType
                     ),
                     'required' => false,
                     'data' => $this->getTourNameSearch(),
+                )
+            )
+            ->add('departure', TextType::class, array(
+                    'label' => 'Chọn ngày khởi hành',
+                    'attr' => ['placeholder' => 'Ngày khởi hành'],
+                    'required' => false,
+                    'data' => $this->getDepartureSearch(),
                 )
             )
             ->add('locations', EntityType::class, array(
@@ -66,6 +97,7 @@ class TourAdvancedSearchType extends AbstractType
                     'multiple' => false,
                     'required' => false,
                     'data' => $this->getPriceSearch(),
+                    'placeholder' => 'Tất cả',
                 )
             );
 
@@ -75,6 +107,15 @@ class TourAdvancedSearchType extends AbstractType
                 $search_data = $event->getData();
 
                 $this->setTourNameSearch($search_data);
+            }
+        );
+
+        $builder->get('departure')->addEventListener(
+            FormEvents::SUBMIT,
+            function (FormEvent $event) {
+                $search_data = $event->getData();
+
+                $this->setDepartureSearch($search_data);
             }
         );
 
@@ -114,6 +155,8 @@ class TourAdvancedSearchType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Search\TourSearch'
         ));
+
+        $resolver->setRequired('session');
     }
 
     public function setTourNameSearch($tourNameSearch)
@@ -154,6 +197,16 @@ class TourAdvancedSearchType extends AbstractType
     public function getPriceSearch()
     {
         return $this->priceSearch;
+    }
+
+    public function setDepartureSearch($departureSearch)
+    {
+        $this->departureSearch = $departureSearch;
+    }
+
+    public function getDepartureSearch()
+    {
+        return $this->departureSearch;
     }
 
     private function priceFilter($price, $decimals = 0, $decPoint = ',', $thousandsSep = '.', $currency = 'đ')

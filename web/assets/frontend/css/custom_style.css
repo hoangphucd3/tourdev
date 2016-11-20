@@ -363,3 +363,11 @@ h1, h2, h3, h4, h5, h6,
 .cs-error-content strong {
     font-family: 'Raleway', sans-serif;;
 }
+
+.wp-traveladvisor .cs-search-field .cs-calendar-combo input[type=text] {
+    border-radius: 30px;
+}
+
+.wp-traveladvisor .page-sidebar .cs-listing-filters .cs-search-field {
+    margin: 0;
+}

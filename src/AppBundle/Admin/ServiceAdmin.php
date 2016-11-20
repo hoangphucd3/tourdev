@@ -33,7 +33,7 @@ class ServiceAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name', null, array(
+            ->addIdentifier('name', null, array(
                     'label' => 'label.service_name'
                 )
             )

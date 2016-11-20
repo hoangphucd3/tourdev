@@ -36,7 +36,7 @@ class TourAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('tourName', null, array(
+            ->addIdentifier('tourName', null, array(
                     'label' => 'label.tour_name')
             )
             ->add('startDate', null, array(

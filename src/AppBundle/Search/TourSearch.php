@@ -12,6 +12,8 @@ class TourSearch
 
     private $price;
 
+    private $departure;
+
     public function getId()
     {
         return $this->id;
@@ -68,6 +70,18 @@ class TourSearch
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getDeparture()
+    {
+        return $this->departure;
+    }
+
+    public function setDeparture($departure)
+    {
+        $this->departure = $departure;
 
         return $this;
     }

@@ -107,6 +107,8 @@ fos_elastica:
                         description:
                             type: text
                         regularPrice: ~
+                        startDate:
+                            type: date
                         locations:
                             type: nested
                             properties:
