@@ -59,18 +59,16 @@ class UserController extends Controller
      */
     public function tourRequestNewAction(Request $request, TourOrder $tourOrder)
     {
-        $form = $this->createForm(TourRequestType::class, null, array(
-            'tourOrder' => $tourOrder,
-        ));
+        $form = $this->createForm(TourRequestType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $request_data = $form->getData();
 
-            $request_data->setDeparture(\DateTime::createFromFormat("d/m/Y", $request_data->getDeparture()));
             $request_data->setTourOrder($tourOrder);
-            $request_data->setUser($this->getUser());
+            $request_data->setUser($this->getCustomer());
+            $request_data->setStatus('pending');
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($request_data);
@@ -88,9 +86,7 @@ class UserController extends Controller
      */
     public function tourRequestFormAction(TourOrder $tourOrder)
     {
-        $form = $this->createForm(TourRequestType::class, null, array(
-            'tourOrder' => $tourOrder,
-        ));
+        $form = $this->createForm(TourRequestType::class);
 
         return $this->render('Profile/_tour_request_form.html.twig', array(
             'orderDetail' => $tourOrder,
@@ -150,5 +146,14 @@ class UserController extends Controller
             ->setAction($this->generateUrl('tour_order_delete', ['tourOrderId' => $tourOrder->getId()]))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    protected function getCustomer()
+    {
+        $user = $this->getUser();
+
+        $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneBy(array('user' => $user));
+
+        return $customer;
     }
 }

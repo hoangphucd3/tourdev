@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\TourRequest;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -18,31 +19,8 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('departure', null, array(
-                    'label' => 'label.tour_request_departure'
-                )
-            )
-            ->add('numberOfAdults', null, array(
-                    'label' => 'label.tour_request_adults'
-                )
-            )
-            ->add('numberOfChildren', null, array(
-                    'label' => 'label.tour_request_children'
-                )
-            )
-            ->add('numberOfInfants', null, array(
-                    'label' => 'label.tour_request_infants'
-                )
-            )
-            ->add('status', null, array(
-                    'label' => 'label.order_status',
-                    'choices' => array(
-                        'canceled' => 'Đã hủy',
-                        'pending' => 'Chờ xử lý',
-                        'completed' => 'Hoàn thành',
-                    ),
-                )
-            );
+            ->add('id')
+            ->add('status');
     }
 
     /**
@@ -51,20 +29,10 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('departure', null, array(
-                    'label' => 'label.tour_request_departure'
-                )
-            )
-            ->add('numberOfAdults', null, array(
-                    'label' => 'label.tour_request_adults'
-                )
-            )
-            ->add('numberOfChildren', null, array(
-                    'label' => 'label.tour_request_children'
-                )
-            )
-            ->add('numberOfInfants', null, array(
-                    'label' => 'label.tour_request_infants'
+            ->addIdentifier('id')
+            ->add('tourOrder', null, array(
+                    'label' => 'Đơn đặt tour',
+                    'associated_property' => 'id',
                 )
             )
             ->add('status', 'choice', array(
@@ -91,20 +59,10 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('departure', null, array(
-                    'label' => 'label.tour_request_departure'
-                )
-            )
-            ->add('numberOfAdults', null, array(
-                    'label' => 'label.tour_request_adults'
-                )
-            )
-            ->add('numberOfChildren', null, array(
-                    'label' => 'label.tour_request_children'
-                )
-            )
-            ->add('numberOfInfants', null, array(
-                    'label' => 'label.tour_request_infants'
+            ->add('user', 'sonata_type_model_list')
+            ->add('tourOrder', 'sonata_type_model_list')
+            ->add('content', CKEditorType::class, array(
+                    'label' => 'label.tour_request_content'
                 )
             )
             ->add('status', ChoiceType::class, array(
@@ -124,22 +82,7 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('departure', null, array(
-                    'label' => 'label.tour_request_departure'
-                )
-            )
-            ->add('numberOfAdults', null, array(
-                    'label' => 'label.tour_request_adults'
-                )
-            )
-            ->add('numberOfChildren', null, array(
-                    'label' => 'label.tour_request_children'
-                )
-            )
-            ->add('numberOfInfants', null, array(
-                    'label' => 'label.tour_request_infants'
-                )
-            )
+            ->add('id')
             ->add('status', 'choice', array(
                     'label' => 'label.order_status',
                     'choices' => array(

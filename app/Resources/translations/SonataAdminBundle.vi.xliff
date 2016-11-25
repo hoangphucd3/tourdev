@@ -156,11 +156,11 @@
             </trans-unit>
             <trans-unit id="flash_edit_success">
                 <source>flash_edit_success</source>
-                <target>Item "%name%" has been successfully updated.</target>
+                <target>Cập nhật thành công "%name%"</target>
             </trans-unit>
             <trans-unit id="flash_edit_error">
                 <source>flash_edit_error</source>
-                <target>An error has occurred during update of item "%name%".</target>
+                <target>Có lỗi xảy ra khi cập nhật "%name%".</target>
             </trans-unit>
             <trans-unit id="flash_lock_error">
                 <source>flash_lock_error</source>
@@ -436,7 +436,7 @@
             </trans-unit>
             <trans-unit id="link_actions">
                 <source>link_actions</source>
-                <target>Actions</target>
+                <target>Hành động</target>
             </trans-unit>
             <trans-unit id="noscript_warning">
                 <source>noscript_warning</source>

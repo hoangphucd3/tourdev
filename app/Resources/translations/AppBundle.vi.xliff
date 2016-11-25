@@ -106,6 +106,10 @@
                 <source>admin.label.tour_request</source>
                 <target>Đơn yêu cầu chỉnh sửa</target>
             </trans-unit>
+            <trans-unit id="admin.label.customer">
+                <source>admin.label.customer</source>
+                <target>Khách hàng</target>
+            </trans-unit>
             <trans-unit id="admin.group_travel">
                 <source>admin.group_travel</source>
                 <target>Travel</target>
@@ -160,24 +164,17 @@
             </trans-unit>
             <trans-unit id="label.comment_created_at">
                 <source>label.comment_created_at</source>
-                <target>Thời gian</target>
+                <target>Thời gian tạo</target>
             </trans-unit>
-            <trans-unit id="label.tour_request_departure">
-                <source>label.tour_request_departure</source>
-                <target>Ngày khởi hành</target>
+            <trans-unit id="label.comment_updated_at">
+                <source>label.comment_updated_at</source>
+                <target>Thời gian cập nhật</target>
             </trans-unit>
-            <trans-unit id="label.tour_request_adults">
-                <source>label.tour_request_adults</source>
-                <target>Người lớn</target>
+            <trans-unit id="label.tour_request_content">
+                <source>label.tour_request_content</source>
+                <target>Nội dung</target>
             </trans-unit>
-            <trans-unit id="label.tour_request_children">
-                <source>label.tour_request_children</source>
-                <target>Trẻ em</target>
-            </trans-unit>
-            <trans-unit id="label.tour_request_infants">
-                <source>label.tour_request_infants</source>
-                <target>Em bé</target>
-            </trans-unit>
+
             <trans-unit id="label.order_id">
                 <source>label.order_id</source>
                 <target>Mã đơn</target>
@@ -189,10 +186,6 @@
             <trans-unit id="label.order_last_name">
                 <source>label.order_last_name</source>
                 <target>Họ</target>
-            </trans-unit>
-            <trans-unit id="label.order_departure">
-                <source>label.order_departure</source>
-                <target>Khởi hành</target>
             </trans-unit>
             <trans-unit id="label.order_email">
                 <source>label.order_email</source>

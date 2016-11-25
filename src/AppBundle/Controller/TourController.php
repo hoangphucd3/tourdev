@@ -22,6 +22,59 @@ class TourController extends Controller
      */
     public function tourShowAction(Tour $tour)
     {
-        return $this->render(':SingleTour:content.html.twig', ['tour' => $tour]);
+        $this->checkTourOrders($tour);
+
+        $remainSeats = $this->checkRemainSeats($tour);
+
+        return $this->render(':SingleTour:content.html.twig', ['tour' => $tour, 'remainSeats' => $remainSeats]);
+    }
+
+    /**
+     * @param Tour $tour
+     * @return int
+     */
+    protected function checkRemainSeats(Tour $tour)
+    {
+        $orders = $tour->getTourOrders();
+
+        $count = $tour->getNumberOfPeople();
+
+        foreach ($orders as $order) {
+            if ($count < 0) {
+                $count = 0;
+                break;
+            }
+            if ('canceled' !== $order->getStatus()) {
+                $people = $order->getNumberOfPeople();
+                $count -= $people;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * @param Tour $tour
+     * @return bool
+     */
+    protected function checkTourOrders(Tour $tour)
+    {
+        $orders = $tour->getTourOrders();
+        $em = $this->getDoctrine()->getManager();
+
+        foreach ($orders as $order) {
+            $orderTime = $order->getUpdatedAt();
+            $orderTime->modify('+24 hours');
+            $now = new \DateTime();
+
+            if ($orderTime > $now) {
+                if ('canceled' !== $order->getStatus()) {
+                    $order->setStatus('canceled');
+                    $em->flush();
+                }
+            }
+        }
+
+        return true;
     }
 }

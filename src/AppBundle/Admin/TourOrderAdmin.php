@@ -3,6 +3,8 @@
 namespace AppBundle\Admin;
 
 use AppBundle\Entity\TourOrder;
+use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -13,32 +15,22 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
 class TourOrderAdmin extends AbstractAdmin
 {
+    protected $parentAssociationMapping = 'customer';
+
+    public function configure()
+    {
+        $this->parentAssociationMapping = 'customer';
+    }
+
     /**
      * @param DatagridMapper $datagridMapper
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('billingFirstName')
-            ->add('billingLastName')
-            ->add('status')
-            ->add('billingPhone')
-            ->add('billingAddress1')
-            ->add('country')
-            ->add('departure')
-            ->add('email')
-            ->add('createdAt');
-    }
-
-    /**
-     * @param ListMapper $listMapper
-     */
-    protected function configureListFields(ListMapper $listMapper)
-    {
-        $listMapper
-            ->add('id', null, array(
-                    'label' => 'label.order_id'
+            ->add('customer', null, array(
+                    'label' => 'Khách hàng',
+                    'associated_property ' => '__toString',
                 )
             )
             ->add('billingFirstName', null, array(
@@ -49,8 +41,41 @@ class TourOrderAdmin extends AbstractAdmin
                     'label' => 'label.order_last_name'
                 )
             )
-            ->add('departure', null, array(
-                    'label' => 'label.order_departure'
+            ->add('status', 'doctrine_orm_string', array('label' => 'label.order_status'), 'choice', array(
+                    'choices' => array(
+                        'canceled' => 'Đã hủy',
+                        'pending' => 'Chờ xử lý',
+                        'completed' => 'Hoàn thành',
+                    ),
+                )
+            )
+            ->add('email', null, array(
+                    'label' => 'label.order_email'
+                )
+            );
+    }
+
+    /**
+     * @param ListMapper $listMapper
+     */
+    protected function configureListFields(ListMapper $listMapper)
+    {
+        $listMapper
+            ->addIdentifier('id', null, array(
+                    'label' => 'label.order_id'
+                )
+            )
+            ->add('customer', null, array(
+                    'label' => 'Khách hàng',
+                    'associated_property ' => '__toString',
+                )
+            )
+            ->add('billingFirstName', null, array(
+                    'label' => 'label.order_first_name'
+                )
+            )
+            ->add('billingLastName', null, array(
+                    'label' => 'label.order_last_name'
                 )
             )
             ->add('email', null, array(
@@ -86,7 +111,8 @@ class TourOrderAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('id', null, array(
-                    'label' => 'label.order_id'
+                    'label' => 'label.order_id',
+                    'disabled' => true,
                 )
             )
             ->add('billingFirstName', null, array(
@@ -95,10 +121,6 @@ class TourOrderAdmin extends AbstractAdmin
             )
             ->add('billingLastName', null, array(
                     'label' => 'label.order_last_name'
-                )
-            )
-            ->add('departure', null, array(
-                    'label' => 'label.order_departure'
                 )
             )
             ->add('email', null, array(
@@ -112,6 +134,14 @@ class TourOrderAdmin extends AbstractAdmin
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
                     ),
+                )
+            )
+            ->add('checkoutMethod', ChoiceType::class, array(
+                    'label' => 'Phương thức thanh toán',
+                    'choices' => array(
+                        'cod' => 'Thanh toán trực tiếp',
+                        'onepay' => 'Thanh toán trực tuyến',
+                    )
                 )
             )
             ->add('billingPhone', null, array(
@@ -156,10 +186,6 @@ class TourOrderAdmin extends AbstractAdmin
             )
             ->add('billingLastName', null, array(
                     'label' => 'label.order_last_name'
-                )
-            )
-            ->add('departure', null, array(
-                    'label' => 'label.order_departure'
                 )
             )
             ->add('email', null, array(
@@ -222,6 +248,26 @@ class TourOrderAdmin extends AbstractAdmin
         }
     }
 
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        if (!$childAdmin && !in_array($action, array('edit'))) {
+            return;
+        }
+        $admin = $this->isChild() ? $this->getParent() : $this;
+
+        $id = $admin->getRequest()->get('id');
+
+        $menu->addChild(
+            $this->trans('Đơn đặt tour', array(), 'AppBundle'),
+            $admin->generateMenuUrl('edit', array('id' => $id))
+        );
+
+        $menu->addChild(
+            $this->trans('Hóa đơn', array(), 'AppBundle'),
+            $admin->generateMenuUrl('app.admin.invoice.list', array('id' => $id))
+        );
+    }
+
     /**
      * Returns "nice" name for object
      * Can define with __toString() function in Entity
@@ -232,7 +278,7 @@ class TourOrderAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object instanceof TourOrder
-            ? 'Hóa đơn #' . $object->getId()
+            ? 'Đơn đặt tour #' . $object->getId()
             : ''; // shown in the breadcrumb on the create view
     }
 }

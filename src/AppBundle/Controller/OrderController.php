@@ -174,8 +174,10 @@ class OrderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $order = $em->getRepository('AppBundle:TourOrder')->find($tourOrder->getId());
+        $invoice = $order->getInvoice();
 
         $order->setStatus('completed');
+        $invoice->setStatus('completed');
         $em->flush();
 
         return $this->render(':Checkout:order_received.html.twig', array('tourOrder' => $tourOrder));

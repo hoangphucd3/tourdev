@@ -371,3 +371,7 @@ h1, h2, h3, h4, h5, h6,
 .wp-traveladvisor .page-sidebar .cs-listing-filters .cs-search-field {
     margin: 0;
 }
+
+.wp-traveladvisor .cs-list.classic .cs-media ul.cs-list-slider {
+    display: block;
+}

@@ -3,18 +3,8 @@
     {{ form_errors(form) }}
 
     <p class="form-row form-row form-row-wide">
-        {{ form_label(form.numberOfAdults) }}
-        {{ form_widget(form.numberOfAdults, {'attr': {'class': 'input-text'}}) }}
-    </p>
-
-    <p class="form-row form-row form-row-wide">
-        {{ form_label(form.numberOfChildren) }}
-        {{ form_widget(form.numberOfChildren, {'attr': {'class': 'input-text'}}) }}
-    </p>
-
-    <p class="form-row form-row form-row-wide">
-        {{ form_label(form.numberOfInfants) }}
-        {{ form_widget(form.numberOfInfants, {'attr': {'class': 'input-text'}}) }}
+        {{ form_label(form.content) }}
+        {{ form_widget(form.content, {'attr': {'class': 'input-text'}}) }}
     </p>
 
     <div class="form-row place-order">

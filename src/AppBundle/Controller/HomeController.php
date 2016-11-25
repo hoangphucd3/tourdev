@@ -15,6 +15,18 @@ class HomeController extends Controller
     {
         $tours = $this->get('app.tour_manager')->getAllTours();
 
+        $validTours = array();
+        $now = new \DateTime();
+
+        foreach ($tours as $tour) {
+            if ($now < $tour->getStartDate()) {
+                $validTours[] = $tour;
+            }
+        }
+
+
+        dump($validTours);
+
         return $this->render('home/index.html.twig', ['tours' => $tours]);
     }
 }

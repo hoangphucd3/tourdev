@@ -61,6 +61,15 @@
                                                                                 {{ tour.tourName }}
                                                                             </a>
                                                                         </h3>
+
+                                                                        <ul>
+                                                                            <li>
+                                                                                Khởi hành: <span class="cs-color">{{ tour.startDate|date('d/m/Y') }}</span>
+                                                                            </li>
+                                                                            <li>
+                                                                                Thời gian: <span class="cs-color">{{ tour.duration }} ngày</span>
+                                                                            </li>
+                                                                        </ul>
                                                                     </div>
 
                                                                     <div class="cs-price-box">

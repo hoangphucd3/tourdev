@@ -2,11 +2,9 @@
 
 namespace AppBundle\Admin;
 
-use Knp\Menu\ItemInterface as MenuItemInterface;
 use AppBundle\Entity\Tour;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -15,8 +13,10 @@ use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\CoreBundle\Form\Type\CollectionType;
 use Sonata\CoreBundle\Form\Type\DatePickerType;
+use Sonata\DoctrineORMAdminBundle\Filter\DateRangeFilter;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class TourAdmin extends AbstractAdmin
 {
@@ -27,7 +27,23 @@ class TourAdmin extends AbstractAdmin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper;
+        $datagridMapper
+            ->add('tourName', null, array(
+                    'label' => 'label.tour_name')
+            )
+            ->add('startDate', DateRangeFilter::class, array(
+                    'label' => 'label.tour_start_date',
+                    'format' => 'dd/MM/yyyy',
+                    'widget' => 'single_text',
+                )
+            )
+            ->add('duration', null, array(
+                    'label' => 'label.tour_duration')
+            )
+            ->add('numberOfPeople', null, array(
+                    'label' => 'label.tour_number_of_people'
+                )
+            );
     }
 
     /**
@@ -40,7 +56,8 @@ class TourAdmin extends AbstractAdmin
                     'label' => 'label.tour_name')
             )
             ->add('startDate', null, array(
-                    'label' => 'label.tour_start_date')
+                    'label' => 'label.tour_start_date',
+                )
             )
             ->add('duration', null, array(
                     'label' => 'label.tour_duration')
@@ -49,13 +66,24 @@ class TourAdmin extends AbstractAdmin
                     'label' => 'label.tour_number_of_people'
                 )
             )
-            ->add('_action', null, array(
-                'actions' => array(
-                    'show' => array(),
-                    'edit' => array(),
-                    'delete' => array(),
+            ->add('regularPrice', 'currency', array(
+                    'label' => 'label.tour_regular_price',
+                    'currency' => 'VND',
                 )
-            ));
+            )
+            ->add('salePrice', 'currency', array(
+                    'label' => 'label.tour_sale_price',
+                    'currency' => 'VND',
+                )
+            )
+            ->add('_action', null, array(
+                    'actions' => array(
+                        'show' => array(),
+                        'edit' => array(),
+                        'delete' => array(),
+                    )
+                )
+            );
     }
 
     /**
@@ -70,51 +98,57 @@ class TourAdmin extends AbstractAdmin
 
         $formMapper
             ->with('group.content', array('class' => 'col-md-12'))
-                ->add('tourName', null, array(
-                        'label' => 'label.tour_name')
+            ->add('tourName', null, array(
+                    'label' => 'label.tour_name')
+            )
+            ->add('startDate', DatePickerType::class, array(
+                    'label' => 'label.tour_start_date',
+                    'format' => 'dd-MM-yyyy',
                 )
-                ->add('startDate', DatePickerType::class, array(
-                        'label' => 'label.tour_start_date',
-                        'format' => 'dd-MM-yyyy',
-                    )
+            )
+            ->add('duration', null, array(
+                    'label' => 'label.tour_duration')
+            )
+            ->add('numberOfPeople', null, array(
+                    'label' => 'label.tour_number_of_people'
                 )
-                ->add('duration', null, array(
-                        'label' => 'label.tour_duration')
+            )
+            ->add('description', CKEditorType::class, array(
+                    'label' => 'label.tour_description',
                 )
-                ->add('numberOfPeople', null, array(
-                        'label' => 'label.tour_number_of_people'
-                    )
+            )
+            ->add('status', ChoiceType::class, array(
+                    'label' => 'label.tour_status',
+                    'choices' => array(
+                        'open' => 'Mở',
+                        'closed' => 'Đã đóng',
+                    ),
                 )
-                ->add('description', CKEditorType::class, array(
-                        'label' => 'label.tour_description',
-                    )
+            )
+            ->add('regularPrice', MoneyType::class, array(
+                    'label' => 'label.tour_regular_price',
+                    'currency' => 'VND',
+                    'scale' => 0,
+                    'grouping' => true,
                 )
-                ->add('status', ChoiceType::class, array(
-                        'label' => 'label.tour_status',
-                        'choices' => array(
-                            'open' => 'Mở',
-                            'closed' => 'Đã đóng',
-                        ),
-                    )
+            )
+            ->add('salePrice', MoneyType::class, array(
+                    'label' => 'label.tour_sale_price',
+                    'currency' => 'VND',
+                    'scale' => 0,
+                    'grouping' => true,
                 )
-                ->add('regularPrice', null, array(
-                        'label' => 'label.tour_regular_price',
-                    )
+            )
+            ->add('category', ModelType::class, array(
+                    'label' => 'label.tour_category',
+                    'class' => 'AppBundle\Entity\TourCategory',
+                    'property' => 'name',
                 )
-                ->add('salePrice', null, array(
-                        'label' => 'label.tour_sale_price',
-                    )
-                )
-                ->add('category', ModelType::class, array(
-                        'label' => 'label.tour_category',
-                        'class' => 'AppBundle\Entity\TourCategory',
-                        'property' => 'name',
-                    )
-                )
-                ->add('featured_image', MediaType::class, array(
-                    'label' => 'label.tour_featured_image',
-                    'provider' => 'sonata.media.provider.image',
-                    'context' => 'default')/*, array(
+            )
+            ->add('featured_image', MediaType::class, array(
+                'label' => 'label.tour_featured_image',
+                'provider' => 'sonata.media.provider.image',
+                'context' => 'default')/*, array(
                                 'edit' => 'inline',
                                 'inline' => 'table',
                                 'link_parameters' => array(
@@ -122,47 +156,47 @@ class TourAdmin extends AbstractAdmin
                                     'context' => 'default'
                                 )
                             )*/
+            )
+            ->add('backgrounds', CollectionType::class, array(
+                'label' => 'label.tour_backgrounds',
+            ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
                 )
-                ->add('backgrounds', CollectionType::class, array(
-                    'label' => 'label.tour_backgrounds',
-                ), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'sortable' => 'position',
-                    )
+            )
+            ->add('gallery', ModelListType::class, array(
+                    'label' => 'label.tour_gallery',
                 )
-                ->add('gallery', ModelListType::class, array(
-                        'label' => 'label.tour_gallery',
-                    )
-                )
+            )
             ->end()
             ->with('group.tour_services', array('class' => 'col-md-12'))
-                ->add('services', CollectionType::class, array(
-                    'label' => 'label.tour_services',
-                    ), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'admin_code' => 'app.admin.tour_service',
-                    )
+            ->add('services', CollectionType::class, array(
+                'label' => 'label.tour_services',
+            ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_service',
                 )
+            )
             ->end()
             ->with('group.tour_location', array('class' => 'col-md-12'))
-                ->add('locations', CollectionType::class, array(
-                    'label' => 'label.tour_locations',
-                ), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'admin_code' => 'app.admin.tour_location',
-                    )
+            ->add('locations', CollectionType::class, array(
+                'label' => 'label.tour_locations',
+            ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_location',
                 )
+            )
             ->end()
             ->with('group.tour_hotels', array('class' => 'col-md-12'))
-                ->add('hotels', CollectionType::class, array( 'label' => 'label.tour_hotels', ), array(
-                        'edit' => 'inline',
-                        'inline' => 'table',
-                        'admin_code' => 'app.admin.tour_hotel',
-                    )
+            ->add('hotels', CollectionType::class, array('label' => 'label.tour_hotels',), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_hotel',
                 )
+            )
             ->end();
     }
 
@@ -171,23 +205,31 @@ class TourAdmin extends AbstractAdmin
      */
     protected function configureShowFields(ShowMapper $showMapper)
     {
-        $showMapper;
-    }
-
-    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        if (!$childAdmin && !in_array($action, array('edit'))) {
-            return;
-        }
-
-        $admin = $this->isChild() ? $this->getParent() : $this;
-
-        $id = $admin->getRequest()->get('id');
-
-        $menu->addChild(
-            $this->trans('Test thoi', array(), 'SonataCustomerBundle'),
-            $admin->generateMenuUrl('app.admin.tour_category.list', array('id' => $id))
-        );
+        $showMapper
+            ->add('tourName', null, array(
+                    'label' => 'label.tour_name')
+            )
+            ->add('startDate', null, array(
+                    'label' => 'label.tour_start_date')
+            )
+            ->add('duration', null, array(
+                    'label' => 'label.tour_duration')
+            )
+            ->add('numberOfPeople', null, array(
+                    'label' => 'label.tour_number_of_people'
+                )
+            )
+            ->add('regularPrice', 'currency', array(
+                    'label' => 'label.tour_regular_price',
+                    'currency' => 'VND',
+                )
+            )
+            ->add('salePrice', 'currency', array(
+                    'label' => 'label.tour_sale_price',
+                    'currency' => 'VND',
+                )
+            )
+            ->add('status');
     }
 
     /**

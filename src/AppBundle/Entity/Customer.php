@@ -541,4 +541,9 @@ class Customer
     {
         return $this->touRequests;
     }
+
+    public function __toString()
+    {
+        return 'Khách hàng #'. $this->id;
+    }
 }

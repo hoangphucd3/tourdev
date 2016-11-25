@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="hoa_don")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Invoice
 {
@@ -48,6 +49,26 @@ class Invoice
      * @ORM\JoinColumn(name="tour_order_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tourOrder;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="TGTao", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="TGCapNhat", type="datetime")
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
     /**
      * Get id
@@ -153,5 +174,74 @@ class Invoice
     public function getTourOrder()
     {
         return $this->tourOrder;
+    }
+
+    public function __toString()
+    {
+        return 'Hóa đơn #' . $this->id;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Invoice
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Invoice
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

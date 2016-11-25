@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="tour_yeucau")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourRequestRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class TourRequest
 {
@@ -22,25 +23,10 @@ class TourRequest
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="nguoiLon", type="integer")
+     * @var text
+     * @ORM\Column(name="noiDung", type="text")
      */
-    private $numberOfAdults;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="treEm", type="integer")
-     */
-    private $numberOfChildren;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="emBe", type="integer")
-     */
-    private $numberOfInfants;
+    private $content;
 
     /**
      * @var string
@@ -81,6 +67,7 @@ class TourRequest
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->status = 'pending';
     }
 
     /**
@@ -91,78 +78,6 @@ class TourRequest
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set numberOfAdults
-     *
-     * @param integer $numberOfAdults
-     *
-     * @return TourRequest
-     */
-    public function setNumberOfAdults($numberOfAdults)
-    {
-        $this->numberOfAdults = $numberOfAdults;
-
-        return $this;
-    }
-
-    /**
-     * Get numberOfAdults
-     *
-     * @return integer
-     */
-    public function getNumberOfAdults()
-    {
-        return $this->numberOfAdults;
-    }
-
-    /**
-     * Set numberOfChildren
-     *
-     * @param integer $numberOfChildren
-     *
-     * @return TourRequest
-     */
-    public function setNumberOfChildren($numberOfChildren)
-    {
-        $this->numberOfChildren = $numberOfChildren;
-
-        return $this;
-    }
-
-    /**
-     * Get numberOfChildren
-     *
-     * @return integer
-     */
-    public function getNumberOfChildren()
-    {
-        return $this->numberOfChildren;
-    }
-
-    /**
-     * Set numberOfInfants
-     *
-     * @param integer $numberOfInfants
-     *
-     * @return TourRequest
-     */
-    public function setNumberOfInfants($numberOfInfants)
-    {
-        $this->numberOfInfants = $numberOfInfants;
-
-        return $this;
-    }
-
-    /**
-     * Get numberOfInfants
-     *
-     * @return integer
-     */
-    public function getNumberOfInfants()
-    {
-        return $this->numberOfInfants;
     }
 
     /**
@@ -240,11 +155,11 @@ class TourRequest
     /**
      * Set user
      *
-     * @param User $user
+     * @param Customer $user
      *
      * @return TourRequest
      */
-    public function setUser(User $user = null)
+    public function setUser(Customer $user = null)
     {
         $this->user = $user;
 
@@ -283,5 +198,50 @@ class TourRequest
     public function getTourOrder()
     {
         return $this->tourOrder;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     *
+     * @return TourRequest
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function __toString()
+    {
+        return 'Đơn yêu cầu sửa tour #' . $this->id;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
     }
 }

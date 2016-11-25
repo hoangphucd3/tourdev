@@ -17,6 +17,7 @@ class CommentAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('content', null, array(
                     'label' => 'label.comment_content'
                 )
@@ -33,8 +34,18 @@ class CommentAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->add('content', null, array(
                     'label' => 'label.comment_content'
+                )
+            )
+            ->add('tour', null, array(
+                    'associated_property' => 'tourName',
+                    'identifier ' => true,
+                )
+            )
+            ->add('user.userName', null, array(
+                    'label' => 'User',
                 )
             )
             ->add('createdAt', null, array(
@@ -73,12 +84,22 @@ class CommentAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('id')
             ->add('content', null, array(
                     'label' => 'label.comment_content'
                 )
             )
+            ->add('tour', null, array(
+                    'associated_property' => 'tourName',
+                    'identifier ' => true,
+                )
+            )
             ->add('createdAt', null, array(
                     'label' => 'label.comment_created_at',
+                )
+            )
+            ->add('updatedAt', null, array(
+                    'label' => 'label.comment_updated_at',
                 )
             );
     }

@@ -93,7 +93,7 @@ class BookingController extends Controller
      * @param Request $request
      * @return JsonResponse|Response
      */
-    public function checkRemainSeatsAction(Request $request)
+    public function checkTourBookingAction(Request $request)
     {
         if ($request->isXmlHttpRequest()) {
             $return = array();
@@ -104,17 +104,23 @@ class BookingController extends Controller
             $infants = $form_data['infants'];
             $tourId = $request->get('tourId');
 
-            $tourInfo = $this->getDoctrine()->getRepository('AppBundle:Tour')->find($tourId);
+            $tour = $this->getDoctrine()->getRepository('AppBundle:Tour')->find($tourId);
+
+            $remainSeats = $this->remainSeats($tour);
 
             $totalNum = abs(intval($adults + $children + $infants));
 
-            $remainSeats = abs(intval($tourInfo->getNumberOfPeople() - count($tourInfo->getTourOrders())));
+            $return['status'] = 'error';
 
-            if (0 == $totalNum) {
-                $return['status'] = 'error';
+            $tourDeparture = $tour->getStartDate();
+            $tourDeparture->modify('+24 hours');
+            $now = new \DateTime();
+
+            if ($now > $tourDeparture) {
+                $return['info'] = 'Tour này đã hết hạn đặt';
+            } elseif (0 == $totalNum) {
                 $return['info'] = 'Hãy chọn số lượng người';
             } elseif ($totalNum > $remainSeats) {
-                $return['status'] = 'error';
                 $return['info'] = 'Tour này chỉ còn ' . $remainSeats . ' chỗ ';
             } else {
                 $return['status'] = 'success';
@@ -124,5 +130,25 @@ class BookingController extends Controller
         }
 
         return new Response('Có lỗi?');
+    }
+
+    protected function remainSeats(Tour $tour)
+    {
+        $orders = $tour->getTourOrders();
+
+        $count = $tour->getNumberOfPeople();
+
+        foreach ($orders as $order) {
+            if ($count < 0) {
+                $count = 0;
+                break;
+            }
+            if ('canceled' !== $order->getStatus()) {
+                $people = $order->getNumberOfPeople();
+                $count -= $people;
+            }
+        }
+
+        return $count;
     }
 }

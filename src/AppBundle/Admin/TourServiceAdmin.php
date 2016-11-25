@@ -11,12 +11,23 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class TourServiceAdmin extends AbstractAdmin
 {
+    protected $parentAssociationMapping = 'tour';
+
+    public function configure()
+    {
+        $this->parentAssociationMapping = 'tour';
+    }
+
     /**
      * @param ListMapper $listMapper
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper;
+        $listMapper
+            ->add('service', null, array(
+                    'label' => 'label.service_name'
+                )
+            );
     }
 
     /**

@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="don_dat_tour")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TourOrderRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class TourOrder
 {
@@ -161,6 +162,7 @@ class TourOrder
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->status = 'pending';
     }
 
     /**
@@ -626,5 +628,40 @@ class TourOrder
     public function getInvoice()
     {
         return $this->invoice;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumberOfPeople()
+    {
+        $adults = $this->numberOfAdults;
+        $children = $this->numberOfChildren;
+        $infants = $this->numberOfInfants;
+
+        $total = $adults + $children + $infants;
+
+        return $total;
+    }
+
+    public function __toString()
+    {
+        return 'Đơn đặt tour #' . $this->id;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate()
+    {
+        $this->setUpdatedAt(new \DateTime());
     }
 }

@@ -75,25 +75,25 @@
                 <div class="booking-item-payment-total">
                     <table border="0" class="table_checkout">
                         <tbody>
-                        <tr>
-                            <td>Người lớn</td>
-                            <td class="text-right">
-                                {% set adultPrice = tourPrice * orderDetail.numberOfAdults %}
-                                <strong>{{ adultPrice|priceFilter|raw }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Trẻ em</td>
-                            <td class="text-right">
-                                {% set childrenPrice = (tourPrice * orderDetail.numberOfInfants)/1.5 %}
-                                <strong>{{ childrenPrice|priceFilter|raw }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Em bé</td>
-                            <td class="text-right"><strong>{{ 0|priceFilter|raw }}</strong></td>
-                        </tr>
+                        {#<tr>#}
+                        {#<td>Người lớn</td>#}
+                        {#<td class="text-right">#}
+                        {#{% set adultPrice = tourPrice * orderDetail.numberOfAdults %}#}
+                        {#<strong>{{ adultPrice|priceFilter|raw }}</strong></td>#}
+                        {#</tr>#}
+                        {#<tr>#}
+                        {#<td>Trẻ em</td>#}
+                        {#<td class="text-right">#}
+                        {#{% set childrenPrice = (tourPrice * orderDetail.numberOfInfants)/1.5 %}#}
+                        {#<strong>{{ childrenPrice|priceFilter|raw }}</strong></td>#}
+                        {#</tr>#}
+                        {#<tr>#}
+                        {#<td>Em bé</td>#}
+                        {#<td class="text-right"><strong>{{ 0|priceFilter|raw }}</strong></td>#}
+                        {#</tr>#}
                         <tr>
                             <td><strong>Tổng cộng</strong></td>
-                            <td class="text-right"><strong>{{ (adultPrice + childrenPrice)|priceFilter|raw }}</strong>
+                            <td class="text-right"><strong>{{ orderDetail.invoice.totalPrice|priceFilter|raw }}</strong>
                             </td>
                         </tr>
                         </tbody>
@@ -104,6 +104,12 @@
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center">
+        {% if "pending" == orderDetail.invoice.status %}
+            {% set totalPrice = orderDetail.invoice.totalPrice %}
+            <a class="cs-button large" style="background-color: #0065b8 !important" href="{{ path('onepay_checkout_url', {'price' : totalPrice, 'orderId': orderDetail.id}) }}">
+                Thanh toán OnePay
+            </a>
+        {% endif %}
         <a class="cs-button large" style="background-color: #0065b8 !important"
            href="{{ path("profile_tour_order_edit", {'tourOrderId': orderDetail.id}) }}">
             Yêu cầu chỉnh sửa

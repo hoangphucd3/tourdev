@@ -740,4 +740,9 @@ class Tour
     {
         return $this->gallery;
     }
+
+    public function __toString()
+    {
+        return $this->tourName;
+    }
 }

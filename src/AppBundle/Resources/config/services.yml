@@ -4,6 +4,8 @@ services:
         arguments: [~, AppBundle\Entity\Tour, AppBundle:TourAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Quản lý, label: Tour }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.location:
         class: AppBundle\Admin\LocationAdmin
@@ -18,6 +20,8 @@ services:
         arguments: [~, AppBundle\Entity\TourLocation, AppBundle:TourLocationAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourLocation }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.hotel:
         class: AppBundle\Admin\HotelAdmin
@@ -32,6 +36,8 @@ services:
         arguments: [~, AppBundle\Entity\TourHotel, AppBundle:TourHotelAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourHotel }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
 #    app.admin.user:
 #        class: AppBundle\Admin\UserAdmin
@@ -60,6 +66,7 @@ services:
             - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.order }
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
+            - [ addChild, ['@app.admin.invoice'] ]
 
     app.admin.comment:
         class: AppBundle\Admin\CommentAdmin
@@ -82,6 +89,8 @@ services:
         arguments: [~, AppBundle\Entity\TourService, AppBundle:TourServiceAdmin]
         tags:
             - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourService }
+        calls:
+            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.tour_request:
         class: AppBundle\Admin\TourRequestAdmin
@@ -95,4 +104,13 @@ services:
         class: AppBundle\Admin\CustomerAdmin
         arguments: [~, AppBundle\Entity\Customer, AppBundle:CustomerAdmin]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Customer }
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.customer }
+        calls:
+            - [ addChild, ['@app.admin.tour_order'] ]
+            - [ setTranslationDomain, ['AppBundle'] ]
+
+    app.admin.invoice:
+        class: AppBundle\Admin\InvoiceAdmin
+        arguments: [~, AppBundle\Entity\Invoice, AppBundle:InvoiceAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: Hóa đơn }

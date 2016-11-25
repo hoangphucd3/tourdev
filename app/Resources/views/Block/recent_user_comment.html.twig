@@ -8,7 +8,7 @@
                     <li>
                         <div class="cs-text">
                             <h6>
-                                <a href="{{ path('tour_detail', { 'slug': comment.tour.slug }) }}">
+                                <a href="{{ path('tour_detail', { 'categorySlug': comment.tour.category.slug,'slug': comment.tour.slug }) }}">
                                     {{ comment.tour.tourName }}
                                 </a>
                             </h6>

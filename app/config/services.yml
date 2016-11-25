@@ -72,7 +72,6 @@ services:
         tags:
             - { name: kernel.event_listener, event: sonata.admin.event.configure.menu.sidebar, method: addMenuItems }
 
-
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         public: false

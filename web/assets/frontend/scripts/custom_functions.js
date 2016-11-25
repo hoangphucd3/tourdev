@@ -16,38 +16,38 @@
             });
         }
 
-        if (jQuery(".cs-destination-slider").length != '') {
-            $('.cs-destination-slider').wrap("<div class='destination-slider-loader'></div>");
-        }
-        if (jQuery(".destination-slider-loader").length != '') {
-            $('.destination-slider-loader').addClass("slider-loader");
-            setTimeout(function () {
-                $('.slider-loader').fadeOut("slow", function () {
-                    $(this).removeClass("slider-loader");
-                });
-                $('.cs-destination-slider').fadeOut("slow", function () {
-                    $(this).fadeIn("slow").unwrap("<div class='destination-slider-loader'></div>");
-                });
+        // if (jQuery(".cs-destination-slider").length != '') {
+        //     $('.cs-destination-slider').wrap("<div class='destination-slider-loader'></div>");
+        // }
+        // if (jQuery(".destination-slider-loader").length != '') {
+        //     $('.destination-slider-loader').addClass("slider-loader");
+        //     setTimeout(function () {
+        //         $('.slider-loader').fadeOut("slow", function () {
+        //             $(this).removeClass("slider-loader");
+        //         });
+        //         $('.cs-destination-slider').fadeOut("slow", function () {
+        //             $(this).fadeIn("slow").unwrap("<div class='destination-slider-loader'></div>");
+        //         });
+        //
+        //     }, 6000);
+        // }
 
-            }, 6000);
-        }
 
-
-        if (jQuery(".cs-list-slider").length != '') {
-            $('.cs-list-slider').addClass("slider-loader");
-            setTimeout(function () {
-                $('.slider-loader').fadeOut("slow", function () {
-                    $(this).removeClass("slider-loader");
-                });
-                $('.cs-list-slider').fadeIn();
-            }, 6000);
-
-			$('.wp-traveladvisor .cs-list.classic .cs-countnumber').delay(6300).fadeIn("slow");
-			$('.wp-traveladvisor .cs-list.classic .cs-media ul.cs-list-slider-thumb').delay(6300).fadeOut("slow", function () {
-                    $(this).addClass("slick-initializ");
-					$('ul.cs-list-slider-thumb').slick('setPosition');
-                });
-        }
+        // if (jQuery(".cs-list-slider").length != '') {
+        //     $('.cs-list-slider').addClass("slider-loader");
+        //     setTimeout(function () {
+        //         $('.slider-loader').fadeOut("slow", function () {
+        //             $(this).removeClass("slider-loader");
+        //         });
+        //         $('.cs-list-slider').fadeIn();
+        //     }, 6000);
+        //
+			// $('.wp-traveladvisor .cs-list.classic .cs-countnumber').delay(6300).fadeIn("slow");
+			// $('.wp-traveladvisor .cs-list.classic .cs-media ul.cs-list-slider-thumb').delay(6300).fadeOut("slow", function () {
+        //             $(this).addClass("slick-initializ");
+			// 		$('ul.cs-list-slider-thumb').slick('setPosition');
+        //         });
+        // }
 		
 		// if (jQuery(".wp-traveladvisor .cs-list.classic .cs-media .cs-off-price").length != '') {
 		// 	$('.wp-traveladvisor .cs-list.classic .cs-media .cs-off-price').delay(6300).fadeIn("slow");

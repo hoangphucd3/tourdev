@@ -30,12 +30,8 @@ class ReportController extends Controller
 
             if ($monthHasOrder) {
                 foreach ($monthHasOrder as $order) {
-                    $tour_price = $order->getTour()->getSalePrice();
-                    $adults = $order->getAdults();
-                    $children = $order->getChildren();
-                    $infants = $order->getInfants();
-
-                    $revenue = (($adults + $children + $infants) * $tour_price);
+                    if ('completed' == $order->getStatus())
+                        $revenue += $order->getInvoice()->getTotalPrice();
                 }
             }
 
@@ -84,14 +80,11 @@ class ReportController extends Controller
             foreach ($orders as $key => $order) {
                 $order_date = $order->getcreatedAt();
                 if ($order_date->format('m') === $current_month) {
-                    $tour_price = $order->getTour()->getSalePrice();
-                    $adults = $order->getAdults();
-                    $children = $order->getChildren();
-                    $infants = $order->getInfants();
+                    if ('completed' == $order->getStatus()) {
+                        $revenue += $order->getInvoice()->getTotalPrice();
 
-                    $revenue = (($adults + $children + $infants) * $tour_price);
-
-                    unset($orders[$key]);
+                        unset($orders[$key]);
+                    }
                 } else {
                     continue;
                 }

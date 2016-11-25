@@ -240,7 +240,7 @@
             </trans-unit>
             <trans-unit id="form_groups">
                 <source>Groups</source>
-                <target>Groups</target>
+                <target>Nhóm</target>
             </trans-unit>
             <trans-unit id="form_management">
                 <source>Management</source>
@@ -332,15 +332,15 @@
             </trans-unit>
             <trans-unit id="show.label_date_of_birth">
                 <source>show.label_date_of_birth</source>
-                <target>Date of birth</target>
+                <target>Ngày sinh</target>
             </trans-unit>
             <trans-unit id="show.label_firstname">
                 <source>show.label_firstname</source>
-                <target>Firstname</target>
+                <target>Tên</target>
             </trans-unit>
             <trans-unit id="show.label_lastname">
                 <source>show.label_lastname</source>
-                <target>Lastname</target>
+                <target>Họ</target>
             </trans-unit>
             <trans-unit id="show.label_website">
                 <source>show.label_website</source>
@@ -348,7 +348,7 @@
             </trans-unit>
             <trans-unit id="show.label_biography">
                 <source>show.label_biography</source>
-                <target>Biography</target>
+                <target>Tiểu sử</target>
             </trans-unit>
             <trans-unit id="show.label_gender">
                 <source>show.label_gender</source>
@@ -424,35 +424,35 @@
             </trans-unit>
             <trans-unit id="sonata_profile_title">
                 <source>sonata_profile_title</source>
-                <target>Dashboard</target>
+                <target>Bảng điều khiển</target>
             </trans-unit>
             <trans-unit id="link_show_profile">
                 <source>link_show_profile</source>
-                <target>Dashboard</target>
+                <target>Bảng điều khiển</target>
             </trans-unit>
             <trans-unit id="link_edit_profile">
                 <source>link_edit_profile</source>
-                <target>Profile</target>
+                <target>Hồ sơ</target>
             </trans-unit>
             <trans-unit id="title_user_edit_authentication">
                 <source>title_user_edit_authentication</source>
-                <target>Authentication</target>
+                <target>Thông tin xác thực</target>
             </trans-unit>
             <trans-unit id="link_edit_authentication">
                 <source>link_edit_authentication</source>
-                <target>Authentication</target>
+                <target>Thông tin xác thực</target>
             </trans-unit>
             <trans-unit id="label_profile_gender">
                 <source>label_profile_gender</source>
-                <target>Gender</target>
+                <target>Giới tính</target>
             </trans-unit>
             <trans-unit id="label_profile_firstname">
                 <source>label_profile_firstname</source>
-                <target>Firstname</target>
+                <target>Tên</target>
             </trans-unit>
             <trans-unit id="label_profile_lastname">
                 <source>label_profile_lastname</source>
-                <target>Lastname</target>
+                <target>Họ</target>
             </trans-unit>
             <trans-unit id="label_profile_website">
                 <source>label_profile_website</source>
@@ -460,15 +460,15 @@
             </trans-unit>
             <trans-unit id="label_profile_dob">
                 <source>label_profile_dob</source>
-                <target>Date of birth</target>
+                <target>Sinh nhật</target>
             </trans-unit>
             <trans-unit id="label_profile_biography">
                 <source>label_profile_biography</source>
-                <target>Biography</target>
+                <target>Tiểu sử</target>
             </trans-unit>
             <trans-unit id="label_profile_locale">
                 <source>label_profile_locale</source>
-                <target>Locale</target>
+                <target>Nơi chốn</target>
             </trans-unit>
             <trans-unit id="label_profile_timezone">
                 <source>label_profile_timezone</source>
@@ -476,31 +476,31 @@
             </trans-unit>
             <trans-unit id="label_profile_phone">
                 <source>label_profile_phone</source>
-                <target>Phone</target>
+                <target>Điện thoại</target>
             </trans-unit>
             <trans-unit id="profile.flash.updated">
                 <source>profile.flash.updated</source>
-                <target>Your profile has been updated.</target>
+                <target>Hồ sơ của bạn đã được cập nhật.</target>
             </trans-unit>
             <trans-unit id="sonata_change_password_link">
                 <source>sonata_change_password_link</source>
-                <target>Change your password</target>
+                <target>Đổi mật khẩu</target>
             </trans-unit>
             <trans-unit id="link_register">
                 <source>link_register</source>
-                <target>Register</target>
+                <target>Đăng ký</target>
             </trans-unit>
             <trans-unit id="link_login">
                 <source>link_login</source>
-                <target>Log In</target>
+                <target>Đăng nhập</target>
             </trans-unit>
             <trans-unit id="link_logout">
                 <source>link_logout</source>
-                <target>Log out</target>
+                <target>Đăng xuất</target>
             </trans-unit>
             <trans-unit id="registration.flash.user_created">
                 <source>registration.flash.user_created</source>
-                <target>Your account has been created successfully!</target>
+                <target>Tài khoản của bạn đã được tạo thành công!</target>
             </trans-unit>
             <trans-unit id="forgotten_password">
                 <source>forgotten_password</source>
@@ -508,27 +508,27 @@
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_index">
                 <source>sonata_user_profile_breadcrumb_index</source>
-                <target>Dashboard</target>
+                <target>Bảng điều khiển</target>
             </trans-unit>
             <trans-unit id="sonata_user_profile_breadcrumb_edit">
                 <source>sonata_user_profile_breadcrumb_edit</source>
-                <target>Edit profile</target>
+                <target>Sửa hồ sơ</target>
             </trans-unit>
             <trans-unit id="sonata_user_already_authenticated">
                 <source>sonata_user_already_authenticated</source>
-                <target>You are already logged in</target>
+                <target>Bạn đã đăng nhập</target>
             </trans-unit>
             <trans-unit id="security.login.username">
                 <source>security.login.username</source>
-                <target>Username</target>
+                <target>Tên đăng nhập</target>
             </trans-unit>
             <trans-unit id="security.login.password">
                 <source>security.login.password</source>
-                <target>Password</target>
+                <target>Mật khẩu</target>
             </trans-unit>
             <trans-unit id="form.username">
                 <source>form.username</source>
-                <target>Username</target>
+                <target>Tên đăng nhập</target>
             </trans-unit>
             <trans-unit id="form.email">
                 <source>form.email</source>
@@ -536,7 +536,7 @@
             </trans-unit>
             <trans-unit id="form.password">
                 <source>form.password</source>
-                <target>Password</target>
+                <target>Mật khẩu</target>
             </trans-unit>
             <trans-unit id="form.password_confirmation">
                 <source>form.password_confirmation</source>
@@ -544,7 +544,7 @@
             </trans-unit>
             <trans-unit id="title_user_edit_password">
                 <source>title_user_edit_password</source>
-                <target>Change password</target>
+                <target>Đổi mật khẩu</target>
             </trans-unit>
             <trans-unit id="title_user_resetting">
                 <source>title_user_resetting</source>
@@ -552,7 +552,7 @@
             </trans-unit>
             <trans-unit id="title_user_resetting_reset">
                 <source>title_user_resetting_reset</source>
-                <target>Reset password</target>
+                <target>Phục hồi mật khẩu</target>
             </trans-unit>
         </body>
     </file>
