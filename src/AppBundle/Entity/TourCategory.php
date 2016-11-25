@@ -173,4 +173,9 @@ class TourCategory
     {
         return $this->tours;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

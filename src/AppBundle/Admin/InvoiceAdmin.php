@@ -12,8 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class InvoiceAdmin extends AbstractAdmin
 {
-    protected $parentAssociationMapping = 'tourOrder';
-
     /**
      * @param DatagridMapper $datagridMapper
      */
@@ -22,6 +20,11 @@ class InvoiceAdmin extends AbstractAdmin
         $datagridMapper
             ->add('id', null, array(
                     'label' => 'Mã hóa đơn'
+                )
+            )
+            ->add('tourOrder', null, array(
+                    'label' => 'Đơn đặt tour',
+                    'associated_property' => '__toString',
                 )
             )
             ->add('totalPrice', null, array(

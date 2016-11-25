@@ -67,7 +67,7 @@ class TourOrderAdmin extends AbstractAdmin
             )
             ->add('customer', null, array(
                     'label' => 'Khách hàng',
-                    'associated_property ' => '__toString',
+                    'associated_property ' => 'id',
                 )
             )
             ->add('billingFirstName', null, array(
@@ -113,6 +113,14 @@ class TourOrderAdmin extends AbstractAdmin
             ->add('id', null, array(
                     'label' => 'label.order_id',
                     'disabled' => true,
+                )
+            )
+            ->add('customer', 'sonata_type_model_list', array(
+                    'label' => 'Khách hàng',
+                )
+            )
+            ->add('invoice', 'sonata_type_model_list', array(
+                    'label' => 'Hóa đơn',
                 )
             )
             ->add('billingFirstName', null, array(
@@ -246,26 +254,6 @@ class TourOrderAdmin extends AbstractAdmin
         if ($object instanceof TourOrder) {
             $object->setUpdatedAt(new \DateTime());
         }
-    }
-
-    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
-    {
-        if (!$childAdmin && !in_array($action, array('edit'))) {
-            return;
-        }
-        $admin = $this->isChild() ? $this->getParent() : $this;
-
-        $id = $admin->getRequest()->get('id');
-
-        $menu->addChild(
-            $this->trans('Đơn đặt tour', array(), 'AppBundle'),
-            $admin->generateMenuUrl('edit', array('id' => $id))
-        );
-
-        $menu->addChild(
-            $this->trans('Hóa đơn', array(), 'AppBundle'),
-            $admin->generateMenuUrl('app.admin.invoice.list', array('id' => $id))
-        );
     }
 
     /**

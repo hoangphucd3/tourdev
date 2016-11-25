@@ -19,8 +19,24 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('status');
+            ->add('tourOrder', null, array(
+                    'label' => 'Đơn đặt tour',
+                    'associated_property ' => '__toString',
+                )
+            )
+            ->add('user', null, array(
+                    'label' => 'Khách hàng',
+                    'associated_property ' => '__toString',
+                )
+            )
+            ->add('status', 'doctrine_orm_string', array('label' => 'Trạng thái'), 'choice', array(
+                    'choices' => array(
+                        'canceled' => 'Đã hủy',
+                        'pending' => 'Chờ xử lý',
+                        'completed' => 'Hoàn thành',
+                    ),
+                )
+            );
     }
 
     /**
@@ -29,10 +45,16 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
+            ->addIdentifier('id', null, array(
+                    'label' => 'Mã đơn'
+                )
+            )
             ->add('tourOrder', null, array(
                     'label' => 'Đơn đặt tour',
-                    'associated_property' => 'id',
+                )
+            )
+            ->add('user', null, array(
+                    'label' => 'Khách hàng'
                 )
             )
             ->add('status', 'choice', array(
@@ -59,6 +81,11 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('id', null, array(
+                    'label' => 'Mã đơn',
+                    'disabled' => 'true',
+                )
+            )
             ->add('user', 'sonata_type_model_list')
             ->add('tourOrder', 'sonata_type_model_list')
             ->add('content', CKEditorType::class, array(
@@ -82,9 +109,12 @@ class TourRequestAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
+            ->add('id', null, array(
+                    'label' => 'Mã đơn'
+                )
+            )
             ->add('status', 'choice', array(
-                    'label' => 'label.order_status',
+                    'label' => 'Trạng thái',
                     'choices' => array(
                         'canceled' => 'Đã hủy',
                         'pending' => 'Chờ xử lý',

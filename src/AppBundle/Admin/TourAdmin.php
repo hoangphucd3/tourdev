@@ -37,6 +37,11 @@ class TourAdmin extends AbstractAdmin
                     'widget' => 'single_text',
                 )
             )
+            ->add('category', null, array(
+                    'label' => 'Danh mục',
+                    'associated_property' => '__toString',
+                )
+            )
             ->add('duration', null, array(
                     'label' => 'label.tour_duration')
             )
