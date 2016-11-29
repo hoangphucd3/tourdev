@@ -29,6 +29,13 @@ class Comment
     private $content;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="trangThai", type="string")
+     */
+    private $status;
+
+    /**
      * @var datetime
      *
      * @ORM\Column(name="TGTao", type="datetime")
@@ -60,6 +67,7 @@ class Comment
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->status = 'moderate';
     }
 
     /**
@@ -190,5 +198,29 @@ class Comment
     public function getTour()
     {
         return $this->tour;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Comment
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 }

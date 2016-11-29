@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+</head>
+<body marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<style>
+    #wrapper {
+        margin: 0;
+        padding: 70px 0 70px 0;
+        -webkit-text-size-adjust: none !important;
+        width: 100%;
+    }
+
+    #template_container {
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 3px !important;
+    }
+
+    #template_header {
+        border-radius: 3px 3px 0 0 !important;
+        border-bottom: 0;
+        font-weight: bold;
+        line-height: 100%;
+        vertical-align: middle;
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    }
+
+    #template_footer td {
+        padding: 0;
+        -webkit-border-radius: 6px;
+    }
+
+    #template_footer #credit {
+        border: 0;
+        font-family: Arial;
+        font-size: 12px;
+        line-height: 125%;
+        text-align: center;
+        padding: 0 48px 48px 48px;
+    }
+
+    #body_content table td {
+        padding: 48px;
+    }
+
+    #body_content table td td {
+        padding: 12px;
+    }
+
+    #body_content table td th {
+        padding: 12px;
+    }
+
+    #body_content p {
+        margin: 0 0 16px;
+    }
+
+    #body_content_inner {
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-size: 14px;
+        line-height: 150%;
+    }
+
+    .text {
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    }
+
+    #header_wrapper {
+        padding: 36px 48px;
+        display: block;
+    }
+
+    h1 {
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 150%;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h2 {
+        display: block;
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 130%;
+        margin: 16px 0 8px;
+    }
+
+    h3 {
+        display: block;
+        font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 130%;
+        margin: 16px 0 8px;
+    }
+
+    a {
+        font-weight: normal;
+        text-decoration: underline;
+    }
+
+    img {
+        border: none;
+        display: inline;
+        font-size: 14px;
+        font-weight: bold;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+        text-transform: capitalize;
+    }
+</style>
+<div id="wrapper">
+    <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+        <tr>
+            <td align="center" valign="top">
+                <div id="template_header_image">
+                    <p style="margin-top:0;">
+                        <img src="{{ absolute_url(asset('assets/frontend/images/cs-footer-logo.png')) }}">
+                    </p>
+                </div>
+                <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
+                    <tr>
+                        <td align="center" valign="top">
+                            <!-- Header -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
+                                <tr>
+                                    <td id="header_wrapper">
+                                        <h1 style="text-align: center">
+                                            Đơn đặt tour #{{ tourOrder.id }}
+                                        </h1>
+                                        <p style="text-align: center">Tình trạng đơn: {{ tourOrder.status|orderStatus }}</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- End Header -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="top">
+                            <!-- Body -->
+                            <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body">
+                                <tr>
+                                    <td valign="top" id="body_content">
+                                        <!-- Content -->
+                                        <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td valign="top">
+                                                    <div id="body_content_inner">
+                                                        {% set tourPrice = 0 %}
+                                                        {% if tourOrder.tour.salePrice %}
+                                                            {% set tourPrice = tourOrder.tour.salePrice %}
+                                                        {% else %}
+                                                            {% set tourPrice = tourOrder.tour.regularPrice %}
+                                                        {% endif %}
+                                                        <table class="shop_table_ order_details_">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>Tên tour:</td>
+                                                                <td>{{ tourOrder.tour.tourName }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Ngày khởi hành:</td>
+                                                                <td>{{ tourOrder.tour.startDate|date('d/m/Y') }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Người lớn:</td>
+                                                                <td>{{ tourOrder.numberOfAdults }}
+                                                                    x {{ tourPrice|priceFilter|raw }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Trẻ em:</td>
+                                                                <td>{{ tourOrder.numberOfChildren }}
+                                                                    x {{ (tourPrice/1.5)|priceFilter|raw }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Em bé:</td>
+                                                                <td>{{ tourOrder.numberOfInfants }} x 0</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Tổng cộng:</th>
+                                                                <th style="text-align: center;">{{ tourOrder.invoice.totalPrice|priceFilter|raw }}</th>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- End Content -->
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- End Body -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" valign="top">
+                            <!-- Footer -->
+                            <table border="0" cellpadding="10" cellspacing="0" width="600" id="template_footer">
+                                <tr>
+                                    <td valign="top">
+                                        <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td colspan="2" valign="middle" id="credit">
+                                                    Đây là email tự động, vui lòng không trả lời email này
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- End Footer -->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

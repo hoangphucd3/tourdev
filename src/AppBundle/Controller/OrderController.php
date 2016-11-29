@@ -58,11 +58,23 @@ class OrderController extends Controller
      */
     public function orderNewAction(Request $request, Tour $tour)
     {
+        $adults = $this->get('session')->get('adults');
+        $children = $this->get('session')->get('children');
+        $infants = $this->get('session')->get('infants');
+
+        if (!isset($adults) && !isset($children) && !isset($infants)) {
+            return $this->render(':base_error:base.html.twig', array('content' => 'Phiên đặt tour của bạn đã hết hạn'));
+        }
+
         $form = $this->createForm(TourOrderType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (0 == $this->remainSeats($tour)) {
+                return $this->render(':base_error:base.html.twig', array('content' => 'Tour này đã hết chỗ'));
+            }
+
             $em = $em = $this->getDoctrine()->getManager();
             $order = $form->getData();
             $customer = $this->getCustomer();
@@ -102,7 +114,6 @@ class OrderController extends Controller
 
             $totalPrice = $adultPrice + $childrenPrice;
 
-            $this->get('session')->remove('departure');
             $this->get('session')->remove('adults');
             $this->get('session')->remove('children');
             $this->get('session')->remove('infants');
@@ -158,6 +169,15 @@ class OrderController extends Controller
             return $this->redirect('/');
         }
 
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Đơn đặt tour #' . $tourOrder->getId())
+            ->setFrom('admin@tourdev.com')
+            ->setTo('demo@localhost.com')
+            ->setBody($this->renderView('Email/new_order.html.twig', array(
+                'tourOrder' => $tourOrder,
+            )), 'text/html');
+        $this->get('mailer')->send($message);
+
         $this->get('session')->remove('new_order_viewed');
 
         return $this->render(':Checkout:order_received.html.twig', array('tourOrder' => $tourOrder));
@@ -178,7 +198,17 @@ class OrderController extends Controller
 
         $order->setStatus('completed');
         $invoice->setStatus('completed');
+        $order->setExpiryDate(NULL);
         $em->flush();
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Đơn đặt tour #' . $order->getId())
+            ->setFrom('admin@tourdev.com')
+            ->setTo('demo@localhost.com')
+            ->setBody($this->renderView('Email/new_order.html.twig', array(
+                'tourOrder' => $order,
+            )), 'text/html');
+        $this->get('mailer')->send($message);
 
         return $this->render(':Checkout:order_received.html.twig', array('tourOrder' => $tourOrder));
     }
@@ -190,5 +220,26 @@ class OrderController extends Controller
         $customer = $this->getDoctrine()->getRepository('AppBundle:Customer')->findOneBy(array('user' => $user));
 
         return $customer;
+    }
+
+    protected function remainSeats(Tour $tour)
+    {
+        $orders = $tour->getTourOrders();
+
+        $count = $tour->getNumberOfPeople();
+
+        foreach ($orders as $order) {
+            if ('canceled' !== $order->getStatus()) {
+                $people = $order->getNumberOfPeople();
+                $count -= $people;
+
+                if ($count < 0) {
+                    $count = 0;
+                    break;
+                }
+            }
+        }
+
+        return $count;
     }
 }

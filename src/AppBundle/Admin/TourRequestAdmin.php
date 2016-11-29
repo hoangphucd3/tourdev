@@ -31,7 +31,6 @@ class TourRequestAdmin extends AbstractAdmin
             )
             ->add('status', 'doctrine_orm_string', array('label' => 'Trạng thái'), 'choice', array(
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
                     ),
@@ -60,7 +59,6 @@ class TourRequestAdmin extends AbstractAdmin
             ->add('status', 'choice', array(
                     'label' => 'label.order_status',
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
                     ),
@@ -95,7 +93,6 @@ class TourRequestAdmin extends AbstractAdmin
             ->add('status', ChoiceType::class, array(
                     'label' => 'label.order_status',
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
                     ),

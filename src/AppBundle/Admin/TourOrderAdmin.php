@@ -2,9 +2,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Invoice;
 use AppBundle\Entity\TourOrder;
-use Knp\Menu\ItemInterface as MenuItemInterface;
-use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -30,7 +29,10 @@ class TourOrderAdmin extends AbstractAdmin
         $datagridMapper
             ->add('customer', null, array(
                     'label' => 'Khách hàng',
-                    'associated_property ' => '__toString',
+                )
+            )
+            ->add('tour', null, array(
+                    'label' => 'Tour',
                 )
             )
             ->add('billingFirstName', null, array(
@@ -43,9 +45,10 @@ class TourOrderAdmin extends AbstractAdmin
             )
             ->add('status', 'doctrine_orm_string', array('label' => 'label.order_status'), 'choice', array(
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
+                        'processing' => 'Đang xử lý',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
+                        'canceled' => 'Đã hủy',
                     ),
                 )
             )
@@ -85,9 +88,10 @@ class TourOrderAdmin extends AbstractAdmin
             ->add('status', 'choice', array(
                     'label' => 'label.order_status',
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
+                        'processing' => 'Đang xử lý',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
+                        'canceled' => 'Đã hủy',
                     ),
                 )
             )
@@ -123,6 +127,10 @@ class TourOrderAdmin extends AbstractAdmin
                     'label' => 'Hóa đơn',
                 )
             )
+            ->add('tour', 'sonata_type_model_list', array(
+                    'label' => 'Tour',
+                )
+            )
             ->add('billingFirstName', null, array(
                     'label' => 'label.order_first_name'
                 )
@@ -135,12 +143,25 @@ class TourOrderAdmin extends AbstractAdmin
                     'label' => 'label.order_email'
                 )
             )
+            ->add('numberOfAdults', null, array(
+                    'label' => 'Người lớn',
+                )
+            )
+            ->add('numberOfChildren', null, array(
+                    'label' => 'Trẻ em',
+                )
+            )
+            ->add('numberOfInfants', null, array(
+                    'label' => 'Em bé',
+                )
+            )
             ->add('status', ChoiceType::class, array(
                     'label' => 'label.order_status',
                     'choices' => array(
-                        'canceled' => 'Đã hủy',
+                        'processing' => 'Đang xử lý',
                         'pending' => 'Chờ xử lý',
                         'completed' => 'Hoàn thành',
+                        'canceled' => 'Đã hủy',
                     ),
                 )
             )
@@ -188,6 +209,18 @@ class TourOrderAdmin extends AbstractAdmin
                     'label' => 'label.order_id'
                 )
             )
+            ->add('customer', null, array(
+                    'label' => 'Khách hàng',
+                )
+            )
+            ->add('invoice', null, array(
+                    'label' => 'Hóa đơn',
+                )
+            )
+            ->add('tour', null, array(
+                    'label' => 'Tour',
+                )
+            )
             ->add('billingFirstName', null, array(
                     'label' => 'label.order_first_name'
                 )
@@ -200,8 +233,26 @@ class TourOrderAdmin extends AbstractAdmin
                     'label' => 'label.order_email'
                 )
             )
-            ->add('status', null, array(
-                    'label' => 'label.order_status'
+            ->add('numberOfAdults', null, array(
+                    'label' => 'Người lớn',
+                )
+            )
+            ->add('numberOfChildren', null, array(
+                    'label' => 'Trẻ em',
+                )
+            )
+            ->add('numberOfInfants', null, array(
+                    'label' => 'Em bé',
+                )
+            )
+            ->add('status', 'choice', array(
+                    'label' => 'label.order_status',
+                    'choices' => array(
+                        'processing' => 'Đang xử lý',
+                        'pending' => 'Chờ xử lý',
+                        'completed' => 'Hoàn thành',
+                        'canceled' => 'Đã hủy',
+                    ),
                 )
             )
             ->add('createdAt', null, array(
@@ -253,6 +304,25 @@ class TourOrderAdmin extends AbstractAdmin
     {
         if ($object instanceof TourOrder) {
             $object->setUpdatedAt(new \DateTime());
+            $object->setExpiryDate(new \DateTime());
+
+            $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
+            $originalData = $em->getUnitOfWork()->getOriginalEntityData($object);
+
+            $isNumberOfPeopleChange = $this->isNumberOfPeopleChange($originalData, $object);
+
+            if ($isNumberOfPeopleChange) {
+                $invoice = $this->updateInvoice($object, $object->getInvoice());
+
+                $em->flush();
+            }
+
+            if (empty($object->getInvoice())) {
+                $newInvoice = $this->createNewInvoice($object);
+
+                $em->add($newInvoice);
+                $em->flush();
+            }
         }
     }
 
@@ -268,5 +338,60 @@ class TourOrderAdmin extends AbstractAdmin
         return $object instanceof TourOrder
             ? 'Đơn đặt tour #' . $object->getId()
             : ''; // shown in the breadcrumb on the create view
+    }
+
+    private function createNewInvoice(TourOrder $tourOrder)
+    {
+        $invoice = new Invoice();
+
+        $adults = $tourOrder->getNumberOfAdults();
+        $children = $tourOrder->getNumberOfChildren();
+        $infants = $tourOrder->getNumberOfInfants();
+
+        if (!empty($tourOrder->getTour()->getSalePrice())) {
+            $tourPrice = $tourOrder->getTour()->getSalePrice();
+        } else {
+            $tourPrice = $tourOrder->getTour()->getRegularPrice();
+        }
+
+        $totalPrice = ($adults + ($children / 1.5)) * $tourPrice;
+
+        $invoice->setStatus('pending');
+        $invoice->setTourOrder($tourOrder);
+        $invoice->setCustomer($tourOrder->getCustomer());
+        $invoice->setTotalPrice($totalPrice);
+
+        return $invoice;
+    }
+
+    private function updateInvoice(TourOrder $tourOrder, Invoice $invoice)
+    {
+        $adults = $tourOrder->getNumberOfAdults();
+        $children = $tourOrder->getNumberOfChildren();
+        $infants = $tourOrder->getNumberOfInfants();
+
+        if (!empty($tourOrder->getTour()->getSalePrice())) {
+            $tourPrice = $tourOrder->getTour()->getSalePrice();
+        } else {
+            $tourPrice = $tourOrder->getTour()->getRegularPrice();
+        }
+
+        $totalPrice = ($adults + ($children / 1.5)) * $tourPrice;
+
+        $invoice->setTotalPrice($totalPrice);
+
+        return $invoice;
+    }
+
+    private function isNumberOfPeopleChange($oldData, TourOrder $newData)
+    {
+        if ($newData->getNumberOfAdults() != $oldData['numberOfAdults']
+            || $newData->getNumberOfChildren() != $oldData['numberOfChildren']
+            || $newData->getNumberOfInfants() != $oldData['numberOfInfants']
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }

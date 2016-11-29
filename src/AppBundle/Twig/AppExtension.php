@@ -3,6 +3,8 @@
 namespace AppBundle\Twig;
 
 
+use AppBundle\Entity\Tour;
+
 class AppExtension extends \Twig_Extension
 {
     public function getFilters()
@@ -20,7 +22,23 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFunction('discount', array($this, 'priceDiscount')),
             new \Twig_SimpleFunction('priceHtml', array($this, 'priceHtml')),
             new \Twig_SimpleFunction('contentPriceHtml', array($this, 'contentPriceHtml')),
+            new \Twig_SimpleFunction('getTotalPriceOrder', array($this, 'getTotalPriceOrder')),
         );
+    }
+
+    public function getTotalPriceOrder(Tour $tour)
+    {
+        $revenue = 0;
+
+        $orders = $tour->getTourOrders();
+
+        foreach ($orders as $order) {
+            if ('completed' == $order->getStatus()) {
+                $revenue += $order->getInvoice()->getTotalPrice();
+            }
+        }
+
+        return $revenue;
     }
 
     public function priceFilter($price, $decimals = 0, $decPoint = ',', $thousandsSep = '.', $currency = 'đ')
@@ -80,12 +98,12 @@ class AppExtension extends \Twig_Extension
 
     public function paymentMethod($method)
     {
-        switch($method) {
+        switch ($method) {
             case 'cod':
                 $return = 'Thanh toán trực tiếp';
                 break;
             case 'onepay':
-                $return = 'Thanh toán trực tuyến OnePay';
+                $return = 'Thanh toán trực tuyến';
                 break;
             default:
                 $return = $method;
@@ -97,7 +115,10 @@ class AppExtension extends \Twig_Extension
 
     public function orderStatus($status)
     {
-        switch($status) {
+        switch ($status) {
+            case 'processing':
+                $return = 'Đang xử lý';
+                break;
             case 'pending':
                 $return = 'Chờ thanh toán';
                 break;

@@ -14,6 +14,11 @@
                     <div class="tour">
                         <p class="woocommerce-thankyou-order-received">Cảm ơn bạn. Đơn đặt tour của bạn đã được
                             nhận.</p>
+                        {% if 'pending' == tourOrder.status %}
+                            <p>
+                                Bạn có 24 giờ để thanh toán hóa đơn đặt tour.
+                            </p>
+                        {% endif %}
                         <ul class="woocommerce-thankyou-order-details order_details">
                             <li class="order">
                                 Mã đơn đặt tour: <strong>{{ tourOrder.id }}</strong>
@@ -55,12 +60,17 @@
                                         <td>{{ tourOrder.tour.tourName }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Ngày khởi hành:</td>
+                                        <td>{{ tourOrder.tour.startDate|date('d/m/Y') }}</td>
+                                    </tr>
+                                    <tr>
                                         <td>Người lớn:</td>
                                         <td>{{ tourOrder.numberOfAdults }} x {{ tourPrice|priceFilter|raw }}</td>
                                     </tr>
                                     <tr>
                                         <td>Trẻ em:</td>
-                                        <td>{{ tourOrder.numberOfChildren }} x {{ tourPrice|priceFilter|raw }}</td>
+                                        <td>{{ tourOrder.numberOfChildren }}
+                                            x {{ (tourPrice/1.5)|priceFilter|raw }}</td>
                                     </tr>
                                     <tr>
                                         <td>Em bé:</td>

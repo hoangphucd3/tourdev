@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class InvoiceAdmin extends AbstractAdmin
@@ -31,8 +32,11 @@ class InvoiceAdmin extends AbstractAdmin
                     'label' => 'Số tiền',
                 )
             )
-            ->add('status', null, array(
-                    'label' => 'Trạng thái'
+            ->add('status', 'doctrine_orm_string', array('label' => 'label.order_status'), 'choice', array(
+                    'choices' => array(
+                        'pending' => 'Chờ thanh toán',
+                        'completed' => 'Hoàn thành',
+                    ),
                 )
             );
     }
@@ -49,7 +53,6 @@ class InvoiceAdmin extends AbstractAdmin
             )
             ->add('tourOrder', null, array(
                     'label' => 'Đơn đặt tour',
-                    'associated_property' => 'id',
                 )
             )
             ->add('totalPrice', 'currency', array(
@@ -57,10 +60,17 @@ class InvoiceAdmin extends AbstractAdmin
                     'currency' => 'VND',
                 )
             )
-            ->add('status', null, array(
-                    'label' => 'Trạng thái'
+            ->add('status', 'choice', array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'pending' => 'Chờ thanh toán',
+                        'completed' => 'Hoàn thành',
+                    ),
                 )
             )
+            ->add('updatedAt', null, array(
+                'label' => 'TG cập nhật',
+            ))
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -92,8 +102,12 @@ class InvoiceAdmin extends AbstractAdmin
                     'grouping' => true,
                 )
             )
-            ->add('status', null, array(
-                    'label' => 'Trạng thái'
+            ->add('status', ChoiceType::class, array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'pending' => 'Chờ thanh toán',
+                        'completed' => 'Hoàn thành',
+                    ),
                 )
             );
     }
@@ -113,11 +127,44 @@ class InvoiceAdmin extends AbstractAdmin
                     'currency' => 'VND',
                 )
             )
-            ->add('status', null, array(
-                    'label' => 'Trạng thái'
+            ->add('tourOrder', null, array(
+                    'label' => 'Đơn đặt tour',
+                )
+            )
+            ->add('status', 'choice', array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'pending' => 'Chờ thanh toán',
+                        'completed' => 'Hoàn thành',
+                    ),
                 )
             );
     }
+
+    /**
+     * @param mixed $object
+     *
+     * @link http://stackoverflow.com/questions/16993733/sonata-admin-bundle-one-to-many-relationship-not-saving-foreign-id
+     */
+    public function prePersist($object)
+    {
+        $this->preUpdate($object);
+    }
+
+    /**
+     * @param mixed $object
+     *
+     * @link http://stackoverflow.com/questions/16993733/sonata-admin-bundle-one-to-many-relationship-not-saving-foreign-id
+     */
+    public function preUpdate($object)
+    {
+        if ($object instanceof Invoice) {
+            if ('completed' == $object->getStatus()) {
+                $object->getTourOrder()->setStatus($object->getStatus());
+            }
+        }
+    }
+
 
     /**
      * Returns "nice" name for object

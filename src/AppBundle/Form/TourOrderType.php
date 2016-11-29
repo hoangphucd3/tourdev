@@ -37,10 +37,12 @@ class TourOrderType extends AbstractType
                 'data' => !empty($user_object->getLastName()) ? $user_object->getLastName() : '',
             ))
             ->add('email', TextType::class, array(
-                'label' => 'Email'
+                'label' => 'Email',
+                'data' => !empty($user_object->getEmail()) ? $user_object->getEmail() : '',
             ))
             ->add('billingPhone', TextType::class, array(
-                'label' => 'Số điện thoại'
+                'label' => 'Số điện thoại',
+                'data' => !empty($user_object->getPhone()) ? $user_object->getPhone() : '',
             ))
             ->add('country', CountryType::class, array(
                 'label' => 'Quốc gia'
@@ -49,7 +51,8 @@ class TourOrderType extends AbstractType
                 'label' => 'Địa chỉ 1'
             ))
             ->add('billingAddress2', TextType::class, array(
-                'label' => 'Địa chỉ 2'
+                'label' => 'Địa chỉ 2',
+                'required' => false,
             ))
             ->add('billingCity', TextType::class, array(
                 'label' => 'Thành phố'

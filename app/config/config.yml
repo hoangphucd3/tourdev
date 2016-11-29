@@ -134,6 +134,45 @@ sonata_admin:
         layout: Admin/standard_layout.html.twig
     dashboard:
         blocks:
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: sonata.admin.block.stats
+                settings:
+                    code: app.admin.tour
+                    icon: fa-map-marker
+                    text: Tour
+                    color: bg-green
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: sonata.admin.block.stats
+                settings:
+                    code: app.admin.tour_order
+                    icon: fa-shopping-cart
+                    text: Đơn đặt tour mới
+                    filters:
+                        status: { value: pending }
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: sonata.admin.block.stats
+                settings:
+                    code: app.admin.customer
+                    icon: fa-users
+                    text: Khách hàng
+                    color: bg-yellow
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: sonata.admin.block.stats
+                settings:
+                    code: app.admin.tour_cancel
+                    icon: fa-ban
+                    text: Đơn hủy tour mới
+                    color: bg-red
+                    filters:
+                        status: { value: pending }
             - { position: left, type: sonata.admin.block.admin_list }
 
     security:
@@ -156,6 +195,8 @@ sonata_admin:
 sonata_block:
     default_contexts: [cms]
     blocks:
+        sonata.admin.block.stats:
+            contexts:   [admin]
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]

@@ -39,8 +39,8 @@ class TourCancel
     /**
      * @var TourOrder
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourOrder")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourOrder", inversedBy="cancelRequest")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tourOrder;
 

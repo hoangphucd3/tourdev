@@ -13,7 +13,7 @@
                     <tr>
                         <th>Tên tour</th>
                         <th>Thời gian tạo</th>
-                        <th>Ngày khởi hành</th>
+                        <th>Thời gian hết hạn</th>
                         <th>Giá</th>
                         <th>Tình trạng</th>
                     </tr>
@@ -29,7 +29,9 @@
                                 {{ order.createdAt|date('d/m/Y H:i') }}
                             </td>
                             <td>
-                                {{ order.tour.startDate|date('d/m/Y') }}
+                                {% if order.expiryDate %}
+                                    {{ order.expiryDate|date('d/m/Y H:i') }}
+                                {% endif %}
                             </td>
                             <td>
                                 {{ order.invoice.totalPrice|priceFilter|raw }}

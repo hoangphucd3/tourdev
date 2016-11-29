@@ -118,6 +118,8 @@ class BookingController extends Controller
 
             if ($now > $tourDeparture) {
                 $return['info'] = 'Tour này đã hết hạn đặt';
+            } elseif (0 == $remainSeats) {
+                $return['info'] = 'Tour này đã đầy';
             } elseif (0 == $totalNum) {
                 $return['info'] = 'Hãy chọn số lượng người';
             } elseif ($totalNum > $remainSeats) {
@@ -139,13 +141,14 @@ class BookingController extends Controller
         $count = $tour->getNumberOfPeople();
 
         foreach ($orders as $order) {
-            if ($count < 0) {
-                $count = 0;
-                break;
-            }
             if ('canceled' !== $order->getStatus()) {
                 $people = $order->getNumberOfPeople();
                 $count -= $people;
+
+                if ($count < 0) {
+                    $count = 0;
+                    break;
+                }
             }
         }
 

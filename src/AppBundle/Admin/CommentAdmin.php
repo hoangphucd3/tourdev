@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CommentAdmin extends AbstractAdmin
 {
@@ -17,13 +18,21 @@ class CommentAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
-            ->add('content', null, array(
-                    'label' => 'label.comment_content'
+            ->add('user', null, array(
+                    'label' => 'User'
                 )
             )
-            ->add('createdAt', null, array(
-                    'label' => 'label.comment_created_at'
+            ->add('tour', null, array(
+                    'label' => 'Tour'
+                )
+            )
+            ->add('status', 'doctrine_orm_string', array('label' => 'label.order_status'), 'choice', array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'moderate' => 'Chờ xét duyệt',
+                        'valid' => 'Đã duyệt',
+                        'invalid' => 'Không duyệt',
+                    )
                 )
             );
     }
@@ -34,9 +43,11 @@ class CommentAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('content', null, array(
-                    'label' => 'label.comment_content'
+            ->addIdentifier('id', null, array(
+                'label' => 'Mã bình luận',
+            ))
+            ->add('user', null, array(
+                    'label' => 'User'
                 )
             )
             ->add('tour', null, array(
@@ -44,8 +55,13 @@ class CommentAdmin extends AbstractAdmin
                     'identifier ' => true,
                 )
             )
-            ->add('user.userName', null, array(
-                    'label' => 'User',
+            ->add('status', 'choice', array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'moderate' => 'Chờ xét duyệt',
+                        'valid' => 'Đã duyệt',
+                        'invalid' => 'Không duyệt',
+                    )
                 )
             )
             ->add('createdAt', null, array(
@@ -71,9 +87,13 @@ class CommentAdmin extends AbstractAdmin
                     'label' => 'label.comment_content'
                 )
             )
-            ->add('createdAt', null, array(
-                    'label' => 'label.comment_created_at',
-                    'disabled' => true,
+            ->add('status', ChoiceType::class, array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'moderate' => 'Chờ xét duyệt',
+                        'valid' => 'Đã duyệt',
+                        'invalid' => 'Không duyệt',
+                    )
                 )
             );
     }
@@ -87,6 +107,15 @@ class CommentAdmin extends AbstractAdmin
             ->add('id')
             ->add('content', null, array(
                     'label' => 'label.comment_content'
+                )
+            )
+            ->add('status', 'choice', array(
+                    'label' => 'Trạng thái',
+                    'choices' => array(
+                        'moderate' => 'Chờ xét duyệt',
+                        'valid' => 'Đã duyệt',
+                        'invalid' => 'Không duyệt',
+                    )
                 )
             )
             ->add('tour', null, array(

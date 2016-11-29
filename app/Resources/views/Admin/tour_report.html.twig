@@ -24,17 +24,10 @@
                                 <th></th>
                             </tr>
                             {% for tour in tours %}
-                                {% set revenue = 0 %}
-                                {% for order in tour.tourOrders %}
-                                    {% if "completed" == order.status %}
-                                        {% set revenue = revenue + order.invoice.totalPrice %}
-                                        {% set revenue = revenue|priceFilter %}
-                                    {% endif %}
-                                {% endfor %}
                                 <tr>
                                     <td>{{ tour.tourName }}</td>
                                     <td>
-                                        {{ revenue|raw }}
+                                        {{ getTotalPriceOrder(tour)|priceFilter|raw }}
                                     </td>
                                     <td>
                                         <a href="{{ path('admin_tour_detail_report', {'id': tour.id}) }}"

@@ -42,18 +42,6 @@ class Customer
     private $email;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(name="ngaySinh", type="date", nullable=true)
-     */
-    private $birthDate;
-
-    /**
-     * @var string
-     * @ORM\Column(name="queQuan", type="string", nullable=true)
-     */
-    private $birthPlace;
-
-    /**
      * @var string
      * @ORM\Column(name="soDT", type="string", nullable=true)
      */

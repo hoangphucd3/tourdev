@@ -97,6 +97,7 @@ class TourOrder
      * @var int
      *
      * @ORM\Column(name="nguoiLon", type="integer")
+     * @Assert\GreaterThanOrEqual(value="0")
      */
     private $numberOfAdults;
 
@@ -104,6 +105,7 @@ class TourOrder
      * @var int
      *
      * @ORM\Column(name="treEm", type="integer")
+     * @Assert\GreaterThanOrEqual(value="0")
      */
     private $numberOfChildren;
 
@@ -111,6 +113,7 @@ class TourOrder
      * @var int
      *
      * @ORM\Column(name="emBe", type="integer")
+     * @Assert\GreaterThanOrEqual(value="0")
      */
     private $numberOfInfants;
 
@@ -136,6 +139,13 @@ class TourOrder
     private $status;
 
     /**
+     * @var datetime
+     *
+     * @ORM\Column(name="ngayHetHan", type="datetime", nullable=true)
+     */
+    private $expiryDate;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="orders")
@@ -158,11 +168,29 @@ class TourOrder
      */
     private $invoice;
 
+    /**
+     * @var TourRequest
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourRequest", mappedBy="tourOrder", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $request;
+
+    /**
+     * @var TourCancel
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourCancel", mappedBy="tourOrder", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $cancelRequest;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->status = 'pending';
+
+        $expiryDate = $this->createdAt;
+        $expiryDate->modify('+24 hours');
+        $this->expiryDate = $expiryDate;
     }
 
     /**
@@ -654,7 +682,6 @@ class TourOrder
      */
     public function prePersist()
     {
-        $this->setUpdatedAt(new \DateTime());
     }
 
     /**
@@ -662,6 +689,77 @@ class TourOrder
      */
     public function preUpdate()
     {
-        $this->setUpdatedAt(new \DateTime());
+    }
+
+    /**
+     * Set expiryDate
+     *
+     * @param \DateTime $expiryDate
+     *
+     * @return TourOrder
+     */
+    public function setExpiryDate($expiryDate)
+    {
+        $this->expiryDate = $expiryDate;
+
+        return $this;
+    }
+
+    /**
+     * Get expiryDate
+     *
+     * @return \DateTime
+     */
+    public function getExpiryDate()
+    {
+        return $this->expiryDate;
+    }
+
+    /**
+     * Set request
+     *
+     * @param \AppBundle\Entity\TourRequest $request
+     *
+     * @return TourOrder
+     */
+    public function setRequest(\AppBundle\Entity\TourRequest $request = null)
+    {
+        $this->request = $request;
+
+        return $this;
+    }
+
+    /**
+     * Get request
+     *
+     * @return \AppBundle\Entity\TourRequest
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * Set cancelRequest
+     *
+     * @param \AppBundle\Entity\TourCancel $cancelRequest
+     *
+     * @return TourOrder
+     */
+    public function setCancelRequest(\AppBundle\Entity\TourCancel $cancelRequest = null)
+    {
+        $this->cancelRequest = $cancelRequest;
+
+        return $this;
+    }
+
+    /**
+     * Get cancelRequest
+     *
+     * @return \AppBundle\Entity\TourCancel
+     */
+    public function getCancelRequest()
+    {
+        return $this->cancelRequest;
     }
 }

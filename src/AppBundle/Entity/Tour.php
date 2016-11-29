@@ -18,6 +18,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Tour
 {
+    const STATUS_OPEN = 'open';
+    const STATUS_CLOSED = 'closed';
+
     /**
      * @var int
      *

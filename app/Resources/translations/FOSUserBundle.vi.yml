@@ -44,7 +44,7 @@ registration:
     back: Back to the originating page.
     submit: Register
     flash:
-        user_created: The user has been created successfully
+        user_created: Tạo tài khoản thành công
     email:
         subject: Welcome %username%!
         message: |
@@ -66,9 +66,9 @@ resetting:
     reset:
         submit: Change password
     flash:
-        success: The password has been reset successfully
+        success: Mật khẩu đã được khôi phục thành công
     email:
-        subject: Reset Password
+        subject: Khôi phục mật khẩu
         message: |
             Hello %username%!
 
@@ -79,9 +79,9 @@ resetting:
 
 # Global strings
 layout:
-    logout: Logout
-    login: Login
-    register: Register
+    logout: Đăng xuất
+    login: Đăng nhập
+    register: Đăng ký
     logged_in_as: Logged in as %username%
 
 # Form field labels

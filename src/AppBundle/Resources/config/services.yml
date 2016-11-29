@@ -23,13 +23,13 @@ services:
         calls:
             - [ setTranslationDomain, ['AppBundle'] ]
 
-    app.admin.hotel:
-        class: AppBundle\Admin\HotelAdmin
-        arguments: [~, AppBundle\Entity\Hotel, AppBundle:HotelAdmin]
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.hotel }
-        calls:
-            - [ setTranslationDomain, ['AppBundle'] ]
+#    app.admin.hotel:
+#        class: AppBundle\Admin\HotelAdmin
+#        arguments: [~, AppBundle\Entity\Hotel, AppBundle:HotelAdmin]
+#        tags:
+#            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: admin.label.hotel }
+#        calls:
+#            - [ setTranslationDomain, ['AppBundle'] ]
 
     app.admin.tour_hotel:
         class: AppBundle\Admin\TourHotelAdmin

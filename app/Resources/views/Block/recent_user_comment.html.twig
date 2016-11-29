@@ -5,18 +5,20 @@
         <div class="cs-comments">
             <ul>
                 {% for comment in comments %}
-                    <li>
-                        <div class="cs-text">
-                            <h6>
-                                <a href="{{ path('tour_detail', { 'categorySlug': comment.tour.category.slug,'slug': comment.tour.slug }) }}">
-                                    {{ comment.tour.tourName }}
-                                </a>
-                            </h6>
-                            <p>
-                                {{ comment.content }}
-                            </p>
-                        </div>
-                    </li>
+                    {% if 'valid' == comment.status %}
+                        <li>
+                            <div class="cs-text">
+                                <h6>
+                                    <a href="{{ path('tour_detail', { 'categorySlug': comment.tour.category.slug,'slug': comment.tour.slug }) }}">
+                                        {{ comment.tour.tourName }}
+                                    </a>
+                                </h6>
+                                <p>
+                                    {{ comment.content }}
+                                </p>
+                            </div>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

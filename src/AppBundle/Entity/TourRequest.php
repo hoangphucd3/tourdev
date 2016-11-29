@@ -59,7 +59,8 @@ class TourRequest
     /**
      * @var Tour
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourOrder")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\TourOrder", inversedBy="request")
+     * @ORM\JoinColumn(name="tour_order_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tourOrder;
 

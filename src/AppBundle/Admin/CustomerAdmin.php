@@ -9,7 +9,10 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\UserBundle\Model\UserInterface;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class CustomerAdmin extends AbstractAdmin
 {
@@ -32,12 +35,21 @@ class CustomerAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('user')
-            ->add('lastname')
-            ->add('firstname')
-            ->add('email')
-            ->add('phoneNumber')
-            ->add('country')
+            ->add('user', null, array(
+                'label' => 'Tài khoản',
+            ))
+            ->addIdentifier('email', null, array(
+                'label' => 'Email',
+            ))
+            ->add('lastname', null, array(
+                'label' => 'Tên',
+            ))
+            ->add('firstname', null, array(
+                'label' => 'Họ',
+            ))
+            ->add('phoneNumber', null, array(
+                'label' => 'Số điện thoại',
+            ))
             ->add('_action', null, array(
                 'actions' => array(
                     'show' => array(),
@@ -52,19 +64,37 @@ class CustomerAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $user = $this->getUserInfo();
+
         $formMapper
-            ->add('user', 'sonata_type_model_list')
-            ->add('lastname')
-            ->add('firstname')
-            ->add('email')
-            ->add('birthDate')
-            ->add('birthPlace')
-            ->add('phoneNumber')
-            ->add('address1')
-            ->add('address2')
-            ->add('city')
-            ->add('postCode')
-            ->add('country');
+            ->add('user', 'sonata_type_model_list', array(
+                'label' => 'Tài khoản',
+            ))
+            ->add('lastname', null, array(
+                'label' => 'Tên',
+                'empty_data' => $user->getFirstName(),
+            ))
+            ->add('firstname', null, array(
+                'label' => 'Họ',
+                'empty_data' => $user->getLastName(),
+            ))
+            ->add('email', null, array(
+                'label' => 'Email',
+                'empty_data' => $user->getEmail(),
+            ))
+            ->add('phoneNumber', null, array(
+                'label' => 'Số điện thoại',
+                'empty_data' => $user->getPhone(),
+            ))
+            ->add('city', null, array(
+                'label' => 'Thành phố',
+            ))
+            ->add('postCode', null, array(
+                'label' => 'Mã bưu chính',
+            ))
+            ->add('country', 'country', array(
+                'label' => 'Quốc gia'
+            ));
     }
 
     /**
@@ -76,8 +106,6 @@ class CustomerAdmin extends AbstractAdmin
             ->add('lastname')
             ->add('firstname')
             ->add('email')
-            ->add('birthDate')
-            ->add('birthPlace')
             ->add('phoneNumber')
             ->add('address1')
             ->add('address2')
@@ -86,6 +114,24 @@ class CustomerAdmin extends AbstractAdmin
             ->add('country')
             ->add('updatedAt')
             ->add('createdAt');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
+    }
+
+    private function getUserInfo()
+    {
+        $container = $this->getConfigurationPool()->getContainer();
+        $em = $container->get('doctrine.orm.entity_manager');
+        $id = $this->getRequest()->get('id');
+
+        $customer = $em->getRepository('AppBundle:Customer')->find($id);
+
+        $user = $customer->getUser();
+
+        return $user;
     }
 
     protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)

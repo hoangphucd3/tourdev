@@ -252,15 +252,15 @@
             </trans-unit>
             <trans-unit id="form.label_date_of_birth">
                 <source>form.label_date_of_birth</source>
-                <target>Date of birth</target>
+                <target>Sinh nhật</target>
             </trans-unit>
             <trans-unit id="form.label_firstname">
                 <source>form.label_firstname</source>
-                <target>Firstname</target>
+                <target>Tên</target>
             </trans-unit>
             <trans-unit id="form.label_lastname">
                 <source>form.label_lastname</source>
-                <target>Lastname</target>
+                <target>Họ</target>
             </trans-unit>
             <trans-unit id="form.label_website">
                 <source>form.label_website</source>
@@ -268,23 +268,23 @@
             </trans-unit>
             <trans-unit id="form.label_biography">
                 <source>form.label_biography</source>
-                <target>Biography</target>
+                <target>Tiểu sử</target>
             </trans-unit>
             <trans-unit id="form.label_gender">
                 <source>form.label_gender</source>
-                <target>Gender</target>
+                <target>Giới tính</target>
             </trans-unit>
             <trans-unit id="form.label_locale">
                 <source>form.label_locale</source>
-                <target>Locale</target>
+                <target>Ngôn ngữ</target>
             </trans-unit>
             <trans-unit id="form.label_timezone">
                 <source>form.label_timezone</source>
-                <target>Timezone</target>
+                <target>Múi giờ</target>
             </trans-unit>
             <trans-unit id="form.label_phone">
                 <source>form.label_phone</source>
-                <target>Phone</target>
+                <target>Điện thoại</target>
             </trans-unit>
             <trans-unit id="form.label_facebook_uid">
                 <source>form.label_facebook_uid</source>
@@ -352,7 +352,7 @@
             </trans-unit>
             <trans-unit id="show.label_gender">
                 <source>show.label_gender</source>
-                <target>Gender</target>
+                <target>Giới tính</target>
             </trans-unit>
             <trans-unit id="show.label_locale">
                 <source>show.label_locale</source>
@@ -412,15 +412,15 @@
             </trans-unit>
             <trans-unit id="gender_unknown">
                 <source>gender_unknown</source>
-                <target>unknown</target>
+                <target>Không xác định</target>
             </trans-unit>
             <trans-unit id="gender_female">
                 <source>gender_female</source>
-                <target>female</target>
+                <target>Nữ</target>
             </trans-unit>
             <trans-unit id="gender_male">
                 <source>gender_male</source>
-                <target>male</target>
+                <target>Nam</target>
             </trans-unit>
             <trans-unit id="sonata_profile_title">
                 <source>sonata_profile_title</source>

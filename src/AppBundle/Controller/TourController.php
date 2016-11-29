@@ -22,7 +22,7 @@ class TourController extends Controller
      */
     public function tourShowAction(Tour $tour)
     {
-        $this->checkTourOrders($tour);
+//        $this->checkTourOrders($tour);
 
         $remainSeats = $this->checkRemainSeats($tour);
 
@@ -40,13 +40,14 @@ class TourController extends Controller
         $count = $tour->getNumberOfPeople();
 
         foreach ($orders as $order) {
-            if ($count < 0) {
-                $count = 0;
-                break;
-            }
             if ('canceled' !== $order->getStatus()) {
                 $people = $order->getNumberOfPeople();
                 $count -= $people;
+
+                if ($count < 0) {
+                    $count = 0;
+                    break;
+                }
             }
         }
 
@@ -63,13 +64,12 @@ class TourController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         foreach ($orders as $order) {
-            $orderTime = $order->getUpdatedAt();
-            $orderTime->modify('+24 hours');
+            $expiryDate = $order->getExpiryDate();
             $now = new \DateTime();
 
-            if ($orderTime > $now) {
-                if ('canceled' !== $order->getStatus()) {
-                    $order->setStatus('canceled');
+            if ($expiryDate < $now) {
+                if ('expired' !== $order->getStatus()) {
+                    $order->setStatus('expired');
                     $em->flush();
                 }
             }

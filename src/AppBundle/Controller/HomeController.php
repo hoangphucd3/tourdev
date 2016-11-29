@@ -13,19 +13,9 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        $tours = $this->get('app.tour_manager')->getAllTours();
+        $em = $this->getDoctrine()->getManager();
 
-        $validTours = array();
-        $now = new \DateTime();
-
-        foreach ($tours as $tour) {
-            if ($now < $tour->getStartDate()) {
-                $validTours[] = $tour;
-            }
-        }
-
-
-        dump($validTours);
+        $tours = $em->getRepository('AppBundle:Tour')->findOpenTours();
 
         return $this->render('home/index.html.twig', ['tours' => $tours]);
     }

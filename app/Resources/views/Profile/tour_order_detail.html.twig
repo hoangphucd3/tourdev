@@ -5,115 +5,113 @@
 {% endblock %}
 
 {% block sonata_profile_content %}
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" xmlns="http://www.w3.org/1999/html">
-        <div class="widget widget-tour-info">
-            <div class="widget-title">
-                <h4>
-                    Thông tin đặt tour
-                </h4>
-            </div>
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="tour">
+            {% if 'pending' == orderDetail.status and orderDetail.expiryDate %}
+                <p>Quý khách vui lòng thanh toán hóa đơn trước
+                    <strong>{{ orderDetail.expiryDate|date('d/m/Y H:i') }}</strong></p>
+            {% endif %}
+            <ul class="woocommerce-thankyou-order-details order_details">
+                <li class="order">
+                    Mã đơn đặt tour: <strong>{{ orderDetail.id }}</strong>
+                </li>
 
-            <div class="widget-content booking-item-payment">
-                <header class="clearfix">
-                    <div class="cs-media">
-                        <img src="{% path  orderDetail.tour.featuredImage, 'reference' %}" width="150"
-                             height="113">
-                    </div>
+                <li class="date">
+                    Ngày: <strong>{{ 'now'|date('d/m/Y') }}</strong>
+                </li>
 
-                    <div class="cs-title">
-                        {{ orderDetail.tour.tourName }}
-                    </div>
-                </header>
-                <ul class="booking-item-payment-details">
-                    <li>
-                        <div class="booking-item-payment-title">
-                            Ngày khởi hành
-                        </div>
+                <li class="total">
+                    Tổng cộng: <strong>{{ orderDetail.invoice.totalPrice|priceFilter|raw }}</strong>
+                </li>
 
-                        <div class="booking-item-payment-content">
-                            {{ orderDetail.tour.startDate|date('d/m/Y') }}
-                        </div>
-                    </li>
+                <li class="method">
+                    Phuong thức thanh toán: <strong>{{ orderDetail.checkoutMethod|paymentMethod }}</strong>
+                </li>
 
-                    <li>
-                        <div class="booking-item-payment-title">
-                            Người lớn
-                        </div>
+                <li class="status">
+                    Tình trạng: <strong>{{ orderDetail.status|orderStatus }}</strong>
+                </li>
+            </ul>
+            <div class="clear"></div>
 
-                        <div class="booking-item-payment-content">
-                            {{ orderDetail.numberOfAdults }}
-                        </div>
-                    </li>
+            <h2>Thông tin đặt tour</h2>
 
-                    <li>
-                        <div class="booking-item-payment-title">
-                            Trẻ em
-                        </div>
+            {% set tourPrice = 0 %}
+            {% if orderDetail.tour.salePrice %}
+                {% set tourPrice = orderDetail.tour.salePrice %}
+            {% else %}
+                {% set tourPrice = orderDetail.tour.regularPrice %}
+            {% endif %}
 
-                        <div class="booking-item-payment-content">
-                            {{ orderDetail.numberOfChildren }}
-                        </div>
-                    </li>
-
-                    <li>
-                        <div class="booking-item-payment-title">
-                            Em bé
-                        </div>
-
-                        <div class="booking-item-payment-content">
-                            {{ orderDetail.numberOfInfants }}
-                        </div>
-                    </li>
-                </ul>
-
-                {% set tourPrice = 0 %}
-                {% if orderDetail.tour.salePrice %}
-                    {% set tourPrice = orderDetail.tour.salePrice %}
-                {% else %}
-                    {% set tourPrice = orderDetail.tour.regularPrice %}
-                {% endif %}
-                <div class="booking-item-payment-total">
-                    <table border="0" class="table_checkout">
+            <div class="cs-shortcode-table">
+                <div class="cs-table-responsive">
+                    <table class="shop_table_ order_details_">
                         <tbody>
-                        {#<tr>#}
-                        {#<td>Người lớn</td>#}
-                        {#<td class="text-right">#}
-                        {#{% set adultPrice = tourPrice * orderDetail.numberOfAdults %}#}
-                        {#<strong>{{ adultPrice|priceFilter|raw }}</strong></td>#}
-                        {#</tr>#}
-                        {#<tr>#}
-                        {#<td>Trẻ em</td>#}
-                        {#<td class="text-right">#}
-                        {#{% set childrenPrice = (tourPrice * orderDetail.numberOfInfants)/1.5 %}#}
-                        {#<strong>{{ childrenPrice|priceFilter|raw }}</strong></td>#}
-                        {#</tr>#}
-                        {#<tr>#}
-                        {#<td>Em bé</td>#}
-                        {#<td class="text-right"><strong>{{ 0|priceFilter|raw }}</strong></td>#}
-                        {#</tr>#}
                         <tr>
-                            <td><strong>Tổng cộng</strong></td>
-                            <td class="text-right"><strong>{{ orderDetail.invoice.totalPrice|priceFilter|raw }}</strong>
-                            </td>
+                            <td>Tên tour:</td>
+                            <td>{{ orderDetail.tour.tourName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày khởi hành:</td>
+                            <td>{{ orderDetail.tour.startDate|date('d/m/Y') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Người lớn:</td>
+                            <td>{{ orderDetail.numberOfAdults }} x {{ tourPrice|priceFilter|raw }}</td>
+                        </tr>
+                        <tr>
+                            <td>Trẻ em:</td>
+                            <td>{{ orderDetail.numberOfChildren }} x {{ (tourPrice/1.5)|priceFilter|raw }}</td>
+                        </tr>
+                        <tr>
+                            <td>Em bé:</td>
+                            <td>{{ orderDetail.numberOfInfants }} x 0</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Tổng cộng:</th>
+                            <th style="text-align: center;">{{ orderDetail.invoice.totalPrice|priceFilter|raw }}</th>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <h2>Thông tin khách hàng</h2>
+            <div class="cs-shortcode-table">
+                <div class="cs-table-responsive">
+                    <table class="shop_table_ customer_details_">
+                        <tbody>
+                        <tr>
+                            <td>Email:</td>
+                            <td>{{ orderDetail.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td>{{ orderDetail.billingPhone }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h2>Địa chỉ</h2>
+            <address>
+                <p>{{ orderDetail.billingAddress1 }}</p>
+                <p>{{ orderDetail.billingAddress2 }}</p>
+                <p>{{ orderDetail.billingCity }}</p>
+            </address>
         </div>
     </div>
 
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-align: center">
-        {% if "pending" == orderDetail.invoice.status %}
-            {% set totalPrice = orderDetail.invoice.totalPrice %}
-            <a class="cs-button large" style="background-color: #0065b8 !important" href="{{ path('onepay_checkout_url', {'price' : totalPrice, 'orderId': orderDetail.id}) }}">
-                Thanh toán OnePay
-            </a>
-        {% endif %}
-        <a class="cs-button large" style="background-color: #0065b8 !important"
-           href="{{ path("profile_tour_order_edit", {'tourOrderId': orderDetail.id}) }}">
-            Yêu cầu chỉnh sửa
-        </a>
+        {{ render(controller('AppBundle:User:createOnePayCheckoutButton', {'tourOrder' : orderDetail})) }}
+
+        {{ render(controller('AppBundle:User:createRequestButton', {'tourOrder' : orderDetail})) }}
 
         {{ render(controller('AppBundle:User:tourOrderDeleteForm', { 'tourOrder':orderDetail })) }}
     </div>

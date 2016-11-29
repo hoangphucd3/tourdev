@@ -11,7 +11,9 @@
                 <div class="cs-list-detail" id="reviews">
                     <ul class="grid effect-2" id="grid">
                         {% for comment in tour.comments %}
-                            {% include ':SingleTour:comment_content.html.twig' with {'comment': comment} %}
+                            {% if 'valid' == comment.status %}
+                                {% include ':SingleTour:comment_content.html.twig' with {'comment': comment} %}
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>

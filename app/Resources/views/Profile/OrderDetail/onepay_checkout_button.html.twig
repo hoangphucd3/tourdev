@@ -1,0 +1,5 @@
+{% set totalPrice = orderDetail.invoice.totalPrice %}
+<a class="cs-button large" style="background-color: #0065b8 !important"
+   href="{{ path('onepay_checkout_url', {'price' : totalPrice, 'orderId': orderDetail.id}) }}">
+    Thanh toán OnePay
+</a>

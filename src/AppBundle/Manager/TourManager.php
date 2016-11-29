@@ -30,6 +30,13 @@ class TourManager
         return $tours;
     }
 
+    public function getOpenTours()
+    {
+        $tours = $this->tourRepository->findBy(array('status' => 'open'));
+
+        return $tours;
+    }
+
     public function getPercentDiscount($regularPirce, $salePrice)
     {
         $percent = round((($regularPirce - $salePrice) / $regularPirce) * 100);
