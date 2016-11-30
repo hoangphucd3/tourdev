@@ -77,3 +77,13 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    app.template.travel_template:
+        class: AppBundle\Pager\TravelTemplate
+
+    pager.fanta.travel_template:
+        class: Pagerfanta\View\DefaultView
+        public: false
+        arguments:
+            - "@app.template.travel_template"
+        tags: [{ name: pagerfanta.view, alias: travel_template }]

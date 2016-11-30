@@ -2,6 +2,8 @@
 
 namespace AppBundle\Search;
 
+use Symfony\Component\HttpFoundation\Request;
+
 class TourSearch
 {
     private $tourName;

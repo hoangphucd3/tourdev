@@ -4,6 +4,8 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Tour;
 use Doctrine\ORM\EntityRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 
 /**
  * TourRepository
@@ -13,8 +15,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class TourRepository extends EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findOpenTours()
     {
         return $this->findBy(array('status' => Tour::STATUS_OPEN));
+    }
+
+    /**
+     * @return static
+     */
+    public function queryOpenTours()
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT t
+                FROM AppBundle:Tour t
+                WHERE t.status = :status
+            ')
+            ->setParameter('status', Tour::STATUS_OPEN);
+    }
+
+    /**
+     * @param int $page
+     * @return Pagerfanta
+     */
+    public function findLastest($page = 1)
+    {
+        $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryOpenTours(), false));
+        $paginator->setMaxPerPage(2);
+        $paginator->setCurrentPage($page);
+
+        return $paginator;
     }
 }

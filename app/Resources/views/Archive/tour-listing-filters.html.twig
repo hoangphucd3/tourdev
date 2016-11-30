@@ -92,7 +92,7 @@
                                                 {% endfor %}
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    {{ pagerfanta(tours, 'travel_template', { routeName: 'tour_listing_paginated' }) }}
+                                                    {{ pagerfanta(pager, 'travel_template', { routeName: 'tour_listing_filters_paginated', routeParams: app.request.query.all }) }}
                                                 </div>
                                             </div>
                                         </div>

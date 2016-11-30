@@ -11,7 +11,7 @@ use FOS\ElasticaBundle\Repository;
 
 class TourRepository extends Repository
 {
-    public function findTours(TourSearch $tourSearch)
+    public function queryTours(TourSearch $tourSearch)
     {
         if (!empty($tourSearch->getTourName())) {
             $query = new Query\MultiMatch();
@@ -55,10 +55,19 @@ class TourRepository extends Repository
 
         $query = Query::create($boolFilter);
 
-        return $this->find($query);
+        return $query;
     }
 
-    public function advancedFindTours(TourSearch $tourSearch)
+    public function searchTour(TourSearch $tourSearch)
+    {
+        $query = $this->queryTours($tourSearch);
+
+        $result = $this->find($query);
+
+        return $result;
+    }
+
+    public function queryAdvancedTours(TourSearch $tourSearch)
     {
         if (!empty($tourSearch->getTourName())) {
             $query = new Query\MultiMatch();
@@ -137,6 +146,15 @@ class TourRepository extends Repository
 
         $query = Query::create($boolFilter);
 
-        return $this->find($query);
+        return $query;
+    }
+
+    public function advancedSearchTour(TourSearch $tourSearch)
+    {
+        $query = $this->queryAdvancedTours($tourSearch);
+
+        $result = $this->find($query);
+
+        return $result;
     }
 }
