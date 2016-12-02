@@ -4,20 +4,27 @@
             <h3 id="reply-title" class="comment-reply-title col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 {{ 'tour_detail.write_comment'|trans }}
             </h3>
-            {{ form_start(form, {'action': path('tour_comment_new', {'tourId' : tour.id}), 'attr' : {'class': 'comment-form contact-form'}}) }}
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="input-holder">
-                    {{ form_widget(form.content) }}
-                    <i class="icon-edit2"></i>
-                    {{ form_widget(form.content) }}
-                </div>
-                <p class="form-submit"></p>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {{ form_start(form, {'action': path('tour_comment_new', {'tourId' : tour.id}), 'attr' : {'class': 'comment-form contact-form'}}) }}
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <input name="submit" type="submit" id="cs-bg-color"
-                           class="cs-button cs-bgcolor csborder-color"
-                           value="{{ 'tour_detail.submit_comment'|trans }}">
+                    <div class="input-holder">
+                        {{ form_widget(form.content) }}
+                        <i class="icon-edit2"></i>
+                        {{ form_widget(form.content) }}
+                    </div>
+                    <p class="form-submit"></p>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <input name="submit" type="submit" id="cs-bg-color"
+                               class="cs-button cs-bgcolor csborder-color"
+                               value="{{ 'tour_detail.submit_comment'|trans }}">
+                    </div>
+                    {{ form_end(form) }}
+                </div><!-- #respond -->
+            {% else %}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p>Vui lòng <a href="{{ path('sonata_user_security_login') }}">đăng nhập</a> để gửi bình luận</p>
                 </div>
-                {{ form_end(form) }}
-            </div><!-- #respond -->
+            {% endif %}
         </div>
     </div>
+</div>

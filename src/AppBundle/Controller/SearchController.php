@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Tour;
 use AppBundle\Search\TourSearch;
+use Elastica\Query;
+use Elastica\Suggest;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,7 +13,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\TourAdvancedSearchType;
 use AppBundle\Form\TourSearchType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class SearchController extends Controller
 {
@@ -92,7 +96,7 @@ class SearchController extends Controller
 
         $tours = $repository->searchTour($search_data);
 
-        $adapter = new ArrayAdapter($this->get('session')->get('search_data'));
+        $adapter = new ArrayAdapter($tours);
         $pager = new Pagerfanta($adapter);
         $pager->setMaxPerPage(10);
         $pager->setCurrentPage($page);
@@ -100,6 +104,38 @@ class SearchController extends Controller
         return $this->render(':Archive:tour-listing-filters.html.twig', array(
             'tours' => $pager->getCurrentPageResults(),
             'pager' => $pager
+        ));
+    }
+
+    /**
+     * @Route("/tour-suggest", name="tour_suggest")
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function autoCompleteTourNameAction(Request $request)
+    {
+        if (!($text = $request->get('q'))) {
+            throw new BadRequestHttpException('Missing "q" parameter.');
+        }
+
+        $completion = new Suggest\Completion('name_suggest', 'tourName');
+        $completion->setText($text);
+        $resultSet = $this->get('fos_elastica.index.app.tour')->search(Query::create($completion));
+
+        $suggestions = array();
+        foreach ($resultSet->getSuggests() as $suggests) {
+            foreach ($suggests as $suggest) {
+                foreach ($suggest['options'] as $option) {
+                    $suggestions[] = array(
+                        'text' => $option['text'],
+                    );
+                }
+            }
+        }
+
+        return new JsonResponse(array(
+            'suggestions' => $suggestions,
         ));
     }
 

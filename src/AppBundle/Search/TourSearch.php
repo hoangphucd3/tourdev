@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TourSearch
 {
+    private $id;
+
     private $tourName;
 
     private $locations;

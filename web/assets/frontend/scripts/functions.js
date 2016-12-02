@@ -101,7 +101,7 @@
 
 
         /*
-         * Slick Slider 
+         * Slick Slider
          */
         if (jQuery('.cs-gallery-slider').length != '') {
             jQuery('.cs-gallery-slider').slick({
@@ -253,7 +253,7 @@
         });
 
         /*
-         * Gallery Loader 
+         * Gallery Loader
          */
         if (jQuery('#cs-masonry-gallery').length != '') {
             new AnimOnScroll(document.getElementById('cs-masonry-gallery'), {
@@ -262,9 +262,6 @@
                 viewportFactor: 0.2
             });
         }
-
-
-
 
 
     });
@@ -321,10 +318,7 @@
     });
 
 
-
-
-
-//   
+//
 //        $('#main, .cs-sub-header ,#header , #short_list ').mouseover(function(){
 //            $('#filtration_sidebar').css('z-index' , '1');
 //         //   $('#filtration_sidebar').show();
@@ -340,7 +334,6 @@
     /* -------------------------------
      * window Scroll Funtion End
      ------------------------------- */
-
 
 
     /* -------------------------------
@@ -378,11 +371,9 @@
 //        });
 
 
-
     /* -------------------------------
      * Window Load Funtion End
      ------------------------------- */
-
 
 
     /* -------------------------------
@@ -452,18 +443,18 @@
         jQuery(".input-number").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
             if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-                    // Allow: Ctrl+A
-                            (e.keyCode == 65 && e.ctrlKey === true) ||
-                            // Allow: home, end, left, right
-                                    (e.keyCode >= 35 && e.keyCode <= 39)) {
-                        // let it happen, don't do anything
-                        return;
-                    }
-                    // Ensure that it is a number and stop the keypress
-                    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                        e.preventDefault();
-                    }
-                });
+                // Allow: Ctrl+A
+                (e.keyCode == 65 && e.ctrlKey === true) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
     }
 
     "use strict";
@@ -491,11 +482,9 @@
                 var response_data = response.split("|");
                 if (jQuery("#user_name").val() == '') {
                     jQuery("#user_name").addClass('has_error');
-                } else
-                if (jQuery("#booking_date").val() == '') {
+                } else if (jQuery("#booking_date").val() == '') {
                     jQuery("#booking_date").addClass('has_error');
-                } else
-                if (!pattern.test(jQuery("#user_email").val())) {
+                } else if (!pattern.test(jQuery("#user_email").val())) {
                     jQuery("#user_email").addClass('has_error');
 
                 }
@@ -518,6 +507,7 @@
     function traveladvisor_data_loader_load(loader_element) {
         jQuery(loader_element).html('<div class="main-thecube"><div class="sk-circle"><div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div></div></div>');
     }
+
     function captcha_reload(admin_url, captcha_id) {
         "use strict";
         var dataString = '&action=captcha_reload&captcha_id=' + captcha_id;
@@ -532,15 +522,17 @@
             }
         });
     }
+
     /* -------------------------------
      * Click Funtion End
      ------------------------------- */
-})(jQuery);
+})
+(jQuery);
 /*
  jQuery(document).on('click', '.cs-inv-grid-view', function () {
- 
+
  var traveladvisor_counter = jQuery(this).parents('.cs-inventories-main-box').data('counter');
- 
+
  jQuery(".cs-inventories-listing-loader").html('<div class="sk-circle"><div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div></div>');
  jQuery('.cs-inventories-listing-loader').show();
  var search_side = jQuery(this).data('search');
@@ -548,7 +540,7 @@
  if (search_side == 'on') {
  grid_class = 'col-md-4 col-lg-4';
  }
- 
+
  window.setTimeout(function () {
  if (!jQuery('.cs-list').hasClass('grid')) {
  if (jQuery('.cs-list').parent('div').hasClass('col-md-12')) {
@@ -556,15 +548,15 @@
  jQuery('.cs-list').parent('div').removeClass('col-lg-12');
  jQuery('.cs-list').parent('div').addClass(grid_class);
  }
- 
+
  }
  jQuery(".cs-inventories-listing-loader").html('');
  jQuery('.cs-inventories-listing-loader').hide();
  jQuery('.cs-inv-classic-view').removeClass('active');
  jQuery('.cs-inv-grid-view').addClass('cs-inv-grid-view active');
- 
+
  }, 1000);
- 
+
  var traveladvisor_ajaxurl = jQuery('.cs-inventories-main-box').data('ajaxurl');
  var dataString = 'traveladvisor_inventory_view=grid&traveladvisor_counter=' + traveladvisor_counter + '&action=traveladvisor_set_inventory_view';
  jQuery.ajax({
@@ -573,15 +565,15 @@
  data: dataString,
  dataType: 'json',
  success: function (response) {
- 
+
  }
  });
  });
- 
+
  jQuery(document).on('click', '.cs-inv-classic-view', function () {
- 
+
  var traveladvisor_counter = jQuery(this).parents('.cs-inventories-main-box').data('counter');
- 
+
  jQuery(".cs-inventories-listing-loader").html('<div class="sk-circle"><div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div></div>');
  jQuery('.cs-inventories-listing-loader').show();
  var search_side = jQuery(this).data('search');
@@ -591,23 +583,23 @@
  grid_class = 'col-md-4 col-lg-4';
  grid_class_one = 'col-md-4';
  }
- 
+
  window.setTimeout(function () {
- 
+
  if (jQuery('.cs-list').hasClass('classic')) {
  if (jQuery('.cs-list').parent('div').hasClass(grid_class_one)) {
  jQuery('.cs-list').parent('div').removeClass(grid_class);
  jQuery('.cs-list').parent('div').addClass('col-md-12 col-lg-12');
  }
  jQuery('.cs-list').removeClass('classic');
- 
+
  }
  jQuery(".cs-inventories-listing-loader").html('');
  jQuery('.cs-inventories-listing-loader').hide();
  jQuery('.cs-inv-grid-view').removeClass('active');
  jQuery('.cs-inv-classic-view').addClass('cs-inv-classic-view active');
  }, 1000);
- 
+
  var traveladvisor_ajaxurl = jQuery('.cs-inventories-main-box').data('ajaxurl');
  alert(traveladvisor_ajaxurl);
  var dataString = 'traveladvisor_inventory_view=classic&traveladvisor_counter=' + traveladvisor_counter + '&action=traveladvisor_set_inventory_view';
@@ -617,7 +609,7 @@
  data: dataString,
  dataType: 'json',
  success: function (response) {
- 
+
  }
  });
  });
@@ -649,9 +641,9 @@ jQuery(document).on('click', '.cs-inv-grid-view', function () {
         jQuery('.main-ajax-loader').hide();
         jQuery('.cs-inv-classic-view').removeClass('active');
         jQuery('.cs-inv-grid-view').addClass('cs-inv-grid-view active');
-        
+
     }, 1000);
-   
+
     var traveladvisore_ajaxurl = jQuery('.cs-inventories-main-box').data('ajaxurl');
 
     var dataString = 'traveladvisore_inventory_view=grid&traveladvisore_counter=' + traveladvisor_counter + '&action=traveladvisore_set_inventory_view';
@@ -698,7 +690,7 @@ jQuery(document).on('click', '.cs-inv-classic-view', function () {
         jQuery('.cs-inv-classic-view').addClass('cs-inv-classic-view active');
         $(window).trigger('resize');
     }, 1000);
-    
+
     var traveladvisore_ajaxurl = jQuery('.cs-inventories-main-box').data('ajaxurl');
     var dataString = 'traveladvisore_inventory_view=classic&traveladvisore_counter=' + traveladvisor_counter + '&action=traveladvisore_set_inventory_view';
     jQuery.ajax({
@@ -707,7 +699,6 @@ jQuery(document).on('click', '.cs-inv-classic-view', function () {
         data: dataString,
         dataType: 'json',
         success: function (response) {
-
 
 
         }
@@ -748,8 +739,16 @@ jQuery(document).on('click', '.cs-map-section', onMapClickHandler);
 
 jQuery(document).ready(function () {
     jQuery("area[rel^='prettyPhoto']").prettyPhoto();
-    jQuery(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed: 'fast', slideshow: 10000, hideflash: true});
-    jQuery(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({animation_speed: 'fast', slideshow: 10000, hideflash: true});
+    jQuery(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({
+        animation_speed: 'fast',
+        slideshow: 10000,
+        hideflash: true
+    });
+    jQuery(".gallery:gt(0) a[rel^='prettyPhoto']").prettyPhoto({
+        animation_speed: 'fast',
+        slideshow: 10000,
+        hideflash: true
+    });
     jQuery("#custom_content a[rel^='prettyPhoto']:first").prettyPhoto({
         custom_markup: '<div id="map_canvas" style="width:260px; height:265px"></div>',
         changepicturecallback: function () {
@@ -763,7 +762,7 @@ jQuery(document).ready(function () {
         }
     });
 });
-    
+
 /* -------------------------------
  * All Funtions End
  ------------------------------- */

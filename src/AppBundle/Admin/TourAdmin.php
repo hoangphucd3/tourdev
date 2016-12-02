@@ -142,6 +142,7 @@ class TourAdmin extends AbstractAdmin
                     'currency' => 'VND',
                     'scale' => 0,
                     'grouping' => true,
+                    'required' => false,
                 )
             )
             ->add('category', ModelType::class, array(

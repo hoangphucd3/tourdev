@@ -49,6 +49,9 @@
                     <div class="cs-main-nav pull-right">
                         <nav class="main-navigation">
                             <ul class="menu-header-menu">
+                                <li>
+                                    <a href="{{ path('tour_listing') }}">Danh sách tour</a>
+                                </li>
                                 {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
                                     <li>
                                         <a href="{{ path('sonata_user_security_login') }}">Đăng nhập</a>
@@ -79,11 +82,14 @@
     {% endblock %}
 
     {% block sub_header %}
-        <ul class="cs-list-detail-slider">
-            {% block sub_header_slide %}
-                <img src="http://traveladvisor.chimpgroup.com/wp-content/uploads/tour-slide-2.jpg"/>
-            {% endblock %}
-        </ul>
+        <div class="single-trip">
+            <ul class="cs-list-detail-slider">
+                {% block sub_header_slide %}
+                    <img src="{{ absolute_url(asset('assets/frontend/images/Slide-01.jpg')) }}"/>
+                    <img src="{{ absolute_url(asset('assets/frontend/images/Slide-03.jpg')) }}"/>
+                {% endblock %}
+            </ul>
+        </div>
 
         <div class="cs-fixed-sub-header">
             <div class="container">
@@ -244,29 +250,6 @@
                         <div class="widget widget-news-letter">
                             <div class="widget-title"><h5>Contact us Now</h5></div>
                             <p>Enter your email below and stay up to date with the latest travel info.</p>
-
-
-                            <div id="process_newsletter_2">
-                                <div id="process_2" class="cs-show-msg"></div>
-                                <div id="newsletter_mess_2" style="display:none"></div>
-                                <div class="cs-form">
-                                    <form action="javascript:traveladvisor_mailchimp_submit('http://traveladvisor.chimpgroup.com/wp-content/themes/traveladvisor','2','http://traveladvisor.chimpgroup.com/wp-admin/admin-ajax.php')"
-                                          id="mcform_2" method="post">
-                                        <div class="input-holder">
-
-                                            <input id="traveladvisor_list_id523389" type="hidden"
-                                                   name="traveladvisor_list_id" value="d758a5298d">
-                                            <input type="text" id="mc_email523389" class="txt-bar" name="mc_email"
-                                                   placeholder="">
-                                            <label> <i class=""></i>
-                                                <input class="cs-bgcolor" id="btn_newsletter_2" type="submit"
-                                                       value="submit">
-                                            </label>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,7 +266,7 @@
                                     <img src="{{ absolute_url(asset('assets/frontend/images/cs-footer-logo.png')) }}"></a>
                             </div>
                             <p>
-                                Contact us Get in touch with your local travel expert
+                                Liên hệ với chúng tôi để kết nối với chuyên gia du lịch
                             </p>
                         </div>
                     </div>
@@ -310,6 +293,36 @@
         </div>
     </footer>
 {% endblock %}
+
+<script>
+    {#jQuery(document).ready(function ($) {#}
+        {#var $search = $('#tour_search_tourName');#}
+
+        {#$search.select2({#}
+            {#placeholder: 'Type to search',#}
+            {#ajax: {#}
+                {#url: '{{ absolute_url(path('tour_suggest')) }}',#}
+                {#dataType: 'json',#}
+                {#delay: 250,#}
+                {#data: function (params) {#}
+                    {#console.log(params);#}
+                    {#return {#}
+                        {#q: params#}
+                    {#}#}
+                {#},#}
+                {#processResults: function (data, params) {#}
+                    {#return {#}
+                        {#results: data.suggestions#}
+                    {#}#}
+
+                    {#console.log(data);#}
+                {#}#}
+            {#},#}
+            {#cache: true,#}
+            {#minimumInputLength: 3#}
+        {#});#}
+    {#});#}
+</script>
 {% block javascripts %}
     <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/moment/min/moment-with-locales.min.js')) }}"></script>
     <script src="{{ absolute_url(asset('bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')) }}"></script>

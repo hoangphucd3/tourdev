@@ -20,7 +20,7 @@ class TourRepository extends EntityRepository
      */
     public function findOpenTours()
     {
-        return $this->findBy(array('status' => Tour::STATUS_OPEN));
+        return $this->findBy(array('status' => Tour::STATUS_OPEN), null, 8);
     }
 
     /**
@@ -44,7 +44,7 @@ class TourRepository extends EntityRepository
     public function findLastest($page = 1)
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryOpenTours(), false));
-        $paginator->setMaxPerPage(2);
+        $paginator->setMaxPerPage(5);
         $paginator->setCurrentPage($page);
 
         return $paginator;
