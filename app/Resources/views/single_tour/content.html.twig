@@ -46,7 +46,7 @@
                                         <div class="package-info-wrapper">
                                             {{ render(controller('AppBundle:Booking:bookingForm', {'tour' : tour})) }}
 
-                                            {% include ':SingleTour:package_info.html.twig' with {'tour': tour} %}
+                                            {{ render(controller('AppBundle:Tour:packageInfoShow', {'tour' : tour})) }}
                                         </div>
                                     </div>
                                 </div>
@@ -57,13 +57,13 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="cs-list-short" id="short_list">
-                                        {% include ':SingleTour:highlight_list.html.twig' %}
+                                        {% include '/single_tour/highlight_list.html.twig' %}
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="row">
                                         <div class="cs-list-detail" id="overview">
-                                            {% include ':SingleTour:services.html.twig' with {'services': tour.services} %}
+                                            {% include 'single_tour/services.html.twig' with {'services': tour.services} %}
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ tour.description | raw }}
                                             </div>
@@ -76,9 +76,9 @@
                 </div>
             </div>
 
-            {% include ':SingleTour:gallery.html.twig' with {'tour': tour} %}
+            {% include 'single_tour/gallery.html.twig' with {'tour': tour} %}
 
-            {% include ':SingleTour:comment.html.twig' with {'tour': tour} %}
+            {% include '/single_tour/comment.html.twig' with {'tour': tour} %}
         </div>
 
         <div class="page-section">

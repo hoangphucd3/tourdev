@@ -4,6 +4,9 @@
             <h3 id="reply-title" class="comment-reply-title col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 {{ 'tour_detail.write_comment'|trans }}
             </h3>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <small>Nhận xét của bạn sẽ được kiểm duyệt trước khi đăng.</small>
+            </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 {{ form_start(form, {'action': path('tour_comment_new', {'tourId' : tour.id}), 'attr' : {'class': 'comment-form contact-form'}}) }}
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

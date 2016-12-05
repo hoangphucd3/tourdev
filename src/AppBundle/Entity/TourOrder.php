@@ -188,7 +188,7 @@ class TourOrder
         $this->updatedAt = new \DateTime();
         $this->status = 'pending';
 
-        $expiryDate = $this->createdAt;
+        $expiryDate = new \DateTime();
         $expiryDate->modify('+24 hours');
         $this->expiryDate = $expiryDate;
     }

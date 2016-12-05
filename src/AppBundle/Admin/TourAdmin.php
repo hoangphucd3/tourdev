@@ -196,6 +196,16 @@ class TourAdmin extends AbstractAdmin
                 )
             )
             ->end()
+            ->with('group.tour_transportation', array('class' => 'col-md-12'))
+            ->add('transportations', CollectionType::class, array(
+                'label' => 'Phương tiện',
+            ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'admin_code' => 'app.admin.tour_transportation',
+                )
+            )
+            ->end()
 //            ->with('group.tour_hotels', array('class' => 'col-md-12'))
 //            ->add('hotels', CollectionType::class, array('label' => 'label.tour_hotels',), array(
 //                    'edit' => 'inline',
@@ -263,6 +273,7 @@ class TourAdmin extends AbstractAdmin
             $object->setLocations($object->getLocations());
             $object->setHotels($object->getHotels());
             $object->setBackgrounds($object->getBackgrounds());
+            $object->setTransportation($object->getTransportations());
             $object->setSlug($container->get('app.slugger')->slugify($object->getTourName()));
         }
     }

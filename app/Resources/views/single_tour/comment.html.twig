@@ -12,7 +12,7 @@
                     <ul class="grid effect-2" id="grid">
                         {% for comment in tour.comments %}
                             {% if 'valid' == comment.status %}
-                                {% include ':SingleTour:comment_content.html.twig' with {'comment': comment} %}
+                                {% include '/single_tour/comment_content.html.twig' with {'comment': comment} %}
                             {% endif %}
                         {% endfor %}
                     </ul>

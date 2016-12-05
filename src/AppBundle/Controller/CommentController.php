@@ -43,6 +43,8 @@ class CommentController extends Controller
                 return new Response('Có vấn đề khi tạo bình luận ?');
             }
         }
+
+        return $this->render('errors/base.html.twig', ['content' => 'Có lỗi xảy ra khi đăng bình luận']);
     }
 
     /**
@@ -53,7 +55,7 @@ class CommentController extends Controller
     {
         $form = $this->createForm(CommentType::class);
 
-        return $this->render(':SingleTour:_comment_form.html.twig', array(
+        return $this->render('single_tour/_comment_form.html.twig', array(
             'tour' => $tour,
             'form' => $form->createView(),
         ));

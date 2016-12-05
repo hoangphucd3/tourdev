@@ -105,6 +105,11 @@ class Tour
     private $hotels;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourTransportation", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $transportations;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\TourService", mappedBy="tour", cascade={"persist"}, orphanRemoval=true)
      */
     private $services;
@@ -162,6 +167,7 @@ class Tour
         $this->comments = new ArrayCollection();
         $this->services = new ArrayCollection();
         $this->tourOrders = new ArrayCollection();
+        $this->transportations = new ArrayCollection();
     }
 
     /**
@@ -747,5 +753,56 @@ class Tour
     public function __toString()
     {
         return $this->tourName;
+    }
+
+    /**
+     * Set transportations
+     *
+     * @param $transportations
+     * @return $this
+     */
+    public function setTransportation($transportations)
+    {
+        foreach ($transportations as $transportation) {
+            $this->addTransportation($transportation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add transportation
+     *
+     * @param \AppBundle\Entity\TourTransportation $transportation
+     *
+     * @return Tour
+     */
+    public function addTransportation(\AppBundle\Entity\TourTransportation $transportation)
+    {
+        $transportation->setTour($this);
+
+        $this->transportations[] = $transportation;
+
+        return $this;
+    }
+
+    /**
+     * Remove transportation
+     *
+     * @param \AppBundle\Entity\TourTransportation $transportation
+     */
+    public function removeTransportation(\AppBundle\Entity\TourTransportation $transportation)
+    {
+        $this->transportations->removeElement($transportation);
+    }
+
+    /**
+     * Get transportations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTransportations()
+    {
+        return $this->transportations;
     }
 }

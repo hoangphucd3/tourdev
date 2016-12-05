@@ -63,7 +63,7 @@ class OrderController extends Controller
         $infants = $this->get('session')->get('infants');
 
         if (!isset($adults) && !isset($children) && !isset($infants)) {
-            return $this->render(':base_error:base.html.twig', array('content' => 'Phiên đặt tour của bạn đã hết hạn'));
+            return $this->render('errors/base.html.twig', array('content' => 'Phiên đặt tour của bạn đã hết hạn'));
         }
 
         $form = $this->createForm(TourOrderType::class);
@@ -72,7 +72,7 @@ class OrderController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             if (0 == $this->remainSeats($tour)) {
-                return $this->render(':base_error:base.html.twig', array('content' => 'Tour này đã hết chỗ'));
+                return $this->render('errors/base.html.twig', array('content' => 'Tour này đã hết chỗ'));
             }
 
             $em = $em = $this->getDoctrine()->getManager();

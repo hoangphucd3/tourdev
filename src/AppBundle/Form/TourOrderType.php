@@ -45,7 +45,8 @@ class TourOrderType extends AbstractType
                 'data' => !empty($user_object->getPhone()) ? $user_object->getPhone() : '',
             ))
             ->add('country', CountryType::class, array(
-                'label' => 'Quốc gia'
+                'label' => 'Quốc gia',
+                'data' => 'VN',
             ))
             ->add('billingAddress1', TextType::class, array(
                 'label' => 'Địa chỉ 1'

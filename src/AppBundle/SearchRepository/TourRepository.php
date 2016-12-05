@@ -3,10 +3,13 @@
 namespace AppBundle\SearchRepository;
 
 use AppBundle\Search\TourSearch;
+use Elastica\Aggregation\Range;
 use Elastica\Query;
 use Elastica\Query\BoolQuery;
 use Elastica\Query\Match;
 use Elastica\Query\MatchAll;
+use Elastica\QueryBuilder\DSL\Aggregation;
+use Elastica\QueryBuilder\DSL\Filter;
 use FOS\ElasticaBundle\Repository;
 
 class TourRepository extends Repository
@@ -81,6 +84,8 @@ class TourRepository extends Repository
 
         $boolFilter = new BoolQuery();
 
+        $query = new Query;
+
         $boolFilter->addMust($baseQuery);
 
         if (!empty($tourSearch->getLocations())) {
@@ -144,7 +149,7 @@ class TourRepository extends Repository
             $boolFilter->addMust($departureRangeQuery);
         }
 
-        $query = Query::create($boolFilter);
+        $query->setQuery($boolFilter);
 
         return $query;
     }

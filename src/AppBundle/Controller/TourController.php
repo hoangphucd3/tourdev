@@ -22,59 +22,16 @@ class TourController extends Controller
      */
     public function tourShowAction(Tour $tour)
     {
-//        $this->checkTourOrders($tour);
-
-        $remainSeats = $this->checkRemainSeats($tour);
-
-        return $this->render(':SingleTour:content.html.twig', ['tour' => $tour, 'remainSeats' => $remainSeats]);
+        return $this->render('single_tour/content.html.twig', ['tour' => $tour]);
     }
 
-    /**
-     * @param Tour $tour
-     * @return int
-     */
-    protected function checkRemainSeats(Tour $tour)
+    public function packageInfoShowAction(Tour $tour)
     {
-        $orders = $tour->getTourOrders();
+        $remainSeats = $this->getDoctrine()->getRepository('AppBundle:Tour')->getRemainSeats($tour);
 
-        $count = $tour->getNumberOfPeople();
-
-        foreach ($orders as $order) {
-            if ('canceled' !== $order->getStatus()) {
-                $people = $order->getNumberOfPeople();
-                $count -= $people;
-
-                if ($count < 0) {
-                    $count = 0;
-                    break;
-                }
-            }
-        }
-
-        return $count;
-    }
-
-    /**
-     * @param Tour $tour
-     * @return bool
-     */
-    protected function checkTourOrders(Tour $tour)
-    {
-        $orders = $tour->getTourOrders();
-        $em = $this->getDoctrine()->getManager();
-
-        foreach ($orders as $order) {
-            $expiryDate = $order->getExpiryDate();
-            $now = new \DateTime();
-
-            if ($expiryDate < $now) {
-                if ('expired' !== $order->getStatus()) {
-                    $order->setStatus('expired');
-                    $em->flush();
-                }
-            }
-        }
-
-        return true;
+        return $this->render('single_tour/package_info.html.twig', [
+            'tour' => $tour,
+            'remain_seats' => $remainSeats,
+        ]);
     }
 }

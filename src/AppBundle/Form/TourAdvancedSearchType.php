@@ -91,7 +91,10 @@ class TourAdvancedSearchType extends AbstractType
                     'choices' => array(
                         '0-1000000' => 'Dưới ' . $this->priceFilter('1000000') . '',
                         '1000000-2000000' => 'Từ ' . $this->priceFilter('1000000') . ' - ' . $this->priceFilter('2000000') . '',
-                        '2000000-999999' => 'Trên ' . $this->priceFilter('2000000') . '',
+                        '2000000-4000000' => 'Từ ' . $this->priceFilter('2000000') . ' - ' . $this->priceFilter('4000000') . '',
+                        '4000000-6000000' => 'Từ ' . $this->priceFilter('4000000') . ' - ' . $this->priceFilter('6000000') . '',
+                        '6000000-10000000' => 'Từ ' . $this->priceFilter('6000000') . ' - ' . $this->priceFilter('10000000') . '',
+                        '10000000-99999999' => 'Trên ' . $this->priceFilter('10000000') . '',
                     ),
                     'expanded' => true,
                     'multiple' => false,

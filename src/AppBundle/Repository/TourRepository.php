@@ -49,4 +49,30 @@ class TourRepository extends EntityRepository
 
         return $paginator;
     }
+
+    /**
+     * @param Tour $tour
+     * @return int
+     */
+    public function getRemainSeats(Tour $tour)
+    {
+        $orders = $tour->getTourOrders();
+
+        $remain = $tour->getNumberOfPeople();
+
+        foreach ($orders as $order) {
+            if ('canceled' !== $order->getStatus()) {
+                $people = $order->getNumberOfPeople();
+
+                $remain -= $people;
+
+                if ($remain < 0) {
+                    $remain = 0;
+                    break;
+                }
+            }
+        }
+
+        return $remain;
+    }
 }

@@ -24,20 +24,69 @@
         <!-- End Page Section -->
 
         <!-- Page Section -->
+        <div class="page-section cs-page-sec-838086 parallex-bg" data-type="background" style="padding-top: 70px;">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <div class="image-frame">
+                                    <div class="cs-media">
+                                        <figure>
+                                            <img src="{{ absolute_url(asset('assets/frontend/images/home-image-frame-01.png')) }}">
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div style="padding-bottom:30px;"
+                                     class="cs-holder cs-column-text">
+                                    <img class="alignnone size-full"
+                                         src="{{ absolute_url(asset('assets/frontend/images/cs-footer-logo.png')) }}"
+                                         alt="cs-footer-logo"/>
+                                    <h2 style="margin-bottom: 18px; outline: none; padding: 0px; font-weight: 700; font-family: Poppins, sans-serif; color: rgb(48, 48, 48); font-stretch: normal !important; font-size: 30px !important; line-height: 40px !important; text-transform: uppercase !important;">
+                                        CHIA SẺ ĐAM MÊ DU LỊCH
+                                    </h2>
+                                    <p style="margin-bottom: 25px; outline: none; padding: 0px; line-height: 30px; font-size: 16px; font-family: Raleway, sans-serif; color: rgb(128, 128, 128); font-stretch: normal !important;">
+                                        Đến với chúng tôi, bạn có cơ hội đặt tour du lịch trọn gói với nhiều ưu đãi hấp
+                                        dẫn. Bạn cũng sẽ có cơ hội tham khảo đánh giá của những khách hàng đi trước và
+                                        chia sẻ trải nghiệm của chính bản thân mình.
+                                    </p>
+                                    <p style="margin-bottom: 25px; outline: none; padding: 0px; line-height: 30px; font-size: 16px; font-family: Raleway, sans-serif; color: rgb(128, 128, 128); font-stretch: normal !important;">
+                                        Chúng tôi là người kết nối để mỗi chuyến đi của bạn chắc chắn sẽ là một trải
+                                        nghiệm vui vẻ và đáng nhớ!
+                                    </p>
+                                    <a class="cs-button large"
+                                       style="background-color:#1e73be !important; color:#ffffff !important; padding:12px 45px 12px 45px; border:0px solid  !important ;"
+                                       href="{{ path('tour_listing') }}">
+                                        Xem tất cả tour</a>
+                                </div>
+                            </div>
+                        </div><!-- end section row --></div>
+                </div>
+            </div>  <!-- End Container Start -->
+        </div> <!-- End Page Section -->
+
+        <!-- Page Section -->
         <div class="page-section" style="padding: 80px 0 20px;">
             <!-- Container Start -->
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="row">
-                                        <div class="cs-inventories-main-box">
-                                            {% for tour in tours %}
-                                                {{ include('home/content-inventories-box.html.twig', { 'tour': tour }) }}
-                                            {% endfor %}
-                                        </div>
+                        <div class="cs-section-title align-left">
+                            <h2 style="  color: #000000 !important; ">CÁC TOUR MỚI NHẤT</h2>
+                            <span>Giải tỏa căng thẳng bằng một ngày nghỉ với các tour du lịch của chúng tôi</span>
+                        </div>
+                    </div>
+                    <div class="section-fullwidth col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="cs-inventories-main-box">
+                                        {% for tour in tours %}
+                                            {{ include('home/content-inventories-box.html.twig', { 'tour': tour }) }}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

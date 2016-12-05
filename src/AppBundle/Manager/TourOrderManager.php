@@ -46,6 +46,16 @@ class TourOrderManager
         return $this->tourOrderRepository->getUserOrders($findBy);
     }
 
+    public function getLimitUserOrders($limit = 5)
+    {
+        $findBy = array(
+            'customer' => $this->getCustomer(),
+        );
+
+        return $this->tourOrderRepository->findBy($findBy, null, $limit);
+
+    }
+
     private function getCustomer()
     {
         $user = $this->tokenStorage->getToken()->getUser();

@@ -119,3 +119,15 @@ services:
         arguments: [~, AppBundle\Entity\TourCancel, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: Quản lý, label: Đơn hủy tour }
+
+    app.admin.transportation:
+        class: AppBundle\Admin\TransportationAdmin
+        arguments: [~, AppBundle\Entity\Transportation, AppBundle:TransportationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Quản lý, label: Phương tiện }
+
+    app.admin.tour_transportation:
+        class: AppBundle\Admin\TourTransportationAdmin
+        arguments: [~, AppBundle\Entity\TourTransportation, AppBundle:TourTransportationAdmin]
+        tags:
+            - { name: sonata.admin, manager_type: orm, show_in_dashboard: false, group: Quản lý, label: TourTransportation }

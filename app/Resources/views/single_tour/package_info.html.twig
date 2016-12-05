@@ -2,7 +2,7 @@
     <div class="package-info">
         <i class="icon-users"></i>
 
-        <span class="head">{{ 'tour_detail.number_of_guess'|trans }}:</span>
+        <span class="head">{{ 'package_info.number_of_guess'|trans }}:</span>
         {{ tour.numberOfPeople }}
     </div>
 </div>
@@ -11,8 +11,8 @@
     <div class="package-info">
         <i class="icon-users"></i>
 
-        <span class="head">Số chỗ còn lại:</span>
-        {{ remainSeats }}
+        <span class="head">{{ 'package_info.remain_seats'|trans }}:</span>
+        {{ remain_seats }}
     </div>
 </div>
 
@@ -20,7 +20,7 @@
     <div class="package-info">
         <i class="icon-calendar"></i>
 
-        <span class="head">Khởi hành:</span>
+        <span class="head">{{ 'package_info.departure'|trans }}:</span>
         {{ tour.startDate|date('d/m/Y') }}
     </div>
 </div>
@@ -32,6 +32,7 @@
         {#{% set lefDays = difference.days %}#}
         <i class="icon-calendar"></i>
 
-        <span class="head">Thời gian:</span> {{ tour.duration }} ngày
+        <span class="head">{{ 'package_info.duration'|trans }}
+            :</span> {{ tour.duration }} {{ 'package_info.day'|trans }}
     </div>
 </div>

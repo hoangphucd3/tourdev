@@ -4,7 +4,7 @@
         <body>
             <trans-unit id="tour_detail.overview">
                 <source>tour_detail.overview</source>
-                <target>Giới thiệu</target>
+                <target>Chi tiết tour</target>
             </trans-unit>
             <trans-unit id="tour_detail.gallery">
                 <source>tour_detail.gallery</source>
@@ -26,9 +26,53 @@
                 <source>tour_detail.submit_comment</source>
                 <target>Gửi nhận xét</target>
             </trans-unit>
-            <trans-unit id="tour_detail.number_of_guess">
-                <source>tour_detail.number_of_guess</source>
+            <trans-unit id="package_info.number_of_guess">
+                <source>package_info.number_of_guess</source>
                 <target>Số lượng khách</target>
+            </trans-unit>
+            <trans-unit id="package_info.remain_seats">
+                <source>package_info.remain_seats</source>
+                <target>Số chỗ còn lại</target>
+            </trans-unit>
+            <trans-unit id="package_info.departure">
+                <source>package_info.departure</source>
+                <target>Khởi hành</target>
+            </trans-unit>
+            <trans-unit id="package_info.duration">
+                <source>package_info.duration</source>
+                <target>Thời gian</target>
+            </trans-unit>
+            <trans-unit id="package_info.day">
+                <source>package_info.day</source>
+                <target>Ngày</target>
+            </trans-unit>
+            <trans-unit id="label.adults">
+                <source>label.adults</source>
+                <target>Người lớn</target>
+            </trans-unit>
+            <trans-unit id="label.children">
+                <source>label.children</source>
+                <target>Trẻ em</target>
+            </trans-unit>
+            <trans-unit id="label.infants">
+                <source>label.infants</source>
+                <target>Em bé</target>
+            </trans-unit>
+            <trans-unit id="error.expired_tour">
+                <source>error.expired_tour</source>
+                <target>Tour này đã hết hạn</target>
+            </trans-unit>
+            <trans-unit id="error.full_tour">
+                <source>error.full_tour</source>
+                <target>Tour này đã đầy</target>
+            </trans-unit>
+            <trans-unit id="error.select_number_of_people">
+                <source>error.select_number_of_people</source>
+                <target>Hãy chọn số lượng người</target>
+            </trans-unit>
+            <trans-unit id="There were %number% left">
+                <source>There were %number% left</source>
+                <target>Tour này chỉ còn %number% người</target>
             </trans-unit>
         </body>
     </file>

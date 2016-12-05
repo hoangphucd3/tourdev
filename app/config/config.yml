@@ -116,7 +116,8 @@ fos_elastica:
                             search_analyzer: name_analyzer
                         description:
                             type: text
-                        regularPrice: ~
+                        regularPrice:
+                            type: long
                         startDate:
                             type: date
                         locations:
@@ -278,7 +279,7 @@ sonata_media:
 
     cdn:
         server:
-            path: http://localhost/tourdev/web/uploads/media # http://media.sonata-project.org/
+            path: /uploads/media # http://media.sonata-project.org/
 
     filesystem:
         local:

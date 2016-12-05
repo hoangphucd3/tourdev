@@ -11,7 +11,7 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Tên tour</th>
+                        <th>Mã đơn</th>
                         <th>Thời gian tạo</th>
                         <th>Thời gian hết hạn</th>
                         <th>Giá</th>
@@ -23,7 +23,7 @@
                     {% for order in orders %}
                         <tr>
                             <td>
-                                <a href="{{ path('profile_tour_order_detail', { 'tourOrderId': order.id }) }}">{{ order.tour.tourName }}</a>
+                                <a href="{{ path('profile_tour_order_detail', { 'tourOrderId': order.id }) }}">#{{ order.id }}</a>
                             </td>
                             <td>
                                 {{ order.createdAt|date('d/m/Y H:i') }}

@@ -25,7 +25,7 @@ class UserOrderBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $orders = $this->tourOrderManager->getUserOrders();
+        $orders = $this->tourOrderManager->getLimitUserOrders();
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'orders' => $orders,
